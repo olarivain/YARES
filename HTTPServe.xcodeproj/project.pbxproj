@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00530B7E1313478A006A9311 /* HTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 00530B7C1313478A006A9311 /* HTTPConnection.h */; };
+		00530B7F1313478A006A9311 /* HTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 00530B7D1313478A006A9311 /* HTTPConnection.m */; };
+		00530B8213134E84006A9311 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 00530B8113134E84006A9311 /* test.html */; };
 		00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
 		00CE974113133CBF006F6A38 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00CE973F13133CBF006F6A38 /* InfoPlist.strings */; };
 		00CE974913133CBF006F6A38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
@@ -29,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00530B7C1313478A006A9311 /* HTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPConnection.h; sourceTree = "<group>"; };
+		00530B7D1313478A006A9311 /* HTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPConnection.m; sourceTree = "<group>"; };
+		00530B8113134E84006A9311 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		00CE973313133CBF006F6A38 /* HTTPServe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTTPServe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CE973613133CBF006F6A38 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		00CE973913133CBF006F6A38 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -71,6 +77,7 @@
 		00CE972713133CBE006F6A38 = {
 			isa = PBXGroup;
 			children = (
+				00530B8113134E84006A9311 /* test.html */,
 				00CE973C13133CBF006F6A38 /* HTTPServe */,
 				00CE974D13133CBF006F6A38 /* HTTPServeTests */,
 				00CE973513133CBF006F6A38 /* Frameworks */,
@@ -112,6 +119,8 @@
 				00CE973D13133CBF006F6A38 /* Supporting Files */,
 				00CE976013133CD4006F6A38 /* HTTPServe.h */,
 				00CE976113133CD4006F6A38 /* HTTPServe.m */,
+				00530B7C1313478A006A9311 /* HTTPConnection.h */,
+				00530B7D1313478A006A9311 /* HTTPConnection.m */,
 			);
 			path = HTTPServe;
 			sourceTree = "<group>";
@@ -154,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CE976213133CD4006F6A38 /* HTTPServe.h in Headers */,
+				00530B7E1313478A006A9311 /* HTTPConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CE974113133CBF006F6A38 /* InfoPlist.strings in Resources */,
+				00530B8213134E84006A9311 /* test.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CE976313133CD4006F6A38 /* HTTPServe.m in Sources */,
+				00530B7F1313478A006A9311 /* HTTPConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +443,7 @@
 				00CE975C13133CBF006F6A38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		00CE975D13133CBF006F6A38 /* Build configuration list for PBXNativeTarget "HTTPServeTests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +452,7 @@
 				00CE975F13133CBF006F6A38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

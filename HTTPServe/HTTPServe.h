@@ -14,7 +14,7 @@
   int listenPort;
   NSSocketPort *socketPort;
   NSFileHandle *fileHandle;
-    
+  NSMutableArray *connections;
 }
 
 - (HTTPServe*) initWithPort: (int) port;

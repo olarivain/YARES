@@ -7,6 +7,7 @@
 //
 
 #import "HTTPServe.h"
+#import "HTTPConnection.h"
 
 @interface HTTPServe(private)
 - (void) newConnection: (NSNotification*) notification;
@@ -19,6 +20,7 @@
   self = [super init];
   if (self) {
     listenPort = port;
+    connections = [[NSMutableArray alloc] init];
   }
   
   return self;
@@ -47,7 +49,32 @@
 }
 
 - (void) newConnection:(NSNotification *)notification{
+  NSDictionary *userInfo = [notification userInfo];
+  NSFileHandle *remoteFileHandle = [userInfo objectForKey:
+                                    NSFileHandleNotificationFileHandleItem];
   
+  NSNumber *errorNo = [userInfo objectForKey:@"NSFileHandleError"];
+  if( errorNo ) {
+    NSLog(@"NSFileHandle Error: %@", errorNo);
+    return;
+  }
+  
+  [fileHandle acceptConnectionInBackgroundAndNotify];
+  
+  if( remoteFileHandle ) {
+    HTTPConnection *connection = [[HTTPConnection alloc] initWithFileHandle:remoteFileHandle];
+    if( connection ) {
+      NSIndexSet *insertedIndexes;
+      insertedIndexes = [NSIndexSet indexSetWithIndex:
+                         [connections count]];
+      [self willChange:NSKeyValueChangeInsertion
+       valuesAtIndexes:insertedIndexes forKey:@"connections"];
+      [connections addObject:connection];
+      [self didChange:NSKeyValueChangeInsertion
+      valuesAtIndexes:insertedIndexes forKey:@"connections"];
+      [connection release];
+    }
+  }
 }
 
 @end
