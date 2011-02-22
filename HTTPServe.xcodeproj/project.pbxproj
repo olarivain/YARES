@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
+		00CE974113133CBF006F6A38 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00CE973F13133CBF006F6A38 /* InfoPlist.strings */; };
+		00CE974913133CBF006F6A38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
+		00CE974C13133CBF006F6A38 /* HTTPServe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973313133CBF006F6A38 /* HTTPServe.framework */; };
+		00CE975213133CBF006F6A38 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00CE975013133CBF006F6A38 /* InfoPlist.strings */; };
+		00CE975513133CBF006F6A38 /* HTTPServeTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00CE975413133CBF006F6A38 /* HTTPServeTests.h */; };
+		00CE975713133CBF006F6A38 /* HTTPServeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CE975613133CBF006F6A38 /* HTTPServeTests.m */; };
+		00CE976213133CD4006F6A38 /* HTTPServe.h in Headers */ = {isa = PBXBuildFile; fileRef = 00CE976013133CD4006F6A38 /* HTTPServe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00CE976313133CD4006F6A38 /* HTTPServe.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CE976113133CD4006F6A38 /* HTTPServe.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00CE974A13133CBF006F6A38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00CE972913133CBE006F6A38 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00CE973213133CBE006F6A38;
+			remoteInfo = HTTPServe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00CE973313133CBF006F6A38 /* HTTPServe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTTPServe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00CE973613133CBF006F6A38 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		00CE973913133CBF006F6A38 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		00CE973A13133CBF006F6A38 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		00CE973B13133CBF006F6A38 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		00CE973E13133CBF006F6A38 /* HTTPServe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTTPServe-Info.plist"; sourceTree = "<group>"; };
+		00CE974013133CBF006F6A38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00CE974213133CBF006F6A38 /* HTTPServe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTTPServe-Prefix.pch"; sourceTree = "<group>"; };
+		00CE974813133CBF006F6A38 /* HTTPServeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTTPServeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00CE974F13133CBF006F6A38 /* HTTPServeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTTPServeTests-Info.plist"; sourceTree = "<group>"; };
+		00CE975113133CBF006F6A38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00CE975313133CBF006F6A38 /* HTTPServeTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTTPServeTests-Prefix.pch"; sourceTree = "<group>"; };
+		00CE975413133CBF006F6A38 /* HTTPServeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPServeTests.h; sourceTree = "<group>"; };
+		00CE975613133CBF006F6A38 /* HTTPServeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPServeTests.m; sourceTree = "<group>"; };
+		00CE976013133CD4006F6A38 /* HTTPServe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPServe.h; sourceTree = "<group>"; };
+		00CE976113133CD4006F6A38 /* HTTPServe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServe.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00CE972F13133CBE006F6A38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00CE974413133CBF006F6A38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00CE974913133CBF006F6A38 /* Cocoa.framework in Frameworks */,
+				00CE974C13133CBF006F6A38 /* HTTPServe.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00CE972713133CBE006F6A38 = {
+			isa = PBXGroup;
+			children = (
+				00CE973C13133CBF006F6A38 /* HTTPServe */,
+				00CE974D13133CBF006F6A38 /* HTTPServeTests */,
+				00CE973513133CBF006F6A38 /* Frameworks */,
+				00CE973413133CBF006F6A38 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00CE973413133CBF006F6A38 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00CE973313133CBF006F6A38 /* HTTPServe.framework */,
+				00CE974813133CBF006F6A38 /* HTTPServeTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00CE973513133CBF006F6A38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00CE973613133CBF006F6A38 /* Cocoa.framework */,
+				00CE973813133CBF006F6A38 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		00CE973813133CBF006F6A38 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00CE973913133CBF006F6A38 /* AppKit.framework */,
+				00CE973A13133CBF006F6A38 /* CoreData.framework */,
+				00CE973B13133CBF006F6A38 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		00CE973C13133CBF006F6A38 /* HTTPServe */ = {
+			isa = PBXGroup;
+			children = (
+				00CE973D13133CBF006F6A38 /* Supporting Files */,
+				00CE976013133CD4006F6A38 /* HTTPServe.h */,
+				00CE976113133CD4006F6A38 /* HTTPServe.m */,
+			);
+			path = HTTPServe;
+			sourceTree = "<group>";
+		};
+		00CE973D13133CBF006F6A38 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00CE973E13133CBF006F6A38 /* HTTPServe-Info.plist */,
+				00CE973F13133CBF006F6A38 /* InfoPlist.strings */,
+				00CE974213133CBF006F6A38 /* HTTPServe-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00CE974D13133CBF006F6A38 /* HTTPServeTests */ = {
+			isa = PBXGroup;
+			children = (
+				00CE975413133CBF006F6A38 /* HTTPServeTests.h */,
+				00CE975613133CBF006F6A38 /* HTTPServeTests.m */,
+				00CE974E13133CBF006F6A38 /* Supporting Files */,
+			);
+			path = HTTPServeTests;
+			sourceTree = "<group>";
+		};
+		00CE974E13133CBF006F6A38 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00CE974F13133CBF006F6A38 /* HTTPServeTests-Info.plist */,
+				00CE975013133CBF006F6A38 /* InfoPlist.strings */,
+				00CE975313133CBF006F6A38 /* HTTPServeTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		00CE973013133CBE006F6A38 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00CE976213133CD4006F6A38 /* HTTPServe.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		00CE973213133CBE006F6A38 /* HTTPServe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00CE975A13133CBF006F6A38 /* Build configuration list for PBXNativeTarget "HTTPServe" */;
+			buildPhases = (
+				00CE972E13133CBE006F6A38 /* Sources */,
+				00CE972F13133CBE006F6A38 /* Frameworks */,
+				00CE973013133CBE006F6A38 /* Headers */,
+				00CE973113133CBE006F6A38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HTTPServe;
+			productName = HTTPServe;
+			productReference = 00CE973313133CBF006F6A38 /* HTTPServe.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		00CE974713133CBF006F6A38 /* HTTPServeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00CE975D13133CBF006F6A38 /* Build configuration list for PBXNativeTarget "HTTPServeTests" */;
+			buildPhases = (
+				00CE974313133CBF006F6A38 /* Sources */,
+				00CE974413133CBF006F6A38 /* Frameworks */,
+				00CE974513133CBF006F6A38 /* Resources */,
+				00CE974613133CBF006F6A38 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00CE974B13133CBF006F6A38 /* PBXTargetDependency */,
+			);
+			name = HTTPServeTests;
+			productName = HTTPServeTests;
+			productReference = 00CE974813133CBF006F6A38 /* HTTPServeTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00CE972913133CBE006F6A38 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 00CE972C13133CBE006F6A38 /* Build configuration list for PBXProject "HTTPServe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 00CE972713133CBE006F6A38;
+			productRefGroup = 00CE973413133CBF006F6A38 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00CE973213133CBE006F6A38 /* HTTPServe */,
+				00CE974713133CBF006F6A38 /* HTTPServeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00CE973113133CBE006F6A38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00CE974113133CBF006F6A38 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00CE974513133CBF006F6A38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00CE975213133CBF006F6A38 /* InfoPlist.strings in Resources */,
+				00CE975513133CBF006F6A38 /* HTTPServeTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00CE974613133CBF006F6A38 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00CE972E13133CBE006F6A38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00CE976313133CD4006F6A38 /* HTTPServe.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00CE974313133CBF006F6A38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00CE975713133CBF006F6A38 /* HTTPServeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00CE974B13133CBF006F6A38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00CE973213133CBE006F6A38 /* HTTPServe */;
+			targetProxy = 00CE974A13133CBF006F6A38 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		00CE973F13133CBF006F6A38 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00CE974013133CBF006F6A38 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		00CE975013133CBF006F6A38 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00CE975113133CBF006F6A38 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00CE975813133CBF006F6A38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		00CE975913133CBF006F6A38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		00CE975B13133CBF006F6A38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HTTPServe/HTTPServe-Prefix.pch";
+				INFOPLIST_FILE = "HTTPServe/HTTPServe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		00CE975C13133CBF006F6A38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HTTPServe/HTTPServe-Prefix.pch";
+				INFOPLIST_FILE = "HTTPServe/HTTPServe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		00CE975E13133CBF006F6A38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HTTPServeTests/HTTPServeTests-Prefix.pch";
+				INFOPLIST_FILE = "HTTPServeTests/HTTPServeTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		00CE975F13133CBF006F6A38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HTTPServeTests/HTTPServeTests-Prefix.pch";
+				INFOPLIST_FILE = "HTTPServeTests/HTTPServeTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00CE972C13133CBE006F6A38 /* Build configuration list for PBXProject "HTTPServe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00CE975813133CBF006F6A38 /* Debug */,
+				00CE975913133CBF006F6A38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00CE975A13133CBF006F6A38 /* Build configuration list for PBXNativeTarget "HTTPServe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00CE975B13133CBF006F6A38 /* Debug */,
+				00CE975C13133CBF006F6A38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		00CE975D13133CBF006F6A38 /* Build configuration list for PBXNativeTarget "HTTPServeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00CE975E13133CBF006F6A38 /* Debug */,
+				00CE975F13133CBF006F6A38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00CE972913133CBE006F6A38 /* Project object */;
+}
