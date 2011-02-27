@@ -31,10 +31,19 @@
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [fileHandle closeFile];
-  [fileHandle dealloc];
-  [socketPort dealloc];
-  [handlerRegistry dealloc];
+  if(fileHandle)
+  {
+    [fileHandle closeFile];
+    [fileHandle release];
+  }
+  
+  if(socketPort)
+  {
+    [socketPort invalidate];
+    [socketPort release];
+  }
+  
+  [handlerRegistry release];
   [super dealloc];
 }
 
@@ -92,10 +101,12 @@
 }
 
 
-- (id<RequestHandler>) handlerForURL: (NSURL*) url
+- (void) stop
 {
-  // TODO implement
-  return nil;
+  [fileHandle closeFile];
+  [fileHandle release];
+  [socketPort invalidate];
+  [socketPort release];
 }
 
 @end

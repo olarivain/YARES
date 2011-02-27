@@ -22,5 +22,6 @@
 
 - (HTTPServe*) initWithPort: (int) port;
 - (void) start;
+- (void) stop;
 
 @end

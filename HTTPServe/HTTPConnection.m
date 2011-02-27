@@ -162,21 +162,18 @@
 - (void) handleRequest
 {
   id<RequestHandler> handler = [handlerRegistry handlerForURL:[request url]];
-  Response *response;
-
   if(handler == nil)
   {
-    response = [Response NOT_FOUND_RESPONSE];
+    handler = [handlerRegistry notFoundHandler];
   }
-  else
+  
+  Response *response;
+  @try 
   {
-    @try 
-    {
-      response = [handler handleRequest: request];  
-    } @catch (NSException *exception) 
-    {
-      response = [Response UNAVAILABLE_RESPONSE];
-    }
+    response = [handler handleRequest: request];  
+  } @catch (NSException *exception) 
+  {
+    response = [Response UNAVAILABLE_RESPONSE];
   }
 
   [self writeResponse:response];

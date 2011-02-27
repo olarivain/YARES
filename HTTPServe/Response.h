@@ -30,6 +30,7 @@
 - (void) addHeader: (NSString*) value forKey: (NSString*) key;
 - (void) removeHeader: (NSString*) key;
 
+
 + (Response*) NOT_FOUND_RESPONSE;
 + (Response*) INTERNAL_SERVER_ERROR_RESPONSE;
 + (Response*) UNAVAILABLE_RESPONSE;

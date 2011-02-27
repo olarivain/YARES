@@ -34,13 +34,7 @@
 
 - (Response*) handleRequest: (Request*) request
 {
-  Response *response = [[Response alloc] init];
-  [response setResponseCode: [ResponseCode NOT_FOUND]];
-  
-  NSString *content = @"This page was not found.";
-  [response setContent:[content dataUsingEncoding:NSUTF8StringEncoding]];
-  
-  return response;
+  return [Response NOT_FOUND_RESPONSE];
 }
 
 @end
