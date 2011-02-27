@@ -7,7 +7,7 @@
 //
 
 #import "Response.h"
-
+#import "ResponseCode.h"
 
 @implementation Response
 
@@ -19,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-      responseCode = OK;
+      responseCode = [ResponseCode OK];
     }
     
     return self;
@@ -42,48 +42,6 @@
 
 - (void) removeHeader:(id)key{
   [headers removeObjectForKey: key];
-}
-
-- (int) httpResponseCode
-{
-  int code;
-  switch(responseCode)
-  {
-    case OK:
-      code = 200;
-      break;
-      
-    case CREATED: 
-      code = 201;
-      break;
-    case NO_CONTENT: 
-      code = 204;
-      break;
-    case MOVED_PERMANENTLY: 
-      code = 302;
-      break;
-    case BAD_REQUEST: 
-      code = 400;
-      break;
-    case FORBIDDEN: 
-      code = 403;
-      break;
-    case NOT_FOUND: 
-      code = 404;
-      break;
-    case INTERNAL_SERVER_ERROR: 
-      code = 500;
-      break;
-    case UNAVAILABLE:
-      code = 503;
-      break;
-    default:
-      code = 404;
-      break;
-
-  }
-  
-  return code;
 }
 
 @end

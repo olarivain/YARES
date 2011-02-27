@@ -177,7 +177,8 @@
 
 - (void) writeResponse: (Response*) response
 {
-  CFHTTPMessageRef cfResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, [response httpResponseCode], NULL, kCFHTTPVersion1_1);
+  ResponseCode *responseCode = [response responseCode];
+  CFHTTPMessageRef cfResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, [responseCode code], NULL, kCFHTTPVersion1_1);
   
   CFHTTPMessageSetBody(cfResponse, (CFDataRef) [response content]);
   CFDataRef cfResponseData = CFHTTPMessageCopySerializedMessage(cfResponse);

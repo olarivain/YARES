@@ -8,6 +8,7 @@
 
 #import "NotFoundHandler.h"
 #import "Response.h"
+#import "ResponseCode.h"
 
 @implementation NotFoundHandler
 
@@ -34,7 +35,7 @@
 - (Response*) handleRequest: (Request*) request
 {
   Response *response = [[Response alloc] init];
-  [response setResponseCode: NOT_FOUND];
+  [response setResponseCode: [ResponseCode NOT_FOUND]];
   
   NSString *content = @"This page was not found.";
   [response setContent:[content dataUsingEncoding:NSUTF8StringEncoding]];
