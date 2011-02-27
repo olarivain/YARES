@@ -46,9 +46,13 @@
     Class class = [classHolder clazz];
     // don't register SimpleRequestHandler, obviously...
     if(class != [SimpleRequestHandler class] && class != [NotFoundHandler class] 
-       && class_conformsToProtocol(class, @protocol(RequestHandler))){
-        NSLog(@"Class is a potential match");
+       && class_conformsToProtocol(class, @protocol(RequestHandler)) )
+    {
       id<RequestHandler> handler = [class new];
+      if(class_respondsToSelector(class, @selector(initialize)))
+      {
+        [handler initialize];
+      }
       [self registerHandler: handler];
     }
   }

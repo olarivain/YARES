@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000BF75B131A0ED40012814B /* RestRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF759131A0ED10012814B /* RestRequestHandler.h */; };
+		000BF75C131A0ED40012814B /* RestRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 000BF75A131A0ED10012814B /* RestRequestHandler.m */; };
 		0013189E1319F9DD00F0AFB8 /* ResponseCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0013189C1319F9DD00F0AFB8 /* ResponseCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0013189F1319F9DD00F0AFB8 /* ResponseCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0013189D1319F9DD00F0AFB8 /* ResponseCode.m */; };
 		00530B7E1313478A006A9311 /* HTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 00530B7C1313478A006A9311 /* HTTPConnection.h */; };
@@ -51,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000BF759131A0ED10012814B /* RestRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestRequestHandler.h; sourceTree = "<group>"; };
+		000BF75A131A0ED10012814B /* RestRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestRequestHandler.m; sourceTree = "<group>"; };
 		0013189C1319F9DD00F0AFB8 /* ResponseCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseCode.h; sourceTree = "<group>"; };
 		0013189D1319F9DD00F0AFB8 /* ResponseCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseCode.m; sourceTree = "<group>"; };
 		00530B7C1313478A006A9311 /* HTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPConnection.h; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				00A17CA31319CA66002B0FC3 /* RequestHandler.h */,
 				007A804F1319D9910040A3AE /* RequestHandlerRegistry.h */,
 				007A80501319D9910040A3AE /* RequestHandlerRegistry.m */,
+				000BF759131A0ED10012814B /* RestRequestHandler.h */,
+				000BF75A131A0ED10012814B /* RestRequestHandler.m */,
 				007A80581319DF270040A3AE /* SimpleRequestHandler.h */,
 				007A80591319DF280040A3AE /* SimpleRequestHandler.m */,
 			);
@@ -288,6 +294,7 @@
 				007A80641319E6620040A3AE /* ClassHolder.h in Headers */,
 				00BF732D1319EBB80009761A /* NotFoundHandler.h in Headers */,
 				00BF736C1319F5320009761A /* Request.h in Headers */,
+				000BF75B131A0ED40012814B /* RestRequestHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +413,7 @@
 				00BF732E1319EBB80009761A /* NotFoundHandler.m in Sources */,
 				00BF736D1319F5320009761A /* Request.m in Sources */,
 				0013189F1319F9DD00F0AFB8 /* ResponseCode.m in Sources */,
+				000BF75C131A0ED40012814B /* RestRequestHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,4 +14,7 @@
 @protocol RequestHandler <NSObject>
 - (Response*) handleRequest: (Request*) request;
 - (NSArray*) urls;
+
+@optional
+- (void) initialize;
 @end
