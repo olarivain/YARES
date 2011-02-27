@@ -9,6 +9,7 @@
 #import "HTTPConnection.h"
 #import "HTTPServeProtected.h"
 #import "Response.h"
+#import "ResponseCode.h"
 #import "RequestHandler.h"
 #import "RequestHandlerRegistry.h"
 
@@ -20,6 +21,7 @@
 - (void) handleRequest;
 - (Response*) get404Response;
 - (void) writeResponse: (Response*) response;
+- (void) createRequest;
 @end
 
 @implementation HTTPConnection
@@ -112,12 +114,8 @@
       
       if(bodyReceived)
       {
-        request = [[Request alloc] initWithHeaders:requestHeaders body:requestData andURL: (NSURL*) CFHTTPMessageCopyRequestURL(cfRequest)];
-        [requestHeaders release];
-        [requestData release];
-        
-        CFRelease(cfRequest);
-        cfRequest = NULL;
+        [self createRequest];
+
         [self handleRequest];
       }
      
@@ -190,6 +188,32 @@
   }
   CFRelease(cfResponse);
   CFRelease(cfResponseData);
+}
+
+- (void) createRequest
+{
+  // TODO: dude... get this out somewhere else.
+  Method httpMethod;
+  NSString *method = (NSString*) CFHTTPMessageCopyRequestMethod(cfRequest);
+  if([method caseInsensitiveCompare:@"GET"])
+  {
+    httpMethod = GET;
+  } else if([method caseInsensitiveCompare:@"PUT"])
+  {
+    httpMethod = PUT;
+  } else if([method caseInsensitiveCompare:@"POST"])
+  {
+    httpMethod = POST;
+  } else if([method caseInsensitiveCompare:@"DELETE"])
+  {
+    httpMethod = DELETE;
+  }
+  request = [[Request alloc] initWithHeaders:requestHeaders body:requestData url: (NSURL*) CFHTTPMessageCopyRequestURL(cfRequest) andMethod:httpMethod];
+  [requestHeaders release];
+  [requestData release];
+  
+  CFRelease(cfRequest);
+  cfRequest = NULL;
 }
 
 @end

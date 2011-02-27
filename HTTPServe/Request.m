@@ -11,13 +11,14 @@
 
 @implementation Request
 
-- (id) initWithHeaders: (NSDictionary*) header body: (NSData*) content andURL: (NSURL*) requestedURL
+- (id) initWithHeaders: (NSDictionary*) header body: (NSData*) content url: (NSURL*) requestedURL andMethod: (Method) requestMethod
 {
   self = [super init];
   if (self) {
     headers = [header retain];
     body = [content retain];
     url = requestedURL;
+    method = requestMethod;
   }
   
   return self;
@@ -34,6 +35,7 @@
 @synthesize headers;
 @synthesize body;
 @synthesize url;
+@synthesize method;
 
 - (NSString*) getContentType
 {

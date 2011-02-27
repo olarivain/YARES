@@ -23,12 +23,13 @@ static ResponseCode* UNAVAILABLE;
 
 - (id)initWithCode: (int) responseCode
 {
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
+  self = [super init];
+  if (self) 
+  {
+    code = responseCode;
+  }
+  
+  return self;
 }
 
 - (void)dealloc

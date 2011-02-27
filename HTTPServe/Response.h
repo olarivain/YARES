@@ -18,7 +18,7 @@
     
 }
 
-@property (readwrite, assign) ResponseCode *responseCode;
+@property (readwrite, retain) ResponseCode *responseCode;
 @property (readwrite, retain) id<NSObject, NSCoding> content;
 @property (readonly) NSDictionary *headers;
 
