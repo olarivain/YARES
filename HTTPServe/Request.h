@@ -8,24 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Method.h"
+#import "HttpMethod.h"
 
 @interface Request : NSObject {
 @private
   NSDictionary *headers;
   NSData *body;
   NSURL *url;
-  Method method;
+  HttpMethod method;
 }
 
 @property (readonly) NSDictionary *headers;
 @property (readonly) NSData *body;
 @property (readonly) NSURL *url;
-@property (readonly) Method method;
+@property (readonly) HttpMethod method;
 
-- (id) initWithHeaders: (NSDictionary*) header body: (NSData*) content url: (NSURL*) requestedURL andMethod: (Method) requestMethod;
+- (id) initWithHeaders: (NSDictionary*) header body: (NSData*) content url: (NSURL*) requestedURL andMethod: (HttpMethod) requestMethod;
 
 - (NSString*) getContentType;
 - (NSString*) getContentLength;
+- (NSString*) path;
 
 @end

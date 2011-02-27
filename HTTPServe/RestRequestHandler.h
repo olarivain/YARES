@@ -9,10 +9,15 @@
 #import <Foundation/Foundation.h>
 
 #import "RequestHandler.h"
+@class SBJsonParser;
 
 @interface RestRequestHandler : NSObject<RequestHandler> {
 @private
   NSMutableArray *resources;
+  NSMutableArray *resourceDescriptors;
+  SBJsonParser *parser;
 }
+
+@property (readonly) NSArray *paths;
 
 @end

@@ -11,6 +11,8 @@
 
 @protocol RestResource <NSObject>
 
+- (NSArray*) resourceDescriptors;
+
 @optional
 - (void) initialize;
 

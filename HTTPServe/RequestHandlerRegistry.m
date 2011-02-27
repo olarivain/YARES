@@ -75,7 +75,7 @@
   NSString *relativePath = [url relativePath];
   for(id<RequestHandler> handler in handlers)
   {
-    NSArray *urls = [handler urls];
+    NSArray *urls = [handler paths];
     for(NSString *url in urls)
     {
       if([url isEqualToString: relativePath])

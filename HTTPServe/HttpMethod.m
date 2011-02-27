@@ -5,9 +5,9 @@
 //  Created by Kra on 2/26/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-#import "Method.h"
+#import "HttpMethod.h"
 
-Method methodFromString(NSString *method)
+HttpMethod methodFromString(NSString *method)
 {
   if([method caseInsensitiveCompare:@"GET"] == 0)
   {
@@ -26,7 +26,7 @@ Method methodFromString(NSString *method)
   @throw exception;
 }
 
-NSString* stringFromMethod(Method method)
+NSString* stringFromMethod(HttpMethod method)
 {
   switch(method)
   {

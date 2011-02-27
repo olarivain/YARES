@@ -11,7 +11,7 @@
 
 @implementation Request
 
-- (id) initWithHeaders: (NSDictionary*) header body: (NSData*) content url: (NSURL*) requestedURL andMethod: (Method) requestMethod
+- (id) initWithHeaders: (NSDictionary*) header body: (NSData*) content url: (NSURL*) requestedURL andMethod: (HttpMethod) requestMethod
 {
   self = [super init];
   if (self) {
@@ -44,6 +44,11 @@
 - (NSString*) getContentLength
 {
   return [headers objectForKey: @"Content-Length"];
+}
+
+- (NSString*) path
+{
+  return [url relativePath];
 }
 
 

@@ -62,6 +62,11 @@ static Response *NOT_AVAILABLE_RESPONSE;
   return [NSString stringWithFormat:@"%i", [self contentLength]];
 }
 
+- (void) setStringContent: (NSString*) stringContent
+{
+  self.content = [stringContent dataUsingEncoding:NSUTF8StringEncoding];
+}
+
 + (Response*) NOT_FOUND_RESPONSE
 {
   if(NOT_FOUND_RESPONSE == nil)
@@ -83,7 +88,7 @@ static Response *NOT_AVAILABLE_RESPONSE;
     [INTERNAL_SERVER_ERROR_RESPONSE setContentType: @"text/html"];
     [INTERNAL_SERVER_ERROR_RESPONSE setContent:[@"Internal Server Error." dataUsingEncoding:NSUTF8StringEncoding]];
   }
-  return NOT_FOUND_RESPONSE;
+  return INTERNAL_SERVER_ERROR_RESPONSE;
 }
 
 + (Response*) UNAVAILABLE_RESPONSE

@@ -13,7 +13,7 @@
 
 @protocol RequestHandler <NSObject>
 - (Response*) handleRequest: (Request*) request;
-- (NSArray*) urls;
+- (NSArray*) paths;
 
 @optional
 - (void) initialize;

@@ -27,7 +27,7 @@
     [super dealloc];
 }
 
-- (NSArray*) urls
+- (NSArray*) paths
 {
   return [NSArray array];
 }

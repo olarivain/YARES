@@ -7,13 +7,14 @@
 //
 #import <Foundation/Foundation.h>
 
-typedef enum
+typedef enum HttpMethod
 {
   GET,
   PUT,
   POST,
   DELETE
-} Method;
+} HttpMethod;
 
-Method methodFromString(NSString *method);
-NSString* stringFromMethod(Method method);
+
+enum HttpMethod methodFromString(NSString *method);
+NSString* stringFromMethod(HttpMethod method);

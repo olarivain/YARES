@@ -12,7 +12,7 @@
 #import "ResponseCode.h"
 #import "RequestHandler.h"
 #import "RequestHandlerRegistry.h"
-#import "Method.h"
+#import "HttpMethod.h"
 
 @interface HTTPConnection(private)
 - (void) dataReceived: (NSNotification*) notification;
@@ -174,7 +174,7 @@
     response = [handler handleRequest: request];  
   } @catch (NSException *exception) 
   {
-    response = [Response UNAVAILABLE_RESPONSE];
+    response = [Response INTERNAL_SERVER_ERROR_RESPONSE];
   }
 
   [self writeResponse:response];
@@ -210,7 +210,7 @@
 {
   // TODO: dude... get this out somewhere else.
   NSString *methodString = (NSString*) CFHTTPMessageCopyRequestMethod(cfRequest);
-  Method method = methodFromString(methodString);
+  HttpMethod method = methodFromString(methodString);
   request = [[Request alloc] initWithHeaders:requestHeaders body:requestData url: (NSURL*) CFHTTPMessageCopyRequestURL(cfRequest) andMethod:method];
   [requestHeaders release];
   [requestData release];

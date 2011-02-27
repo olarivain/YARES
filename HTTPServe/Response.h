@@ -25,6 +25,8 @@
 - (NSUInteger) contentLength;
 - (NSString*) contentLengthAsString;
 
+- (void) setStringContent: (NSString*) content;
+
 - (void) setContentType: (NSString*) type;
 
 - (void) addHeader: (NSString*) value forKey: (NSString*) key;
