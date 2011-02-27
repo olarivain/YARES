@@ -7,7 +7,8 @@
 //
 
 #import "RestRequestHandler.h"
-
+#import "SystemUtil.h"
+#import "RestResource.h"
 
 @implementation RestRequestHandler
 
@@ -30,7 +31,7 @@
 
 - (void) initialize
 {
-  // Scan for classes implementing protocol here
+  NSArray *classes = [SystemUtil getClassesConformingToProcol:@protocol(RestResource)];
 }
 
 - (NSArray *) urls

@@ -8,25 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface ResponseCode : NSObject {
-@private
-  int code;
-}
-
-- (id) initWithCode: (int) responseCode;
-
-@property (readonly) int code;
-
-+ (ResponseCode*) OK;
-+ (ResponseCode*) CREATED;
-+ (ResponseCode*) NO_CONTENT;
-+ (ResponseCode*) MOVED_PERMANENTLY;
-+ (ResponseCode*) BAD_REQUEST;
-+ (ResponseCode*) FORBIDDEN;
-+ (ResponseCode*) NOT_FOUND;
-+ (ResponseCode*) INTERNAL_SERVER_ERROR;
-+ (ResponseCode*) UNAVAILABLE;
-
-
-@end
+typedef enum
+{
+   OK = 200,
+   CREATED = 201,
+   NO_CONTENT = 204,
+   MOVED_PERMANENTLY = 302,
+   BAD_REQUEST = 400,
+   FORBIDDEN = 403,
+   NOT_FOUND = 404,
+   INTERNAL_SERVER_ERROR = 500,
+   UNAVAILABLE = 503,
+} ResponseCode;

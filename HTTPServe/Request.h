@@ -8,13 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum
-{
-  GET,
-  PUT,
-  POST,
-  DELETE
-} Method;
+#import "Method.h"
 
 @interface Request : NSObject {
 @private

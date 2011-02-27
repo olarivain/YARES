@@ -10,6 +10,9 @@
 #import "SystemUtil.h"
 #import "ClassHolder.h"
 
+@interface SystemUtil(private)
++ (Class*) getAllClasses: (int*) count;
+@end
 
 @implementation SystemUtil
 
@@ -28,25 +31,51 @@
     [super dealloc];
 }
 
-+ (NSArray*) getAllRegisteredClasses
++ (Class*) getAllClasses: (int*) count
 {
-  int count = objc_getClassList(NULL, 0);
-  Class *classes = malloc(count * sizeof(Class));
+  (*count) = objc_getClassList(NULL, 0);
+  Class *classes = malloc((*count) * sizeof(Class));
   if (classes)
   {
-    int newCount = objc_getClassList(classes, count);
-    while (count < newCount)
+    int newCount = objc_getClassList(classes, (*count));
+    while ((*count) < newCount)
     {
-      count = newCount;
+      (*count) = newCount;
       free(classes);
-      classes = malloc(sizeof(Class) * count);
+      classes = malloc((*count) * sizeof(Class));
       if (classes)
-        newCount = objc_getClassList(classes, count);
+        newCount = objc_getClassList(classes, (*count));
     }
-    count = newCount;
+    (*count) = newCount;
   }
+  return classes;
+}
+
++ (NSArray*) getClassesConformingToProcol: (Protocol*) protocol
+{
+  int *count = malloc(sizeof(int));
+  Class *classes = [SystemUtil getAllClasses: count];
   NSMutableArray *classHolders = [NSMutableArray array];
-  for(int i = 0; i < count; i++)
+
+  for(int i = 0; i < (*count); i++)
+  {
+    Class clazz = classes[i];
+    if(class_conformsToProtocol(clazz, protocol))
+    {
+      ClassHolder *holder = [[ClassHolder alloc] initWithClass: clazz];
+      [classHolders addObject:holder];
+    }
+  }
+  return classHolders;
+}
+
++ (NSArray*) getAllRegisteredClasses
+{
+  int *count = malloc(sizeof(int));
+  Class *classes = [SystemUtil getAllClasses: count];
+  NSMutableArray *classHolders = [NSMutableArray array];
+  
+  for(int i = 0; i < (*count); i++)
   {
     Class clazz = classes[i];
     ClassHolder *holder = [[ClassHolder alloc] initWithClass: clazz];

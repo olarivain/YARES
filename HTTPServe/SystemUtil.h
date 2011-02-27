@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
+#import <objc/objc-runtime.h>
 @interface SystemUtil : NSObject {
 @private
     
 }
 + (NSArray*) getAllRegisteredClasses;
++ (NSArray*) getClassesConformingToProcol: (Protocol*) protocol;
 
 @end

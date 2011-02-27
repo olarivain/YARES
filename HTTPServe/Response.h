@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-@class ResponseCode;
+#import "ResponseCode.h"
 
 @interface Response : NSObject 
 {
 @private
   NSMutableDictionary *headers;
-  ResponseCode *responseCode;
+  ResponseCode code;
   NSData *content;
     
 }
 
-@property (readwrite, retain) ResponseCode *responseCode;
+@property (readwrite, assign) ResponseCode code;
 @property (readwrite, retain) NSData *content;
 @property (readonly) NSDictionary *headers;
 

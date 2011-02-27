@@ -15,7 +15,7 @@ static Response *NOT_AVAILABLE_RESPONSE;
 
 @implementation Response
 
-@synthesize responseCode;
+@synthesize code;
 @synthesize content;
 @synthesize headers;
 
@@ -23,7 +23,7 @@ static Response *NOT_AVAILABLE_RESPONSE;
 {
     self = [super init];
     if (self) {
-      responseCode = [ResponseCode OK];
+      code = OK;
     }
     
     return self;
@@ -67,7 +67,7 @@ static Response *NOT_AVAILABLE_RESPONSE;
   if(NOT_FOUND_RESPONSE == nil)
   {
     NOT_FOUND_RESPONSE = [[Response alloc] init];
-    [NOT_FOUND_RESPONSE setResponseCode: [ResponseCode NOT_FOUND]];
+    [NOT_FOUND_RESPONSE setCode: NOT_FOUND];
     [NOT_FOUND_RESPONSE setContentType: @"text/html"];
     [NOT_FOUND_RESPONSE setContent:[@"Page not found." dataUsingEncoding:NSUTF8StringEncoding]];
   }
@@ -79,7 +79,7 @@ static Response *NOT_AVAILABLE_RESPONSE;
   if(INTERNAL_SERVER_ERROR_RESPONSE == nil)
   {
     INTERNAL_SERVER_ERROR_RESPONSE = [[Response alloc] init];
-    [INTERNAL_SERVER_ERROR_RESPONSE setResponseCode: [ResponseCode INTERNAL_SERVER_ERROR]];
+    [INTERNAL_SERVER_ERROR_RESPONSE setCode: INTERNAL_SERVER_ERROR];
     [INTERNAL_SERVER_ERROR_RESPONSE setContentType: @"text/html"];
     [INTERNAL_SERVER_ERROR_RESPONSE setContent:[@"Internal Server Error." dataUsingEncoding:NSUTF8StringEncoding]];
   }
@@ -91,7 +91,7 @@ static Response *NOT_AVAILABLE_RESPONSE;
   if(NOT_AVAILABLE_RESPONSE == nil)
   {
     NOT_AVAILABLE_RESPONSE = [[Response alloc] init];
-    [NOT_AVAILABLE_RESPONSE setResponseCode: [ResponseCode UNAVAILABLE]];
+    [NOT_AVAILABLE_RESPONSE setCode: UNAVAILABLE];
     [NOT_AVAILABLE_RESPONSE setContentType: @"text/html"];
     [NOT_AVAILABLE_RESPONSE setContent:[@"Server Unavailable." dataUsingEncoding:NSUTF8StringEncoding]];
   }

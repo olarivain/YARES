@@ -40,13 +40,12 @@
 - (void) autoregister
 {
   NSLog(@"Autoregistering...");
-  NSArray *classes = [SystemUtil getAllRegisteredClasses];
+  NSArray *classes = [SystemUtil getClassesConformingToProcol: @protocol(RequestHandler)];
   for(ClassHolder *classHolder in classes)
   {
     Class class = [classHolder clazz];
-    // don't register SimpleRequestHandler, obviously...
-    if(class != [SimpleRequestHandler class] && class != [NotFoundHandler class] 
-       && class_conformsToProtocol(class, @protocol(RequestHandler)) )
+    // don't register built in handlers, obviously...
+    if(class != [SimpleRequestHandler class] && class != [NotFoundHandler class])
     {
       id<RequestHandler> handler = [class new];
       if(class_respondsToSelector(class, @selector(initialize)))

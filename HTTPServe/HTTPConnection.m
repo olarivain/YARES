@@ -12,6 +12,7 @@
 #import "ResponseCode.h"
 #import "RequestHandler.h"
 #import "RequestHandlerRegistry.h"
+#import "Method.h"
 
 @interface HTTPConnection(private)
 - (void) dataReceived: (NSNotification*) notification;
@@ -183,8 +184,7 @@
 
 - (void) writeResponse: (Response*) response
 {
-  ResponseCode *responseCode = [response responseCode];
-  CFHTTPMessageRef cfResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, [responseCode code], NULL, kCFHTTPVersion1_1);
+  CFHTTPMessageRef cfResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, [response code], NULL, kCFHTTPVersion1_1);
   NSDictionary *headers = [response headers];
   for(NSString *key in [headers keyEnumerator])
   {
@@ -209,22 +209,9 @@
 - (void) createRequest
 {
   // TODO: dude... get this out somewhere else.
-  Method httpMethod;
-  NSString *method = (NSString*) CFHTTPMessageCopyRequestMethod(cfRequest);
-  if([method caseInsensitiveCompare:@"GET"])
-  {
-    httpMethod = GET;
-  } else if([method caseInsensitiveCompare:@"PUT"])
-  {
-    httpMethod = PUT;
-  } else if([method caseInsensitiveCompare:@"POST"])
-  {
-    httpMethod = POST;
-  } else if([method caseInsensitiveCompare:@"DELETE"])
-  {
-    httpMethod = DELETE;
-  }
-  request = [[Request alloc] initWithHeaders:requestHeaders body:requestData url: (NSURL*) CFHTTPMessageCopyRequestURL(cfRequest) andMethod:httpMethod];
+  NSString *methodString = (NSString*) CFHTTPMessageCopyRequestMethod(cfRequest);
+  Method method = methodFromString(methodString);
+  request = [[Request alloc] initWithHeaders:requestHeaders body:requestData url: (NSURL*) CFHTTPMessageCopyRequestURL(cfRequest) andMethod:method];
   [requestHeaders release];
   [requestData release];
   
