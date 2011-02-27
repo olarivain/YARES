@@ -9,21 +9,24 @@
 #import <Foundation/Foundation.h>
 #import "Request.h"
 @class RequestHandlerRegistry;
-
+@class RequestBuilder;
 @interface HTTPConnection : NSObject 
 {
 @private
   NSFileHandle *fileHandle;
-  CFHTTPMessageRef cfRequest;
-  long contentLength;
-  long readLength;
-  BOOL headerReceived;
-  BOOL bodyReceived;
-  NSDictionary *requestHeaders;
-  NSData *requestData;
-  Request *request;
   
   RequestHandlerRegistry *handlerRegistry;
+  
+  long contentLength;
+  long readLength;
+  
+  BOOL headerReceived;
+  BOOL bodyReceived;
+  
+  CFHTTPMessageRef cfRequest;
+  Request *request;
+  
+  RequestBuilder *requestBuilder;
 }
 
 - (id) initWithFileHandle: (NSFileHandle*) handle handlerRegistry: (RequestHandlerRegistry*) registry;

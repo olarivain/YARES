@@ -1,13 +1,93 @@
 <html>
-  <body>
-    <form action="http://localhost:2048/form.html" method="POST">
-      <input type="text" name="paramTest" />
-      <input type="submit" />
-    </form>
-    <FORM NAME="InputForm" ACTION="http://localhost:2048/test.jsp" METHOD="POST" enctype=multipart/form-data>
-      <P><input type=text name="name" size=80>
-        <P><input type=file name="filename" size=80>
-          <P><input type="submit" value="Upload File Test">
-    </FORM>
-  </body>
+	<head>
+	</head>
+	<body>
+		<script type="text/javascript">
+      function showResponse(xmlHttpRequest){
+        var body = document.getElementById("result");
+        body.value=xmlHttpRequest.responseText;
+        
+        var responseCode = document.getElementById("responseCode");
+        responseCode.innerHTML = xmlHttpRequest.status + " ("+ xmlHttpRequest.statusText+")";
+      }
+      
+      var AjaxScriptTransport = function() {
+        return {
+          
+          sendRequest: function (url, method, params){
+            
+            //formed url params
+            if(method == "GET" && params) {
+              var sep = ''; url += "?";
+              url += params;
+            }
+            var restUrl;
+            
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open(method, url, true);
+            xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
+            xmlHttpRequest.onreadystatechange = function() {
+              if (xmlHttpRequest.readyState == 4) {
+                showResponse(xmlHttpRequest);
+              }
+            };
+            
+            if(method == "GET"){
+              xmlHttpRequest.send(null);
+            }else{
+              xmlHttpRequest.send(params);	
+            }
+            
+          }
+        };
+      }
+      function clearParams(){
+        var element = document.getElementById("params");
+        element.value="";
+      }
+      
+      function submitRESTRequest() {
+        var form = document.getElementById("form");
+        
+        var body = document.getElementById("result");
+        body.value="";
+        
+        var responseCode = document.getElementById("responseCode");
+        responseCode.innerHTML = "";
+        var port = form.port.value;
+        var url = "http://localhost:"+port+form.url.value;
+        var methods =form.method;
+        var method;
+        for(var i = 0; i < methods.length; i++){
+          if(methods[i].checked){
+            method = methods[i].value;
+            break;
+          }
+        }
+        var params = form.params.value;
+        var ajaxTransport = AjaxScriptTransport();    	
+        ajaxTransport.sendRequest(url, method, params);
+        return false;
+      }
+      </script>
+		<form id="form" onsubmit="return submitRESTRequest();">
+      Port:<br/> <input type="text" name="port" value="2048" /><br /><br />
+			Resource:<br/> <input type="text" name="url" value="" size="100" /><br /><br />
+
+			Method:<br />
+			<input type="radio" name="method" value="GET" checked />GET<br />
+			<input type="radio" name="method" value="PUT" />PUT<br />
+			<input type="radio" name="method" value="POST" />POST<br />
+			<input type="radio" name="method" value="DELETE" />DELETE<br />
+			<br /> <br />
+			Params:<br />
+			<textarea id="params" rows="10" cols="60"></textarea><br />
+			<input type="submit" />
+			<input type="button" onclick="clearParams();" value="Clear" />  
+		</form>
+		<div style="width: 780px">
+			<p>Response: <span id="responseCode"></span></p>
+			<textarea id="result" rows="10" cols="80"></textarea>
+		</div>
+	</body>
 </html>

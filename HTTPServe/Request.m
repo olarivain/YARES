@@ -11,11 +11,12 @@
 
 @implementation Request
 
-- (id) initWithHeaders: (NSDictionary*) header body: (NSData*) content url: (NSURL*) requestedURL andMethod: (HttpMethod) requestMethod
+- (id) initWithHeaders: (NSDictionary*) header parameters: (NSDictionary*) params body: (NSData*) content url: (NSURL*) requestedURL andMethod: (HttpMethod) requestMethod
 {
   self = [super init];
   if (self) {
     headers = [header retain];
+    parameters = [params retain];
     body = [content retain];
     url = requestedURL;
     method = requestMethod;
@@ -27,12 +28,14 @@
 - (void)dealloc
 {
   [headers release];
+  [parameters release];
   [body release];
   [url release];
   [super dealloc];
 }
 
 @synthesize headers;
+@synthesize parameters;
 @synthesize body;
 @synthesize url;
 @synthesize method;

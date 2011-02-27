@@ -13,6 +13,7 @@
 #import "RequestHandler.h"
 #import "RequestHandlerRegistry.h"
 #import "HttpMethod.h"
+#import "RequestBuilder.h"
 
 @interface HTTPConnection(private)
 - (void) dataReceived: (NSNotification*) notification;
@@ -41,6 +42,7 @@
       contentLength = -1;
       readLength = 0;
       handlerRegistry = [registry retain];
+      requestBuilder = [[RequestBuilder alloc] init];
       
       NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
       [nc addObserver:self
@@ -63,15 +65,14 @@
   }
   [handlerRegistry release];
   [fileHandle release];
-  
+  [requestBuilder release];
   [super dealloc];
 }
 
 #pragma mark Clean up
 - (void) close{
   [fileHandle closeFile];
-  [requestData release];
-  [requestHeaders release];
+  [request release];
   // TODO notify http serve that connection is closed
 }
 
@@ -133,10 +134,9 @@
   {
     // build headers dictionary
     headerReceived = YES;
-    requestHeaders = (NSDictionary*) CFHTTPMessageCopyAllHeaderFields(cfRequest);
-
+    
     // if content length is set, store it, otherwise mark message as received.
-    NSString *headerContentLength = (NSString*) [requestHeaders objectForKey:@"Content-Length"];
+    NSString *headerContentLength = [(NSString*) CFHTTPMessageCopyHeaderFieldValue(cfRequest, (CFStringRef) @"Content-Length") autorelease];
     if(headerContentLength)
     {
        contentLength = [headerContentLength integerValue];
@@ -155,7 +155,6 @@
 
   if(contentLength <= readLength)
   {
-    requestData = (NSData*) CFHTTPMessageCopyBody(cfRequest);
     bodyReceived = YES;    
   }
 }
@@ -208,13 +207,7 @@
 
 - (void) createRequest
 {
-  // TODO: dude... get this out somewhere else.
-  NSString *methodString = (NSString*) CFHTTPMessageCopyRequestMethod(cfRequest);
-  HttpMethod method = methodFromString(methodString);
-  request = [[Request alloc] initWithHeaders:requestHeaders body:requestData url: (NSURL*) CFHTTPMessageCopyRequestURL(cfRequest) andMethod:method];
-  [requestHeaders release];
-  [requestData release];
-  
+  request = [[requestBuilder buildRequest:cfRequest] retain];
   CFRelease(cfRequest);
   cfRequest = NULL;
 }

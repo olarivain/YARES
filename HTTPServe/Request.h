@@ -13,17 +13,19 @@
 @interface Request : NSObject {
 @private
   NSDictionary *headers;
+  NSDictionary *parameters;
   NSData *body;
   NSURL *url;
   HttpMethod method;
 }
 
 @property (readonly) NSDictionary *headers;
+@property (readonly) NSDictionary *parameters;
 @property (readonly) NSData *body;
 @property (readonly) NSURL *url;
 @property (readonly) HttpMethod method;
 
-- (id) initWithHeaders: (NSDictionary*) header body: (NSData*) content url: (NSURL*) requestedURL andMethod: (HttpMethod) requestMethod;
+- (id) initWithHeaders: (NSDictionary*) header parameters: (NSDictionary*) parameters body: (NSData*) content url: (NSURL*) requestedURL andMethod: (HttpMethod) requestMethod;
 
 - (NSString*) getContentType;
 - (NSString*) getContentLength;

@@ -62,7 +62,7 @@
     Class clazz = classes[i];
     if(class_conformsToProtocol(clazz, protocol))
     {
-      ClassHolder *holder = [[ClassHolder alloc] initWithClass: clazz];
+      ClassHolder *holder = [[[ClassHolder alloc] initWithClass: clazz] autorelease];
       [classHolders addObject:holder];
     }
   }
@@ -78,7 +78,7 @@
   for(int i = 0; i < (*count); i++)
   {
     Class clazz = classes[i];
-    ClassHolder *holder = [[ClassHolder alloc] initWithClass: clazz];
+    ClassHolder *holder = [[[ClassHolder alloc] initWithClass: clazz] autorelease];
     [classHolders addObject:holder];
   }
   

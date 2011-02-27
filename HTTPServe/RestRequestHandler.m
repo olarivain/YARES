@@ -49,7 +49,7 @@
   for(ClassHolder *holder in classes)
   {
     Class class = [holder clazz];
-    id<RestResource> handler = [class new];
+    id<RestResource> handler = [[class new] autorelease];
     if(class_respondsToSelector(class, @selector(initialize)))
     {
       [handler initialize];
@@ -65,9 +65,22 @@
   Response *response;
   if(descriptor != nil)
   {
-    NSObject *jsonObject = [parser objectWithData:[request body]];
+    NSObject *params;
+    if([request method] != GET)
+    {
+      params = [parser objectWithData:[request body]];  
+    }
+    else
+    {
+      params = [request parameters];
+    }
+    
     id<RestResource> resource = [descriptor resource];
-    response = [resource performSelector:[descriptor selector] withObject: jsonObject];
+    response = [resource performSelector:[descriptor selector] withObject: params];
+    if(response == nil)
+    {
+      response = [Response EMPTY_RESPONSE];
+    }
   }
   else
   {

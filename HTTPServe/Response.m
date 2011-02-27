@@ -12,6 +12,7 @@
 static Response *NOT_FOUND_RESPONSE;
 static Response *INTERNAL_SERVER_ERROR_RESPONSE;
 static Response *NOT_AVAILABLE_RESPONSE;
+static Response *EMPTY_RESPONSE;
 
 @implementation Response
 
@@ -65,6 +66,16 @@ static Response *NOT_AVAILABLE_RESPONSE;
 - (void) setStringContent: (NSString*) stringContent
 {
   self.content = [stringContent dataUsingEncoding:NSUTF8StringEncoding];
+}
+
++ (Response*) EMPTY_RESPONSE
+{
+  if(EMPTY_RESPONSE == nil)
+  {
+    EMPTY_RESPONSE = [[Response alloc] init];
+    [EMPTY_RESPONSE setCode: OK];
+  }
+  return EMPTY_RESPONSE;
 }
 
 + (Response*) NOT_FOUND_RESPONSE

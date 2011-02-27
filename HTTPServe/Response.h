@@ -36,4 +36,6 @@
 + (Response*) NOT_FOUND_RESPONSE;
 + (Response*) INTERNAL_SERVER_ERROR_RESPONSE;
 + (Response*) UNAVAILABLE_RESPONSE;
++ (Response*) EMPTY_RESPONSE;
+
 @end
