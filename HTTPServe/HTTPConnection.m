@@ -32,7 +32,7 @@
     if (self) 
     {
       fileHandle = [handle retain];
-      request = NULL;
+      cfRequest = NULL;
       headerReceived = NO;
       bodyReceived = NO;
       contentLength = -1;
@@ -54,12 +54,11 @@
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver: self];
-  if(request)
+  if(cfRequest)
   {
-    CFRelease(request);
+    CFRelease(cfRequest);
   }
   [handlerRegistry release];
-  [url release];
   [fileHandle release];
   
   [super dealloc];
@@ -88,15 +87,15 @@
     [fileHandle readInBackgroundAndNotify];
     
     // create reqest if needed.
-    if(request == NULL)
+    if(cfRequest == NULL)
     {
-      request = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
+      cfRequest = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
     }
     
     readLength += [data length];
 
     // try to read
-    Boolean success = CFHTTPMessageAppendBytes(request, [data bytes], [data length]);
+    Boolean success = CFHTTPMessageAppendBytes(cfRequest, [data bytes], [data length]);
     if( success ) 
     {
 
@@ -113,8 +112,12 @@
       
       if(bodyReceived)
       {
-        CFRelease(request);
-        request = NULL;
+        request = [[Request alloc] initWithHeaders:requestHeaders body:requestData andURL: (NSURL*) CFHTTPMessageCopyRequestURL(cfRequest)];
+        [requestHeaders release];
+        [requestData release];
+        
+        CFRelease(cfRequest);
+        cfRequest = NULL;
         [self handleRequest];
       }
      
@@ -127,13 +130,12 @@
 }
 
 - (void) headerDataReceived{
-  if( CFHTTPMessageIsHeaderComplete(request) ) 
+  if( CFHTTPMessageIsHeaderComplete(cfRequest) ) 
   {
     // build headers dictionary
     headerReceived = YES;
-    requestHeaders = (NSDictionary*) CFHTTPMessageCopyAllHeaderFields(request);
-    url = (NSURL*) CFHTTPMessageCopyRequestURL(request);
-  
+    requestHeaders = (NSDictionary*) CFHTTPMessageCopyAllHeaderFields(cfRequest);
+
     // if content length is set, store it, otherwise mark message as received.
     NSString *headerContentLength = (NSString*) [requestHeaders objectForKey:@"Content-Length"];
     if(headerContentLength)
@@ -154,20 +156,20 @@
 
   if(contentLength <= readLength)
   {
-    requestData = (NSData*) CFHTTPMessageCopyBody(request);
-    bodyReceived = YES;
+    requestData = (NSData*) CFHTTPMessageCopyBody(cfRequest);
+    bodyReceived = YES;    
   }
 }
 
 - (void) handleRequest
 {
-  id<RequestHandler> handler = [handlerRegistry handlerForURL:url];
+  id<RequestHandler> handler = [handlerRegistry handlerForURL:[request url]];
   if(handler == nil)
   {
     handler = [handlerRegistry notFoundHandler];
   }
   
-  Response *response = [handler handleRequest:requestHeaders body:requestData];
+  Response *response = [handler handleRequest: request];
   [self writeResponse:response];
   
   [self close];

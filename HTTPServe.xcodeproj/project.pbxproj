@@ -24,6 +24,9 @@
 		00A17CA91319CA85002B0FC3 /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A17CA71319CA85002B0FC3 /* Response.m */; };
 		00BF732D1319EBB80009761A /* NotFoundHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF732B1319EBB80009761A /* NotFoundHandler.h */; };
 		00BF732E1319EBB80009761A /* NotFoundHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF732C1319EBB80009761A /* NotFoundHandler.m */; };
+		00BF73671319F4230009761A /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BF73661319F4230009761A /* JSON.framework */; };
+		00BF736C1319F5320009761A /* Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF736A1319F5320009761A /* Request.h */; };
+		00BF736D1319F5320009761A /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF736B1319F5320009761A /* Request.m */; };
 		00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
 		00CE974113133CBF006F6A38 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00CE973F13133CBF006F6A38 /* InfoPlist.strings */; };
 		00CE974913133CBF006F6A38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
@@ -63,6 +66,9 @@
 		00A17CA71319CA85002B0FC3 /* Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Response.m; sourceTree = "<group>"; };
 		00BF732B1319EBB80009761A /* NotFoundHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotFoundHandler.h; sourceTree = "<group>"; };
 		00BF732C1319EBB80009761A /* NotFoundHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotFoundHandler.m; sourceTree = "<group>"; };
+		00BF73661319F4230009761A /* JSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00BF736A1319F5320009761A /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
+		00BF736B1319F5320009761A /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		00CE973313133CBF006F6A38 /* HTTPServe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTTPServe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CE973613133CBF006F6A38 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		00CE973913133CBF006F6A38 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -86,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00BF73671319F4230009761A /* JSON.framework in Frameworks */,
 				00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +112,8 @@
 		007A804A1319CE330040A3AE /* core */ = {
 			isa = PBXGroup;
 			children = (
+				00BF73691319F5240009761A /* request */,
+				00BF73681319F5150009761A /* response */,
 				00BF73281319E9960009761A /* connection */,
 				007A80611319E6500040A3AE /* handler */,
 				007A80601319E63E0040A3AE /* server */,
@@ -115,8 +124,6 @@
 		007A804C1319CE440040A3AE /* domain */ = {
 			isa = PBXGroup;
 			children = (
-				00A17CA61319CA85002B0FC3 /* Response.h */,
-				00A17CA71319CA85002B0FC3 /* Response.m */,
 				007A80581319DF270040A3AE /* SimpleRequestHandler.h */,
 				007A80591319DF280040A3AE /* SimpleRequestHandler.m */,
 				00BF732B1319EBB80009761A /* NotFoundHandler.h */,
@@ -128,6 +135,8 @@
 		007A80571319DDA50040A3AE /* util */ = {
 			isa = PBXGroup;
 			children = (
+				007A80621319E6620040A3AE /* ClassHolder.h */,
+				007A80631319E6620040A3AE /* ClassHolder.m */,
 				007A80531319DD980040A3AE /* SystemUtil.h */,
 				007A80541319DD990040A3AE /* SystemUtil.m */,
 			);
@@ -150,8 +159,6 @@
 				00A17CA31319CA66002B0FC3 /* RequestHandler.h */,
 				007A804F1319D9910040A3AE /* RequestHandlerRegistry.h */,
 				007A80501319D9910040A3AE /* RequestHandlerRegistry.m */,
-				007A80621319E6620040A3AE /* ClassHolder.h */,
-				007A80631319E6620040A3AE /* ClassHolder.m */,
 			);
 			name = handler;
 			sourceTree = "<group>";
@@ -165,9 +172,28 @@
 			name = connection;
 			sourceTree = "<group>";
 		};
+		00BF73681319F5150009761A /* response */ = {
+			isa = PBXGroup;
+			children = (
+				00A17CA61319CA85002B0FC3 /* Response.h */,
+				00A17CA71319CA85002B0FC3 /* Response.m */,
+			);
+			name = response;
+			sourceTree = "<group>";
+		};
+		00BF73691319F5240009761A /* request */ = {
+			isa = PBXGroup;
+			children = (
+				00BF736A1319F5320009761A /* Request.h */,
+				00BF736B1319F5320009761A /* Request.m */,
+			);
+			name = request;
+			sourceTree = "<group>";
+		};
 		00CE972713133CBE006F6A38 = {
 			isa = PBXGroup;
 			children = (
+				00BF73661319F4230009761A /* JSON.framework */,
 				00530B8113134E84006A9311 /* test.html */,
 				00CE973C13133CBF006F6A38 /* HTTPServe */,
 				00CE974D13133CBF006F6A38 /* HTTPServeTests */,
@@ -262,6 +288,7 @@
 				007A80551319DD9B0040A3AE /* SystemUtil.h in Headers */,
 				007A80641319E6620040A3AE /* ClassHolder.h in Headers */,
 				00BF732D1319EBB80009761A /* NotFoundHandler.h in Headers */,
+				00BF736C1319F5320009761A /* Request.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +405,7 @@
 				007A805B1319DF280040A3AE /* SimpleRequestHandler.m in Sources */,
 				007A80651319E6620040A3AE /* ClassHolder.m in Sources */,
 				00BF732E1319EBB80009761A /* NotFoundHandler.m in Sources */,
+				00BF736D1319F5320009761A /* Request.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

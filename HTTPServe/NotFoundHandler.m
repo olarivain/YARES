@@ -31,7 +31,7 @@
   return [NSArray array];
 }
 
-- (Response*) handleRequest:(NSDictionary *)headers body:(NSData *)data
+- (Response*) handleRequest: (Request*) request
 {
   Response *response = [[Response alloc] init];
   [response setResponseCode: NOT_FOUND];

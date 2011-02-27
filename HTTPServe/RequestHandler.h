@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Request;
 @class Response;
 
 @protocol RequestHandler <NSObject>
-- (Response*) handleRequest: (NSDictionary*) headers body: (NSData*) data;
+- (Response*) handleRequest: (Request*) request;
 - (NSArray*) urls;
 @end

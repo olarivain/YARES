@@ -7,21 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Request.h"
 @class RequestHandlerRegistry;
 
 @interface HTTPConnection : NSObject 
 {
 @private
   NSFileHandle *fileHandle;
-  CFHTTPMessageRef request;
+  CFHTTPMessageRef cfRequest;
   long contentLength;
   long readLength;
   BOOL headerReceived;
   BOOL bodyReceived;
   NSDictionary *requestHeaders;
   NSData *requestData;
-  NSURL *url;
+  Request *request;
   
   RequestHandlerRegistry *handlerRegistry;
 }
