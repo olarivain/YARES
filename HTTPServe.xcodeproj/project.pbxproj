@@ -181,8 +181,6 @@
 			children = (
 				00530B7C1313478A006A9311 /* HTTPConnection.h */,
 				00530B7D1313478A006A9311 /* HTTPConnection.m */,
-				00B02760131B075B000DE24E /* RequestBuilder.h */,
-				00B02761131B075B000DE24E /* RequestBuilder.m */,
 			);
 			name = connection;
 			sourceTree = "<group>";
@@ -204,6 +202,8 @@
 				008875BB131A170E00399F98 /* HttpMethod.m */,
 				00BF736A1319F5320009761A /* Request.h */,
 				00BF736B1319F5320009761A /* Request.m */,
+				00B02760131B075B000DE24E /* RequestBuilder.h */,
+				00B02761131B075B000DE24E /* RequestBuilder.m */,
 			);
 			name = request;
 			sourceTree = "<group>";

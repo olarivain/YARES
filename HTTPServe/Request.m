@@ -18,7 +18,7 @@
     headers = [header retain];
     parameters = [params retain];
     body = [content retain];
-    url = requestedURL;
+    url = [requestedURL retain];
     method = requestMethod;
   }
   
