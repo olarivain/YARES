@@ -162,12 +162,23 @@
 - (void) handleRequest
 {
   id<RequestHandler> handler = [handlerRegistry handlerForURL:[request url]];
+  Response *response;
+
   if(handler == nil)
   {
-    handler = [handlerRegistry notFoundHandler];
+    response = [Response NOT_FOUND_RESPONSE];
   }
-  
-  Response *response = [handler handleRequest: request];
+  else
+  {
+    @try 
+    {
+      response = [handler handleRequest: request];  
+    } @catch (NSException *exception) 
+    {
+      response = [Response UNAVAILABLE_RESPONSE];
+    }
+  }
+
   [self writeResponse:response];
   
   [self close];
@@ -177,13 +188,21 @@
 {
   ResponseCode *responseCode = [response responseCode];
   CFHTTPMessageRef cfResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, [responseCode code], NULL, kCFHTTPVersion1_1);
-  
+  NSDictionary *headers = [response headers];
+  for(NSString *key in [headers keyEnumerator])
+  {
+    NSString *value = [headers objectForKey: key];
+    CFHTTPMessageSetHeaderFieldValue(cfResponse, (CFStringRef) key, (CFStringRef) value);
+  }
+  CFHTTPMessageSetHeaderFieldValue(cfResponse, (CFStringRef) @"Content-Length", (CFStringRef) [response contentLengthAsString]);
   CFHTTPMessageSetBody(cfResponse, (CFDataRef) [response content]);
   CFDataRef cfResponseData = CFHTTPMessageCopySerializedMessage(cfResponse);
-  @try {
+  @try 
+  {
     [fileHandle writeData:(NSData *) cfResponseData];
   }
-  @catch (NSException *exception) {
+  @catch (NSException *exception) 
+  {
     NSLog(@"Error while writing data on file handle");
   }
   CFRelease(cfResponse);

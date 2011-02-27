@@ -9,6 +9,10 @@
 #import "Response.h"
 #import "ResponseCode.h"
 
+static Response *NOT_FOUND_RESPONSE;
+static Response *INTERNAL_SERVER_ERROR_RESPONSE;
+static Response *NOT_AVAILABLE_RESPONSE;
+
 @implementation Response
 
 @synthesize responseCode;
@@ -32,7 +36,7 @@
   [super dealloc];
 }
 
-- (void) addHeader:(id)value forKey:(NSString *)key{
+- (void) addHeader:(NSString*)value forKey:(NSString *)key{
   if(headers == nil){
     headers = [[NSMutableDictionary alloc] init];
   }
@@ -40,8 +44,57 @@
   [headers setObject:value forKey:key];
 }
 
-- (void) removeHeader:(id)key{
+- (void) removeHeader:(NSString*)key{
   [headers removeObjectForKey: key];
 }
 
+- (void) setContentType: (NSString*) type
+{
+  [self addHeader:type forKey:@"Content-Type"];
+}
+
+- (NSUInteger) contentLength
+{
+  return [content length];
+}
+- (NSString*) contentLengthAsString
+{
+  return [NSString stringWithFormat:@"%i", [self contentLength]];
+}
+
++ (Response*) NOT_FOUND_RESPONSE
+{
+  if(NOT_FOUND_RESPONSE == nil)
+  {
+    NOT_FOUND_RESPONSE = [[Response alloc] init];
+    [NOT_FOUND_RESPONSE setResponseCode: [ResponseCode NOT_FOUND]];
+    [NOT_FOUND_RESPONSE setContentType: @"text/html"];
+    [NOT_FOUND_RESPONSE setContent:[@"Page not found." dataUsingEncoding:NSUTF8StringEncoding]];
+  }
+  return NOT_FOUND_RESPONSE;
+}
+
++ (Response*) INTERNAL_SERVER_ERROR_RESPONSE
+{
+  if(INTERNAL_SERVER_ERROR_RESPONSE == nil)
+  {
+    INTERNAL_SERVER_ERROR_RESPONSE = [[Response alloc] init];
+    [INTERNAL_SERVER_ERROR_RESPONSE setResponseCode: [ResponseCode INTERNAL_SERVER_ERROR]];
+    [INTERNAL_SERVER_ERROR_RESPONSE setContentType: @"text/html"];
+    [INTERNAL_SERVER_ERROR_RESPONSE setContent:[@"Internal Server Error." dataUsingEncoding:NSUTF8StringEncoding]];
+  }
+  return NOT_FOUND_RESPONSE;
+}
+
++ (Response*) UNAVAILABLE_RESPONSE
+{
+  if(NOT_AVAILABLE_RESPONSE == nil)
+  {
+    NOT_AVAILABLE_RESPONSE = [[Response alloc] init];
+    [NOT_AVAILABLE_RESPONSE setResponseCode: [ResponseCode UNAVAILABLE]];
+    [NOT_AVAILABLE_RESPONSE setContentType: @"text/html"];
+    [NOT_AVAILABLE_RESPONSE setContent:[@"Server Unavailable." dataUsingEncoding:NSUTF8StringEncoding]];
+  }
+  return NOT_AVAILABLE_RESPONSE;
+}
 @end

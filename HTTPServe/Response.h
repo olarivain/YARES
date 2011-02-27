@@ -14,14 +14,23 @@
 @private
   NSMutableDictionary *headers;
   ResponseCode *responseCode;
-  id<NSObject, NSCoding> content;
+  NSData *content;
     
 }
 
 @property (readwrite, retain) ResponseCode *responseCode;
-@property (readwrite, retain) id<NSObject, NSCoding> content;
+@property (readwrite, retain) NSData *content;
 @property (readonly) NSDictionary *headers;
 
-- (void) addHeader: (id) value forKey: (NSString*) key;
-- (void) removeHeader: (id) key;
+- (NSUInteger) contentLength;
+- (NSString*) contentLengthAsString;
+
+- (void) setContentType: (NSString*) type;
+
+- (void) addHeader: (NSString*) value forKey: (NSString*) key;
+- (void) removeHeader: (NSString*) key;
+
++ (Response*) NOT_FOUND_RESPONSE;
++ (Response*) INTERNAL_SERVER_ERROR_RESPONSE;
++ (Response*) UNAVAILABLE_RESPONSE;
 @end
