@@ -6,8 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "HTTPServe.h"
+#import "HTTPServeProtected.h"
 #import "HTTPConnection.h"
+#import "RequestHandlerRegistry.h"
 
 @interface HTTPServe(private)
 - (void) newConnection: (NSNotification*) notification;
@@ -21,6 +22,7 @@
   if (self) {
     listenPort = port;
     connections = [[NSMutableArray alloc] init];
+    handlerRegistry = [[RequestHandlerRegistry alloc] init];
   }
   
   return self;
@@ -28,16 +30,27 @@
 
 - (void)dealloc
 {
-  [super dealloc];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [fileHandle closeFile];
   [fileHandle dealloc];
   [socketPort dealloc];
+  [handlerRegistry dealloc];
+  [super dealloc];
 }
 
-- (void) start{
+- (void) start
+{
+  [handlerRegistry autoregister];
   socketPort = [[NSSocketPort alloc] initWithTCPPort:listenPort];
+  if(!socketPort)
+  {
+    NSLog(@"Error, could not create socketPort");
+  }
   fileHandle = [[NSFileHandle alloc] initWithFileDescriptor:[socketPort socket] closeOnDealloc:TRUE];
+  if(!fileHandle)
+  {
+    NSLog(@"could not create file handle");
+  }
   
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc addObserver:self
@@ -48,33 +61,41 @@
   [fileHandle acceptConnectionInBackgroundAndNotify];
 }
 
-- (void) newConnection:(NSNotification *)notification{
+- (void) newConnection:(NSNotification *)notification
+{
   NSDictionary *userInfo = [notification userInfo];
   NSFileHandle *remoteFileHandle = [userInfo objectForKey:
                                     NSFileHandleNotificationFileHandleItem];
   
   NSNumber *errorNo = [userInfo objectForKey:@"NSFileHandleError"];
-  if( errorNo ) {
+  if( errorNo ) 
+  {
     NSLog(@"NSFileHandle Error: %@", errorNo);
     return;
   }
   
   [fileHandle acceptConnectionInBackgroundAndNotify];
   
-  if( remoteFileHandle ) {
-    HTTPConnection *connection = [[HTTPConnection alloc] initWithFileHandle:remoteFileHandle];
-    if( connection ) {
-      NSIndexSet *insertedIndexes;
-      insertedIndexes = [NSIndexSet indexSetWithIndex:
-                         [connections count]];
-      [self willChange:NSKeyValueChangeInsertion
-       valuesAtIndexes:insertedIndexes forKey:@"connections"];
+  if( remoteFileHandle ) 
+  {
+    HTTPConnection *connection = [[HTTPConnection alloc] initWithFileHandle:remoteFileHandle handlerRegistry: handlerRegistry];
+    if( connection ) 
+    {
       [connections addObject:connection];
-      [self didChange:NSKeyValueChangeInsertion
-      valuesAtIndexes:insertedIndexes forKey:@"connections"];
       [connection release];
     }
   }
+}
+
+- (void) connectionHandled: (HTTPConnection*) connection{
+  [connections removeObject: connection];
+}
+
+
+- (id<RequestHandler>) handlerForURL: (NSURL*) url
+{
+  // TODO implement
+  return nil;
 }
 
 @end

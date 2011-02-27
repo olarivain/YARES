@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class RequestHandlerRegistry;
 
-@interface HTTPConnection : NSObject {
+@interface HTTPConnection : NSObject 
+{
 @private
   NSFileHandle *fileHandle;
   CFHTTPMessageRef request;
@@ -19,8 +21,11 @@
   BOOL bodyReceived;
   NSDictionary *requestHeaders;
   NSData *requestData;
+  NSURL *url;
+  
+  RequestHandlerRegistry *handlerRegistry;
 }
 
-- (id) initWithFileHandle: (NSFileHandle*) handle;
+- (id) initWithFileHandle: (NSFileHandle*) handle handlerRegistry: (RequestHandlerRegistry*) registry;
 
 @end
