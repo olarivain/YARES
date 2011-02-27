@@ -37,7 +37,8 @@
   NSData *data = [(NSData*) CFHTTPMessageCopyBody(messageRef) autorelease];
   
   NSMutableDictionary *requestParameters = [NSMutableDictionary dictionary];
-  NSString *paramString = [url parameterString];
+  NSArray *split = [[url absoluteString] componentsSeparatedByString:@"?"];
+  NSString *paramString = [split count] > 1 ? [split objectAtIndex:1] : nil;
   NSArray *paramArray = [paramString componentsSeparatedByString:@"="];
   for(int i = 0; i < [paramArray count]; i+=2)
   {
