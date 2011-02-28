@@ -8,7 +8,6 @@
 #import <objc/objc-runtime.h>
 #import "RequestHandlerRegistry.h"
 #import "SystemUtil.h"
-#import "SimpleRequestHandler.h"
 #import "ClassHolder.h"
 #import "NotFoundHandler.h"
 
@@ -45,9 +44,9 @@
   {
     Class class = [classHolder clazz];
     // don't register built in handlers, obviously...
-    if(class != [SimpleRequestHandler class] && class != [NotFoundHandler class])
+    if(class != [NotFoundHandler class])
     {
-      id<RequestHandler> handler = [class new];
+      id<RequestHandler> handler = [[class new] autorelease];
       if(class_respondsToSelector(class, @selector(initialize)))
       {
         [handler initialize];
@@ -68,6 +67,15 @@
 - (void) unregisterHandler: (id<RequestHandler>) handler
 {
   [handlers removeObject: handler];
+}
+
+- (void) unregisterRequestHandlers
+{
+  while([handlers count] > 0)
+  {
+    id<RequestHandler> handler = [handlers objectAtIndex:0];
+    [self unregisterHandler:handler];
+  }
 }
 
 - (id<RequestHandler>) handlerForURL: (NSURL*) url

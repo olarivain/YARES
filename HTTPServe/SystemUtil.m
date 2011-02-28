@@ -66,6 +66,8 @@
       [classHolders addObject:holder];
     }
   }
+  free(count);
+  free(classes);
   return classHolders;
 }
 
@@ -82,6 +84,8 @@
     [classHolders addObject:holder];
   }
   
+  free(count);
+  free(classes);
   return classHolders;
 }
 

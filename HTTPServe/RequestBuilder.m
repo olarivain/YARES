@@ -37,14 +37,17 @@
   NSData *data = [(NSData*) CFHTTPMessageCopyBody(messageRef) autorelease];
   
   NSMutableDictionary *requestParameters = [NSMutableDictionary dictionary];
+  // this is weird. [url parameterString] returns nil. Seems like the URL is built with no protocol/host.
+  // hence, the manual parsing of the string.
   NSArray *split = [[url absoluteString] componentsSeparatedByString:@"?"];
-  NSString *paramString = [split count] > 1 ? [split objectAtIndex:1] : nil;
-  NSArray *paramArray = [paramString componentsSeparatedByString:@"="];
-  for(int i = 0; i < [paramArray count]; i+=2)
+  NSString *paramsString = [split count] > 1 ? [split objectAtIndex:1] : nil;
+  NSArray *paramsArray = [paramsString componentsSeparatedByString:@"&"];
+  for(NSString *paramString in paramsArray)
   {
-    NSString *key = [paramArray objectAtIndex:i];
-    NSString *value = [paramArray objectAtIndex:i+1];
-    [requestParameters setObject:value forKey:key];
+    NSArray *paramArray = [paramString componentsSeparatedByString:@"="];
+    NSString *key = [paramArray objectAtIndex:0];
+    NSString *value = [paramArray count] > 1 ? [paramArray objectAtIndex:1] : @"";
+        [requestParameters setObject:value forKey:key];
   }
 
   Request *request = [[[Request alloc] initWithHeaders:headers parameters:requestParameters body:data url: url  andMethod:method] autorelease];

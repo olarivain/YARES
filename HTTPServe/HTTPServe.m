@@ -103,6 +103,7 @@
 
 - (void) stop
 {
+  [handlerRegistry unregisterRequestHandlers];
   [fileHandle closeFile];
   [fileHandle release];
   [socketPort invalidate];

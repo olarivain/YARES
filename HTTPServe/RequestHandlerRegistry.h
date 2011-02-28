@@ -21,5 +21,6 @@
 - (void) autoregister;
 - (void) registerHandler: (id<RequestHandler>) handler; 
 - (void) unregisterHandler: (id<RequestHandler>) handler;
+- (void) unregisterRequestHandlers;
 - (id<RequestHandler>) handlerForURL: (NSURL*) url;
 @end

@@ -22,8 +22,6 @@
 		007A80521319D9910040A3AE /* RequestHandlerRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80501319D9910040A3AE /* RequestHandlerRegistry.m */; };
 		007A80551319DD9B0040A3AE /* SystemUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80531319DD980040A3AE /* SystemUtil.h */; };
 		007A80561319DD9B0040A3AE /* SystemUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80541319DD990040A3AE /* SystemUtil.m */; };
-		007A805A1319DF280040A3AE /* SimpleRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80581319DF270040A3AE /* SimpleRequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007A805B1319DF280040A3AE /* SimpleRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80591319DF280040A3AE /* SimpleRequestHandler.m */; };
 		007A80641319E6620040A3AE /* ClassHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80621319E6620040A3AE /* ClassHolder.h */; };
 		007A80651319E6620040A3AE /* ClassHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80631319E6620040A3AE /* ClassHolder.m */; };
 		008875BC131A170E00399F98 /* HttpMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 008875BB131A170E00399F98 /* HttpMethod.m */; };
@@ -74,8 +72,6 @@
 		007A80501319D9910040A3AE /* RequestHandlerRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestHandlerRegistry.m; sourceTree = "<group>"; };
 		007A80531319DD980040A3AE /* SystemUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemUtil.h; sourceTree = "<group>"; };
 		007A80541319DD990040A3AE /* SystemUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemUtil.m; sourceTree = "<group>"; };
-		007A80581319DF270040A3AE /* SimpleRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleRequestHandler.h; sourceTree = "<group>"; };
-		007A80591319DF280040A3AE /* SimpleRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleRequestHandler.m; sourceTree = "<group>"; };
 		007A80621319E6620040A3AE /* ClassHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassHolder.h; sourceTree = "<group>"; };
 		007A80631319E6620040A3AE /* ClassHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassHolder.m; sourceTree = "<group>"; };
 		008875BB131A170E00399F98 /* HttpMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpMethod.m; sourceTree = "<group>"; };
@@ -170,8 +166,6 @@
 				00BF732B1319EBB80009761A /* NotFoundHandler.h */,
 				00BF732C1319EBB80009761A /* NotFoundHandler.m */,
 				00A17CA31319CA66002B0FC3 /* RequestHandler.h */,
-				007A80581319DF270040A3AE /* SimpleRequestHandler.h */,
-				007A80591319DF280040A3AE /* SimpleRequestHandler.m */,
 			);
 			name = handler;
 			sourceTree = "<group>";
@@ -308,7 +302,6 @@
 				0013189E1319F9DD00F0AFB8 /* ResponseCode.h in Headers */,
 				000BF75F131A12D40012814B /* RestResource.h in Headers */,
 				00A17CA81319CA85002B0FC3 /* Response.h in Headers */,
-				007A805A1319DF280040A3AE /* SimpleRequestHandler.h in Headers */,
 				00530B7E1313478A006A9311 /* HTTPConnection.h in Headers */,
 				007A804E1319CFAB0040A3AE /* HTTPServeProtected.h in Headers */,
 				007A80511319D9910040A3AE /* RequestHandlerRegistry.h in Headers */,
@@ -430,7 +423,6 @@
 				00A17CA91319CA85002B0FC3 /* Response.m in Sources */,
 				007A80521319D9910040A3AE /* RequestHandlerRegistry.m in Sources */,
 				007A80561319DD9B0040A3AE /* SystemUtil.m in Sources */,
-				007A805B1319DF280040A3AE /* SimpleRequestHandler.m in Sources */,
 				007A80651319E6620040A3AE /* ClassHolder.m in Sources */,
 				00BF732E1319EBB80009761A /* NotFoundHandler.m in Sources */,
 				00BF736D1319F5320009761A /* Request.m in Sources */,
