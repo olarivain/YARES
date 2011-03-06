@@ -66,8 +66,9 @@
           }
         }
         var params = form.params.value;
-        for(i = 0; i < 100; i++){
-        new AjaxScriptTransport().sendRequest(url, method, params);
+        var numberOfRequests = form.numberOfRequests.value;
+        for(i = 0; i < numberOfRequests; i++){
+          new AjaxScriptTransport().sendRequest(url, method, params);
         }
         return false;
       }
@@ -75,6 +76,7 @@
 		<form id="form" onsubmit="return submitRESTRequest();">
       Port:<br/> <input type="text" name="port" value="2048" /><br /><br />
 			Resource:<br/> <input type="text" name="url" value="" size="100" /><br /><br />
+      Number of requests to send<br/> <input type="text" name="numberOfRequests" value="1" /><br /><br />
 
 			Method:<br />
 			<input type="radio" name="method" value="GET" checked />GET<br />
@@ -91,5 +93,13 @@
 			<p>Response: <span id="responseCode"></span></p>
 			<textarea id="result" rows="10" cols="80"></textarea>
 		</div>
+    
+    <form action="http://localhost:2048/" enctype="multipart/form-data" method="post">
+      Please specify a file, or a set of files:<br>        
+      <input type="file" name="datafile" size="40" />
+      <br/>
+      <br/>
+      <input type="submit" value="Send">
+    </form>
 	</body>
 </html>

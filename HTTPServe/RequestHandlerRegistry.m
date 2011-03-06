@@ -38,7 +38,7 @@
 
 - (void) autoregister
 {
-  NSLog(@"Autoregistering...");
+  NSLog(@"Autoregistering handlers...");
   NSArray *classes = [SystemUtil getClassesConformingToProcol: @protocol(RequestHandler)];
   for(ClassHolder *classHolder in classes)
   {

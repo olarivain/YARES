@@ -18,12 +18,9 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
+  self = [super init];
+  
+  return self;
 }
 
 - (void)dealloc

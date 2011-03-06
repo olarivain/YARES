@@ -36,9 +36,11 @@
 @interface HTTPServe : NSObject 
 {
 @private
-  int listenPort;
-  NSSocketPort *socketPort;
-  NSFileHandle *fileHandle;
+  uint16_t port;
+  CFSocketRef ipv4socket;
+  CFSocketRef ipv6socket;
+  NSNetService *netService;
+
   NSMutableArray *connections;
   RequestHandlerRegistry *handlerRegistry;
 }

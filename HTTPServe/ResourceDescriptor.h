@@ -19,12 +19,12 @@
   id<RestResource> resource;
 }
 
-- (id) initWithPath: (NSString*) resourcePath resource: (id<RestResource>) resource andSelector: (SEL) sel;
-- (id)initWithPath: (NSString*) resourcePath resource: (id<RestResource>) resource selector: (SEL) sel andMethod: (HttpMethod) resourceMethod;
++ (id) descriptorWithPath: (NSString*) resourcePath resource: (id<RestResource>) resource andSelector: (SEL) sel;
++ (id) descriptorWithPath: (NSString*) resourcePath resource: (id<RestResource>) resource selector: (SEL) sel andMethod: (HttpMethod) resourceMethod;
 
-@property (readonly) NSString *path;
-@property (readonly) HttpMethod method;
-@property (readonly) SEL selector;
-@property (readonly) id<RestResource> resource;
+@property (readwrite, retain) NSString *path;
+@property (readwrite, assign) HttpMethod method;
+@property (readwrite, assign) SEL selector;
+@property (readwrite, retain) id<RestResource> resource;
 
 @end

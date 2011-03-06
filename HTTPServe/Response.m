@@ -22,12 +22,17 @@ static Response *EMPTY_RESPONSE;
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-      code = OK;
-    }
-    
-    return self;
+  self = [super init];
+  if (self) 
+  {
+    code = OK;
+  }
+  return self;
+}
+
++ (Response*) response
+{
+  return [[[Response alloc] init] autorelease];
 }
 
 - (void)dealloc
@@ -37,6 +42,7 @@ static Response *EMPTY_RESPONSE;
   [super dealloc];
 }
 
+#pragma mark - Headers manipulation
 - (void) addHeader:(NSString*)value forKey:(NSString *)key{
   if(headers == nil){
     headers = [[NSMutableDictionary alloc] init];
@@ -49,6 +55,7 @@ static Response *EMPTY_RESPONSE;
   [headers removeObjectForKey: key];
 }
 
+#pragma mark convenience methods
 - (void) setContentType: (NSString*) type
 {
   [self addHeader:type forKey:@"Content-Type"];
@@ -58,6 +65,7 @@ static Response *EMPTY_RESPONSE;
 {
   return [content length];
 }
+
 - (NSString*) contentLengthAsString
 {
   return [NSString stringWithFormat:@"%i", [self contentLength]];
@@ -68,11 +76,7 @@ static Response *EMPTY_RESPONSE;
   self.content = [stringContent dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-+ (Response*) response
-{
-  return [[[Response alloc] init] autorelease];
-}
-
+#pragma mark - Singletons
 + (Response*) EMPTY_RESPONSE
 {
   if(EMPTY_RESPONSE == nil)

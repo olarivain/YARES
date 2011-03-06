@@ -11,23 +11,23 @@
 
 @implementation ResourceDescriptor
 
-- (id) initWithPath: (NSString*) resourcePath resource: (id<RestResource>) parent andSelector: (SEL) sel;
++ (id) descriptorWithPath: (NSString*) resourcePath resource: (id<RestResource>) parent andSelector: (SEL) sel;
 {
-  return [self initWithPath:resourcePath resource: parent selector: sel andMethod: GET];
+  return [ResourceDescriptor descriptorWithPath:resourcePath resource: parent selector: sel andMethod: GET];
 }
 
-- (id)initWithPath: (NSString*) resourcePath resource: (id<RestResource>) parent selector: (SEL) sel andMethod: (HttpMethod) resourceMethod;
++ (id)descriptorWithPath: (NSString*) resourcePath resource: (id<RestResource>) parent selector: (SEL) sel andMethod: (HttpMethod) resourceMethod;
 {
-  self = [super init];
-  if (self) 
+  ResourceDescriptor *descriptor = [[[ResourceDescriptor alloc] init] autorelease];
+  if (descriptor) 
   {
-    path = resourcePath;
-    method = resourceMethod;
-    selector = sel;
-    resource = [parent retain];
+    descriptor.path = resourcePath;
+    descriptor.method = resourceMethod;
+    descriptor.selector = sel;
+    descriptor.resource = [parent retain];
   }
   
-  return self;
+  return descriptor;
 }
 
 - (void)dealloc

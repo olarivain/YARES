@@ -7,20 +7,26 @@
 //
 
 #import "HTTPServeProtected.h"
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+
 #import "HTTPConnection.h"
 #import "RequestHandlerRegistry.h"
 
+static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info);
+
 @interface HTTPServe(private)
-- (void) newConnection: (NSNotification*) notification;
+- (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr;
 @end
 
 @implementation HTTPServe
 
-- (id)initWithPort: (int) port
+- (id)initWithPort: (int) listenPort
 {
   self = [super init];
   if (self) {
-    listenPort = port;
+    port = listenPort;
     connections = [[NSMutableArray alloc] init];
     handlerRegistry = [[RequestHandlerRegistry alloc] init];
   }
@@ -30,92 +36,155 @@
 
 - (void)dealloc
 {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-  if(fileHandle)
-  {
-    [fileHandle closeFile];
-    [fileHandle release];
-  }
-  
-  if(socketPort)
-  {
-    [socketPort invalidate];
-    [socketPort release];
-  }
-  
+  [self stop];  
   [handlerRegistry release];
   [super dealloc];
 }
 
 - (void) start
 {
-  [handlerRegistry autoregister];
-  socketPort = [[NSSocketPort alloc] initWithTCPPort:listenPort];
-  if(!socketPort)
-  {
-    NSLog(@"Error, could not create socketPort");
-  }
-  fileHandle = [[NSFileHandle alloc] initWithFileDescriptor:[socketPort socket] closeOnDealloc:TRUE];
-  if(!fileHandle)
-  {
-    NSLog(@"could not create file handle");
-  }
+  CFSocketContext socketCtxt = {0, self, NULL, NULL, NULL};
+  ipv4socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&HTTPServerAcceptCallBack, &socketCtxt);
+  ipv6socket = CFSocketCreate(kCFAllocatorDefault, PF_INET6, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&HTTPServerAcceptCallBack, &socketCtxt);
   
-  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-  [nc addObserver:self
-         selector:@selector(newConnection:)
-             name:NSFileHandleConnectionAcceptedNotification
-           object:nil];
-  
-  [fileHandle acceptConnectionInBackgroundAndNotify];
-}
-
-- (void) newConnection:(NSNotification *)notification
-{
-  NSDictionary *userInfo = [notification userInfo];
-  NSFileHandle *remoteFileHandle = [[userInfo objectForKey:
-                                    NSFileHandleNotificationFileHandleItem] autorelease];
-  
-  NSNumber *errorNo = [userInfo objectForKey:@"NSFileHandleError"];
-  if( errorNo ) 
-  {
-    NSLog(@"NSFileHandle Error: %@", errorNo);
+  if (NULL == ipv4socket || NULL == ipv6socket) {
+    if (ipv4socket) CFRelease(ipv4socket);
+    if (ipv6socket) CFRelease(ipv6socket);
+    ipv4socket = NULL;
+    ipv6socket = NULL;
     return;
   }
   
-  if( remoteFileHandle ) 
-  {
-    HTTPConnection *connection = [[HTTPConnection alloc] initWithFileHandle:remoteFileHandle server:self andHandlerRegistry: handlerRegistry];
-    if( connection ) 
-    {
-      [connections addObject:connection];
-      [connection release];
-    }
+  int yes = 1;
+  setsockopt(CFSocketGetNative(ipv4socket), SOL_SOCKET, SO_REUSEADDR, (void *)&yes, sizeof(yes));
+  setsockopt(CFSocketGetNative(ipv6socket), SOL_SOCKET, SO_REUSEADDR, (void *)&yes, sizeof(yes));
+  
+  // set up the IPv4 endpoint; if port is 0, this will cause the kernel to choose a port for us
+  struct sockaddr_in addr4;
+  memset(&addr4, 0, sizeof(addr4));
+  addr4.sin_len = sizeof(addr4);
+  addr4.sin_family = AF_INET;
+  addr4.sin_port = htons(port);
+  addr4.sin_addr.s_addr = htonl(INADDR_ANY);
+  NSData *address4 = [NSData dataWithBytes:&addr4 length:sizeof(addr4)];
+  
+  if (kCFSocketSuccess != CFSocketSetAddress(ipv4socket, (CFDataRef)address4)) {
+    if (ipv4socket) CFRelease(ipv4socket);
+    if (ipv6socket) CFRelease(ipv6socket);
+    ipv4socket = NULL;
+    ipv6socket = NULL;
+    return;
   }
   
-  if([connections count] < 1)
-  {
-    [fileHandle acceptConnectionInBackgroundAndNotify];
+  if (0 == port) {
+    // now that the binding was successful, we get the port number 
+    // -- we will need it for the v6 endpoint and for the NSNetService
+    NSData *addr = [(NSData *)CFSocketCopyAddress(ipv4socket) autorelease];
+    memcpy(&addr4, [addr bytes], [addr length]);
+    port = ntohs(addr4.sin_port);
   }
+  
+  // set up the IPv6 endpoint
+  struct sockaddr_in6 addr6;
+  memset(&addr6, 0, sizeof(addr6));
+  addr6.sin6_len = sizeof(addr6);
+  addr6.sin6_family = AF_INET6;
+  addr6.sin6_port = htons(port);
+  memcpy(&(addr6.sin6_addr), &in6addr_any, sizeof(addr6.sin6_addr));
+  NSData *address6 = [NSData dataWithBytes:&addr6 length:sizeof(addr6)];
+  
+  if (kCFSocketSuccess != CFSocketSetAddress(ipv6socket, (CFDataRef)address6)) {
+    if (ipv4socket) CFRelease(ipv4socket);
+    if (ipv6socket) CFRelease(ipv6socket);
+    ipv4socket = NULL;
+    ipv6socket = NULL;
+    return;
+  }
+  
+  // set up the run loop sources for the sockets
+  CFRunLoopRef cfrl = CFRunLoopGetCurrent();
+  CFRunLoopSourceRef source4 = CFSocketCreateRunLoopSource(kCFAllocatorDefault, ipv4socket, 0);
+  CFRunLoopAddSource(cfrl, source4, kCFRunLoopCommonModes);
+  CFRelease(source4);
+  
+  CFRunLoopSourceRef source6 = CFSocketCreateRunLoopSource(kCFAllocatorDefault, ipv6socket, 0);
+  CFRunLoopAddSource(cfrl, source6, kCFRunLoopCommonModes);
+  CFRelease(source6);
+  
+  [handlerRegistry autoregister];
 }
 
-- (void) connectionHandled: (HTTPConnection*) connection{
-  @synchronized(self){
-    [connections removeObject: connection];
-    if([connections count] == 0){
-      [fileHandle acceptConnectionInBackgroundAndNotify];
-    }
-  }
-}
-
-
-- (void) stop
+- (void) stop 
 {
   [handlerRegistry unregisterRequestHandlers];
-  [fileHandle closeFile];
-  [fileHandle release];
-  [socketPort invalidate];
-  [socketPort release];
+  [netService stop];
+  [netService release];
+  netService = nil;
+  CFSocketInvalidate(ipv4socket);
+  CFSocketInvalidate(ipv6socket);
+  CFRelease(ipv4socket);
+  CFRelease(ipv6socket);
+  ipv4socket = NULL;
+  ipv6socket = NULL;
+}
+
+- (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr 
+{
+  HTTPConnection *connection = [[[HTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:self andRegistry:handlerRegistry] autorelease];
+  if( connection ) 
+  {
+    [connections addObject:connection];
+  }
+}
+
+- (void) connectionHandled: (HTTPConnection*) connection
+{
+  [connections removeObject: connection];
 }
 
 @end
+
+
+// This function is called by CFSocket when a new connection comes in.
+// We gather some data here, and convert the function call to a method
+// invocation on TCPServer.
+static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info) 
+{
+  HTTPServe *server = (HTTPServe *)info;
+  if (kCFSocketAcceptCallBack == type) 
+  {  
+    // for an AcceptCallBack, the data parameter is a pointer to a CFSocketNativeHandle
+    CFSocketNativeHandle nativeSocketHandle = *(CFSocketNativeHandle *)data;
+    uint8_t name[SOCK_MAXADDRLEN];
+    socklen_t namelen = sizeof(name);
+    NSData *peer = nil;
+    if (0 == getpeername(nativeSocketHandle, (struct sockaddr *)name, &namelen)) 
+    {
+      peer = [NSData dataWithBytes:name length:namelen];
+    }
+    
+    CFReadStreamRef readStream = NULL;
+    CFWriteStreamRef writeStream = NULL;
+    
+    CFStreamCreatePairWithSocket(kCFAllocatorDefault, nativeSocketHandle, &readStream, &writeStream);
+    if (readStream && writeStream) 
+    {
+      CFReadStreamSetProperty(readStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
+      CFWriteStreamSetProperty(writeStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
+      [server handleNewConnectionFromAddress:peer inputStream:(NSInputStream *)readStream outputStream:(NSOutputStream *)writeStream];
+    } else 
+    {
+      // on any failure, need to destroy the CFSocketNativeHandle 
+      // since we are not going to use it any more
+      close(nativeSocketHandle);
+    }
+    if (readStream)
+    {
+      CFRelease(readStream); 
+    }
+    if (writeStream)
+    {
+      CFRelease(writeStream); 
+    }
+  }
+}

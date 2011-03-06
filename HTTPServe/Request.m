@@ -40,10 +40,12 @@
 @synthesize url;
 @synthesize method;
 
+#pragma mark - Synthetic getters
 - (NSString*) getContentType
 {
   return [headers objectForKey: @"Content-Type"];
 }
+
 - (NSString*) getContentLength
 {
   return [headers objectForKey: @"Content-Length"];

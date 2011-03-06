@@ -8,30 +8,29 @@
 
 #import <Foundation/Foundation.h>
 #import "Request.h"
+
+@class Response;
 @class RequestHandlerRegistry;
-@class RequestBuilder;
 @class HTTPServe;
 
-@interface HTTPConnection : NSObject 
+@interface HTTPConnection : NSObject <NSStreamDelegate>
 {
 @private
-  NSFileHandle *fileHandle;
   HTTPServe *httpServer;
-  
   RequestHandlerRegistry *handlerRegistry;
   
-  long contentLength;
-  long readLength;
+  NSData *peerAddress;
+  NSInputStream *istream;
+  NSOutputStream *ostream;
   
+  Request *request;
+  Response *response;
+  CFHTTPMessageRef requestRef;
   BOOL headerReceived;
   BOOL bodyReceived;
-  
-  CFHTTPMessageRef cfRequest;
-  Request *request;
-  
-  RequestBuilder *requestBuilder;
+  NSInteger contentLength;
+  int bytesRead;
 }
 
-- (id) initWithFileHandle: (NSFileHandle*) handle server: (HTTPServe*) server andHandlerRegistry: (RequestHandlerRegistry*) registry;
-
+- (id)initWithPeerAddress:(NSData *)address inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr forServer:(HTTPServe *)server andRegistry: (RequestHandlerRegistry*) registry;
 @end
