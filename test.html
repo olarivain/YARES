@@ -3,12 +3,12 @@
 	</head>
 	<body>
 		<script type="text/javascript">
+      var counter = 0;
       function showResponse(xmlHttpRequest){
+        counter++;
         var body = document.getElementById("result");
-        body.value=xmlHttpRequest.responseText;
-        
-        var responseCode = document.getElementById("responseCode");
-        responseCode.innerHTML = xmlHttpRequest.status + " ("+ xmlHttpRequest.statusText+")";
+        body.value += counter + " : "+xmlHttpRequest.status + " ("+ xmlHttpRequest.statusText+")\n";
+        body.value += xmlHttpRequest.responseText+"\n\n\n";
       }
       
       var AjaxScriptTransport = function() {
@@ -47,6 +47,7 @@
       }
       
       function submitRESTRequest() {
+        counter = 0;
         var form = document.getElementById("form");
         
         var body = document.getElementById("result");
@@ -65,8 +66,9 @@
           }
         }
         var params = form.params.value;
-        var ajaxTransport = AjaxScriptTransport();    	
-        ajaxTransport.sendRequest(url, method, params);
+        for(i = 0; i < 100; i++){
+        new AjaxScriptTransport().sendRequest(url, method, params);
+        }
         return false;
       }
       </script>

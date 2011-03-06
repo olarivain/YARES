@@ -25,6 +25,7 @@
 		007A80641319E6620040A3AE /* ClassHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80621319E6620040A3AE /* ClassHolder.h */; };
 		007A80651319E6620040A3AE /* ClassHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80631319E6620040A3AE /* ClassHolder.m */; };
 		008875BC131A170E00399F98 /* HttpMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 008875BB131A170E00399F98 /* HttpMethod.m */; };
+		009D34B01322F9CF003016BA /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009D34AF1322F9CF003016BA /* JSON.framework */; };
 		00A17CA41319CA66002B0FC3 /* RequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA31319CA66002B0FC3 /* RequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A17CA81319CA85002B0FC3 /* Response.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA61319CA85002B0FC3 /* Response.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A17CA91319CA85002B0FC3 /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A17CA71319CA85002B0FC3 /* Response.m */; };
@@ -32,7 +33,6 @@
 		00B02763131B075B000DE24E /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B02761131B075B000DE24E /* RequestBuilder.m */; };
 		00BF732D1319EBB80009761A /* NotFoundHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF732B1319EBB80009761A /* NotFoundHandler.h */; };
 		00BF732E1319EBB80009761A /* NotFoundHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF732C1319EBB80009761A /* NotFoundHandler.m */; };
-		00BF73671319F4230009761A /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BF73661319F4230009761A /* JSON.framework */; };
 		00BF736C1319F5320009761A /* Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF736A1319F5320009761A /* Request.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00BF736D1319F5320009761A /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF736B1319F5320009761A /* Request.m */; };
 		00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
@@ -75,6 +75,7 @@
 		007A80621319E6620040A3AE /* ClassHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassHolder.h; sourceTree = "<group>"; };
 		007A80631319E6620040A3AE /* ClassHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassHolder.m; sourceTree = "<group>"; };
 		008875BB131A170E00399F98 /* HttpMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpMethod.m; sourceTree = "<group>"; };
+		009D34AF1322F9CF003016BA /* JSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JSON.framework; sourceTree = SOURCE_ROOT; };
 		00A17CA31319CA66002B0FC3 /* RequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHandler.h; sourceTree = "<group>"; };
 		00A17CA61319CA85002B0FC3 /* Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Response.h; sourceTree = "<group>"; };
 		00A17CA71319CA85002B0FC3 /* Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Response.m; sourceTree = "<group>"; };
@@ -108,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00BF73671319F4230009761A /* JSON.framework in Frameworks */,
+				009D34B01322F9CF003016BA /* JSON.framework in Frameworks */,
 				00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +206,7 @@
 		00CE972713133CBE006F6A38 = {
 			isa = PBXGroup;
 			children = (
+				009D34AF1322F9CF003016BA /* JSON.framework */,
 				00BF73661319F4230009761A /* JSON.framework */,
 				00530B8113134E84006A9311 /* test.html */,
 				00CE973C13133CBF006F6A38 /* HTTPServe */,
@@ -509,6 +511,10 @@
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -529,6 +535,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

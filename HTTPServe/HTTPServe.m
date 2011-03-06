@@ -73,8 +73,8 @@
 - (void) newConnection:(NSNotification *)notification
 {
   NSDictionary *userInfo = [notification userInfo];
-  NSFileHandle *remoteFileHandle = [userInfo objectForKey:
-                                    NSFileHandleNotificationFileHandleItem];
+  NSFileHandle *remoteFileHandle = [[userInfo objectForKey:
+                                    NSFileHandleNotificationFileHandleItem] autorelease];
   
   NSNumber *errorNo = [userInfo objectForKey:@"NSFileHandleError"];
   if( errorNo ) 
@@ -83,21 +83,29 @@
     return;
   }
   
-  [fileHandle acceptConnectionInBackgroundAndNotify];
-  
   if( remoteFileHandle ) 
   {
-    HTTPConnection *connection = [[HTTPConnection alloc] initWithFileHandle:remoteFileHandle handlerRegistry: handlerRegistry];
+    HTTPConnection *connection = [[HTTPConnection alloc] initWithFileHandle:remoteFileHandle server:self andHandlerRegistry: handlerRegistry];
     if( connection ) 
     {
       [connections addObject:connection];
       [connection release];
     }
   }
+  
+  if([connections count] < 1)
+  {
+    [fileHandle acceptConnectionInBackgroundAndNotify];
+  }
 }
 
 - (void) connectionHandled: (HTTPConnection*) connection{
-  [connections removeObject: connection];
+  @synchronized(self){
+    [connections removeObject: connection];
+    if([connections count] == 0){
+      [fileHandle acceptConnectionInBackgroundAndNotify];
+    }
+  }
 }
 
 

@@ -30,17 +30,19 @@
 
 #pragma mark Constructor/Destructor
 
-- (id)initWithFileHandle: (NSFileHandle*) handle handlerRegistry:(RequestHandlerRegistry *)registry
+- (id) initWithFileHandle: (NSFileHandle*) handle server: (HTTPServe*) server andHandlerRegistry: (RequestHandlerRegistry*) registry
 {
     self = [super init];
     if (self) 
     {
-      fileHandle = [handle retain];
       cfRequest = NULL;
       headerReceived = NO;
       bodyReceived = NO;
       contentLength = -1;
       readLength = 0;
+      
+      fileHandle = [handle retain];
+      httpServer = [server retain];
       handlerRegistry = [registry retain];
       requestBuilder = [[RequestBuilder alloc] init];
       
@@ -58,11 +60,13 @@
 
 - (void)dealloc
 {
-  [[NSNotificationCenter defaultCenter] removeObserver: self];
+  [[NSNotificationCenter defaultCenter] removeObserver: self name: NSFileHandleReadCompletionNotification object:fileHandle];
   if(cfRequest)
   {
     CFRelease(cfRequest);
   }
+  [request release];
+  [httpServer release];
   [handlerRegistry release];
   [fileHandle release];
   [requestBuilder release];
@@ -72,8 +76,7 @@
 #pragma mark Clean up
 - (void) close{
   [fileHandle closeFile];
-  [request release];
-  // TODO notify http serve that connection is closed
+  [httpServer connectionHandled: self];
 }
 
 
@@ -85,20 +88,22 @@
   if ( [data length] == 0 ) 
   {
     [self close];
-  } else 
+  } 
+  else 
   {
-    // keep reading in background while we process this chunk.
-    [fileHandle readInBackgroundAndNotify];
-    
     // create reqest if needed.
     if(cfRequest == NULL)
     {
       cfRequest = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
     }
     
+    // keep reading in background while we process this chunk.
+    [fileHandle readInBackgroundAndNotify];
+    
     readLength += [data length];
 
     // try to read
+    NSLog(@"Length: %i", [data length]);
     Boolean success = CFHTTPMessageAppendBytes(cfRequest, [data bytes], [data length]);
     if( success ) 
     {
@@ -117,10 +122,8 @@
       if(bodyReceived)
       {
         [self createRequest];
-
         [self handleRequest];
       }
-     
     } else
     {
        NSLog(@"Could not read from request.");
@@ -188,6 +191,7 @@
   for(NSString *key in [headers keyEnumerator])
   {
     NSString *value = [headers objectForKey: key];
+    NSLog(@"adding %@ %@", key, value);
     CFHTTPMessageSetHeaderFieldValue(cfResponse, (CFStringRef) key, (CFStringRef) value);
   }
   CFHTTPMessageSetHeaderFieldValue(cfResponse, (CFStringRef) @"Content-Length", (CFStringRef) [response contentLengthAsString]);

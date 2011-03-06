@@ -31,6 +31,8 @@
  * </ul>
  * </p>
  */
+@class HTTPConnection;
+
 @interface HTTPServe : NSObject 
 {
 @private
@@ -44,5 +46,7 @@
 - (HTTPServe*) initWithPort: (int) port;
 - (void) start;
 - (void) stop;
+
+- (void) connectionHandled: (HTTPConnection*) connection;
 
 @end

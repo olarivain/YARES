@@ -10,10 +10,13 @@
 #import "Request.h"
 @class RequestHandlerRegistry;
 @class RequestBuilder;
+@class HTTPServe;
+
 @interface HTTPConnection : NSObject 
 {
 @private
   NSFileHandle *fileHandle;
+  HTTPServe *httpServer;
   
   RequestHandlerRegistry *handlerRegistry;
   
@@ -29,6 +32,6 @@
   RequestBuilder *requestBuilder;
 }
 
-- (id) initWithFileHandle: (NSFileHandle*) handle handlerRegistry: (RequestHandlerRegistry*) registry;
+- (id) initWithFileHandle: (NSFileHandle*) handle server: (HTTPServe*) server andHandlerRegistry: (RequestHandlerRegistry*) registry;
 
 @end

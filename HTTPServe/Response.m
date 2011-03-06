@@ -68,6 +68,11 @@ static Response *EMPTY_RESPONSE;
   self.content = [stringContent dataUsingEncoding:NSUTF8StringEncoding];
 }
 
++ (Response*) response
+{
+  return [[[Response alloc] init] autorelease];
+}
+
 + (Response*) EMPTY_RESPONSE
 {
   if(EMPTY_RESPONSE == nil)
