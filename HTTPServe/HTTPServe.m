@@ -17,6 +17,10 @@
 static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info);
 
 @interface HTTPServe(private)
+- (void) initializeHTTPServer;
+- (void) initializeBonjour;
+- (void) stopHTTPServer;
+- (void) stopBonjour;
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr;
 @end
 
@@ -24,8 +28,15 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 
 - (id)initWithPort: (int) listenPort
 {
+  return [self initWithPort: listenPort bonjourEnabled: TRUE];
+}
+
+- (id)initWithPort: (int) listenPort bonjourEnabled: (BOOL) bonjour
+{
   self = [super init];
-  if (self) {
+  if (self) 
+  {
+    bonjourEnabled = bonjour;
     port = listenPort;
     connections = [[NSMutableArray alloc] init];
     handlerRegistry = [[RequestHandlerRegistry alloc] init];
@@ -41,15 +52,37 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   [super dealloc];
 }
 
+#pragma mark - Start/stop methods
 - (void) start
+{
+  [self initializeHTTPServer];
+  [handlerRegistry autoregister];
+  
+  if(bonjourEnabled)
+  {
+    [self initializeBonjour];
+  }
+  
+  NSLog(@"HTTP Server up and running");
+}
+
+- (void) initializeHTTPServer
 {
   CFSocketContext socketCtxt = {0, self, NULL, NULL, NULL};
   ipv4socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&HTTPServerAcceptCallBack, &socketCtxt);
   ipv6socket = CFSocketCreate(kCFAllocatorDefault, PF_INET6, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&HTTPServerAcceptCallBack, &socketCtxt);
   
-  if (NULL == ipv4socket || NULL == ipv6socket) {
-    if (ipv4socket) CFRelease(ipv4socket);
-    if (ipv6socket) CFRelease(ipv6socket);
+  if (NULL == ipv4socket || NULL == ipv6socket) 
+  {
+    NSLog(@"Error: Could not allocate CFSockets.");
+    if (ipv4socket)
+    {
+      CFRelease(ipv4socket); 
+    }
+    if (ipv6socket)
+    {
+      CFRelease(ipv6socket);
+    }
     ipv4socket = NULL;
     ipv6socket = NULL;
     return;
@@ -68,15 +101,24 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   addr4.sin_addr.s_addr = htonl(INADDR_ANY);
   NSData *address4 = [NSData dataWithBytes:&addr4 length:sizeof(addr4)];
   
-  if (kCFSocketSuccess != CFSocketSetAddress(ipv4socket, (CFDataRef)address4)) {
-    if (ipv4socket) CFRelease(ipv4socket);
-    if (ipv6socket) CFRelease(ipv6socket);
+  if (kCFSocketSuccess != CFSocketSetAddress(ipv4socket, (CFDataRef)address4)) 
+  {
+    NSLog(@"Error: Could not set IPv4 socket address.");
+    if (ipv4socket)
+    {
+      CFRelease(ipv4socket);
+    }
+    if (ipv6socket)
+    {
+      CFRelease(ipv6socket);
+    }
     ipv4socket = NULL;
     ipv6socket = NULL;
     return;
   }
   
-  if (0 == port) {
+  if (port == 0) 
+  {
     // now that the binding was successful, we get the port number 
     // -- we will need it for the v6 endpoint and for the NSNetService
     NSData *addr = [(NSData *)CFSocketCopyAddress(ipv4socket) autorelease];
@@ -93,9 +135,18 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   memcpy(&(addr6.sin6_addr), &in6addr_any, sizeof(addr6.sin6_addr));
   NSData *address6 = [NSData dataWithBytes:&addr6 length:sizeof(addr6)];
   
-  if (kCFSocketSuccess != CFSocketSetAddress(ipv6socket, (CFDataRef)address6)) {
-    if (ipv4socket) CFRelease(ipv4socket);
-    if (ipv6socket) CFRelease(ipv6socket);
+  if (kCFSocketSuccess != CFSocketSetAddress(ipv6socket, (CFDataRef)address6)) 
+  {
+    NSLog(@"Error: Could not set IPv6 socket address.");
+    if (ipv4socket)
+    {
+      CFRelease(ipv4socket);
+    }
+    
+    if (ipv6socket)
+    {
+      CFRelease(ipv6socket);
+    }
     ipv4socket = NULL;
     ipv6socket = NULL;
     return;
@@ -110,11 +161,28 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   CFRunLoopSourceRef source6 = CFSocketCreateRunLoopSource(kCFAllocatorDefault, ipv6socket, 0);
   CFRunLoopAddSource(cfrl, source6, kCFRunLoopCommonModes);
   CFRelease(source6);
+}
+
+- (void) initializeBonjour
+{
+  NSString *hostname = [[NSHost currentHost] localizedName];
+  NSString *serviceName = [NSString stringWithFormat:@"iServe-%@", hostname];
+  netService = [[NSNetService alloc] initWithDomain:@"local." type:@"_http._tcp" name: serviceName port: port];
+  [netService setDelegate: self];
   
-  [handlerRegistry autoregister];
+  [netService publish];
 }
 
 - (void) stop 
+{
+  [self stopHTTPServer];
+  if(bonjourEnabled)
+  {
+    [self stopBonjour];
+  }
+}
+
+- (void) stopHTTPServer
 {
   [handlerRegistry unregisterRequestHandlers];
   [netService stop];
@@ -126,8 +194,14 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   CFRelease(ipv6socket);
   ipv4socket = NULL;
   ipv6socket = NULL;
+
+}
+- (void) stopBonjour
+{
+  
 }
 
+#pragma mark - Connection management
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr 
 {
   HTTPConnection *connection = [[[HTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:self andRegistry:handlerRegistry] autorelease];
@@ -142,9 +216,27 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   [connections removeObject: connection];
 }
 
+#pragma mark - NSNetServiceDelegate methods
+- (void) netService:(NSNetService *)sender didNotPublish:(NSDictionary *)errorDict
+{
+  NSLog(@"Could not start net service:");
+  for(NSString *key in errorDict)
+  {
+    NSObject *value = [errorDict valueForKey:key];
+    NSLog(@"Error: %@ : %@", key, value);
+  }
+  NSLog(@"NSNetService didNotPublish");
+}
+
+- (void) netServiceDidPublish:(NSNetService *)sender
+{
+  NSLog(@"Bonjour service published.");
+}
+
 @end
 
 
+#pragma mark - Socket callback
 // This function is called by CFSocket when a new connection comes in.
 // We gather some data here, and convert the function call to a method
 // invocation on TCPServer.

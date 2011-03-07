@@ -14,6 +14,7 @@
 		000BF763131A13290012814B /* ResourceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 000BF761131A13290012814B /* ResourceDescriptor.m */; };
 		000BF765131A13500012814B /* HttpMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF764131A13500012814B /* HttpMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0013189E1319F9DD00F0AFB8 /* ResponseCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0013189C1319F9DD00F0AFB8 /* ResponseCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		002A0A8713244EE900320A06 /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002A0A8613244EE900320A06 /* JSON.framework */; };
 		00530B7E1313478A006A9311 /* HTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 00530B7C1313478A006A9311 /* HTTPConnection.h */; };
 		00530B7F1313478A006A9311 /* HTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 00530B7D1313478A006A9311 /* HTTPConnection.m */; };
 		00530B8213134E84006A9311 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 00530B8113134E84006A9311 /* test.html */; };
@@ -25,7 +26,6 @@
 		007A80641319E6620040A3AE /* ClassHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80621319E6620040A3AE /* ClassHolder.h */; };
 		007A80651319E6620040A3AE /* ClassHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80631319E6620040A3AE /* ClassHolder.m */; };
 		008875BC131A170E00399F98 /* HttpMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 008875BB131A170E00399F98 /* HttpMethod.m */; };
-		009D34B01322F9CF003016BA /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009D34AF1322F9CF003016BA /* JSON.framework */; };
 		00A17CA41319CA66002B0FC3 /* RequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA31319CA66002B0FC3 /* RequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A17CA81319CA85002B0FC3 /* Response.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA61319CA85002B0FC3 /* Response.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A17CA91319CA85002B0FC3 /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A17CA71319CA85002B0FC3 /* Response.m */; };
@@ -62,6 +62,7 @@
 		000BF761131A13290012814B /* ResourceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceDescriptor.m; sourceTree = "<group>"; };
 		000BF764131A13500012814B /* HttpMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpMethod.h; sourceTree = "<group>"; };
 		0013189C1319F9DD00F0AFB8 /* ResponseCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseCode.h; sourceTree = "<group>"; };
+		002A0A8613244EE900320A06 /* JSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00530B7C1313478A006A9311 /* HTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPConnection.h; sourceTree = "<group>"; };
 		00530B7D1313478A006A9311 /* HTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPConnection.m; sourceTree = "<group>"; };
 		00530B8113134E84006A9311 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
@@ -73,13 +74,11 @@
 		007A80621319E6620040A3AE /* ClassHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassHolder.h; sourceTree = "<group>"; };
 		007A80631319E6620040A3AE /* ClassHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassHolder.m; sourceTree = "<group>"; };
 		008875BB131A170E00399F98 /* HttpMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpMethod.m; sourceTree = "<group>"; };
-		009D34AF1322F9CF003016BA /* JSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JSON.framework; sourceTree = SOURCE_ROOT; };
 		00A17CA31319CA66002B0FC3 /* RequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHandler.h; sourceTree = "<group>"; };
 		00A17CA61319CA85002B0FC3 /* Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Response.h; sourceTree = "<group>"; };
 		00A17CA71319CA85002B0FC3 /* Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Response.m; sourceTree = "<group>"; };
 		00BF732B1319EBB80009761A /* NotFoundHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotFoundHandler.h; sourceTree = "<group>"; };
 		00BF732C1319EBB80009761A /* NotFoundHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotFoundHandler.m; sourceTree = "<group>"; };
-		00BF73661319F4230009761A /* JSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00BF736A1319F5320009761A /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		00BF736B1319F5320009761A /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		00CE973313133CBF006F6A38 /* HTTPServe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTTPServe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009D34B01322F9CF003016BA /* JSON.framework in Frameworks */,
+				002A0A8713244EE900320A06 /* JSON.framework in Frameworks */,
 				00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,8 +199,7 @@
 		00CE972713133CBE006F6A38 = {
 			isa = PBXGroup;
 			children = (
-				009D34AF1322F9CF003016BA /* JSON.framework */,
-				00BF73661319F4230009761A /* JSON.framework */,
+				002A0A8613244EE900320A06 /* JSON.framework */,
 				00530B8113134E84006A9311 /* test.html */,
 				00CE973C13133CBF006F6A38 /* HTTPServe */,
 				00CE974D13133CBF006F6A38 /* HTTPServeTests */,

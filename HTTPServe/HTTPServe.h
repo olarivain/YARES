@@ -30,10 +30,13 @@
  *  <li>Close and release NSSocketPort and NSFileHandle</li>
  * </ul>
  * </p>
+ * <p> This is the only class you should be dealing with directly. All other classes you will be facing
+ * are actually Protocols that you should implement. 
+ * </p>
  */
 @class HTTPConnection;
 
-@interface HTTPServe : NSObject 
+@interface HTTPServe : NSObject<NSNetServiceDelegate>
 {
 @private
   uint16_t port;
@@ -41,11 +44,13 @@
   CFSocketRef ipv6socket;
   NSNetService *netService;
 
+  BOOL bonjourEnabled;
   NSMutableArray *connections;
   RequestHandlerRegistry *handlerRegistry;
 }
 
 - (HTTPServe*) initWithPort: (int) port;
+- (id)initWithPort: (int) listenPort bonjourEnabled: (BOOL) bonjour;
 - (void) start;
 - (void) stop;
 
