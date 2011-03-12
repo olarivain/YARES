@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <JSON/SBJsonParser.h>
+#import "SBJsonParser.h"
 
 #import "RestRequestHandler.h"
 #import "SystemUtil.h"
@@ -108,6 +108,7 @@
       return descriptor;
     }
   }
+  NSLog(@"No descriptor found for method: %i and path: %@", [request method], [request path]);
   return nil;
 }
 

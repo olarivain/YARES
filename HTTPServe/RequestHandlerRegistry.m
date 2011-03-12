@@ -10,6 +10,8 @@
 #import "SystemUtil.h"
 #import "ClassHolder.h"
 #import "NotFoundHandler.h"
+// testing to add the guy to the thing
+#import "RestRequestHandler.h"
 
 @interface RequestHandlerRegistry(private)
 @end
@@ -32,6 +34,11 @@
 {
   [notFoundHandler release];
   [super dealloc];
+}
+
+- (void) bootstrapClasses
+{
+  [RestRequestHandler class];
 }
 
 @synthesize notFoundHandler;
@@ -81,6 +88,7 @@
 - (id<RequestHandler>) handlerForURL: (NSURL*) url
 {
   NSString *relativePath = [url relativePath];
+  NSLog(@"Searching handler for url: %@", relativePath);
   for(id<RequestHandler> handler in handlers)
   {
     NSArray *urls = [handler paths];
@@ -88,10 +96,12 @@
     {
       if([url isEqualToString: relativePath])
       {
+        NSLog(@"Found handler");
         return handler;
       }
     } 
   }
+  NSLog(@"Error: no handler found for url: %@", relativePath);
   return nil;
 }
 
