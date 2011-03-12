@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'HTTPServe' target in the 'HTTPServe' project
+// Prefix header for all source files of the 'httpserve' target in the 'httpserve' project
 //
 
 #ifdef __OBJC__
