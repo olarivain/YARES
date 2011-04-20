@@ -16,33 +16,6 @@
 		0013189E1319F9DD00F0AFB8 /* ResponseCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0013189C1319F9DD00F0AFB8 /* ResponseCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00323D41132C1943003BED87 /* RequestHandlerRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A804F1319D9910040A3AE /* RequestHandlerRegistry.h */; };
 		00323D42132C195E003BED87 /* NotFoundHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF732B1319EBB80009761A /* NotFoundHandler.h */; };
-		00323D45132C19A3003BED87 /* HTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 00530B7D1313478A006A9311 /* HTTPConnection.m */; };
-		00323D46132C19A3003BED87 /* NotFoundHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF732C1319EBB80009761A /* NotFoundHandler.m */; };
-		00323D47132C19A3003BED87 /* HttpMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 008875BB131A170E00399F98 /* HttpMethod.m */; };
-		00323D48132C19A3003BED87 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF736B1319F5320009761A /* Request.m */; };
-		00323D49132C19A3003BED87 /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A17CA71319CA85002B0FC3 /* Response.m */; };
-		00323D4A132C19A3003BED87 /* RestRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 000BF75A131A0ED10012814B /* RestRequestHandler.m */; };
-		00323D4B132C19A3003BED87 /* ResourceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 000BF761131A13290012814B /* ResourceDescriptor.m */; };
-		00323D4C132C19A3003BED87 /* HTTPServe.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CE976113133CD4006F6A38 /* HTTPServe.m */; };
-		00323D4D132C19A3003BED87 /* RequestHandlerRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80501319D9910040A3AE /* RequestHandlerRegistry.m */; };
-		00323D4E132C19A3003BED87 /* ClassHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80631319E6620040A3AE /* ClassHolder.m */; };
-		00323D4F132C19A3003BED87 /* SystemUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80541319DD990040A3AE /* SystemUtil.m */; };
-		00323D51132C19A3003BED87 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
-		00323D53132C19A3003BED87 /* HTTPServe.h in Headers */ = {isa = PBXBuildFile; fileRef = 00CE976013133CD4006F6A38 /* HTTPServe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00323D54132C19A3003BED87 /* HttpMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF764131A13500012814B /* HttpMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00323D55132C19A3003BED87 /* Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF736A1319F5320009761A /* Request.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00323D56132C19A3003BED87 /* ResourceDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF760131A13290012814B /* ResourceDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00323D57132C19A3003BED87 /* RequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA31319CA66002B0FC3 /* RequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00323D58132C19A3003BED87 /* Response.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA61319CA85002B0FC3 /* Response.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00323D59132C19A3003BED87 /* ResponseCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0013189C1319F9DD00F0AFB8 /* ResponseCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00323D5A132C19A3003BED87 /* RestResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF75E131A12D40012814B /* RestResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00323D5B132C19A3003BED87 /* NotFoundHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF732B1319EBB80009761A /* NotFoundHandler.h */; };
-		00323D5C132C19A3003BED87 /* RequestHandlerRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A804F1319D9910040A3AE /* RequestHandlerRegistry.h */; };
-		00323D5D132C19A3003BED87 /* HTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 00530B7C1313478A006A9311 /* HTTPConnection.h */; };
-		00323D5E132C19A3003BED87 /* HTTPServeProtected.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A804D1319CFAB0040A3AE /* HTTPServeProtected.h */; };
-		00323D5F132C19A3003BED87 /* ClassHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80621319E6620040A3AE /* ClassHolder.h */; };
-		00323D60132C19A3003BED87 /* SystemUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80531319DD980040A3AE /* SystemUtil.h */; };
-		00323D61132C19A3003BED87 /* RestRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF759131A0ED10012814B /* RestRequestHandler.h */; settings = {ATTRIBUTES = (); }; };
 		00530B7E1313478A006A9311 /* HTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 00530B7C1313478A006A9311 /* HTTPConnection.h */; };
 		00530B7F1313478A006A9311 /* HTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 00530B7D1313478A006A9311 /* HTTPConnection.m */; };
 		00530B8213134E84006A9311 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 00530B8113134E84006A9311 /* test.html */; };
@@ -116,7 +89,6 @@
 		000BF761131A13290012814B /* ResourceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceDescriptor.m; sourceTree = "<group>"; };
 		000BF764131A13500012814B /* HttpMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpMethod.h; sourceTree = "<group>"; };
 		0013189C1319F9DD00F0AFB8 /* ResponseCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseCode.h; sourceTree = "<group>"; };
-		00323D65132C19A3003BED87 /* libhttpserve-i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libhttpserve-i386.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00530B7C1313478A006A9311 /* HTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPConnection.h; sourceTree = "<group>"; };
 		00530B7D1313478A006A9311 /* HTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPConnection.m; sourceTree = "<group>"; };
 		00530B8113134E84006A9311 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
@@ -162,19 +134,11 @@
 		00E35D7E132C02B700D25EFF /* libjson-arm6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libjson-arm6.a"; sourceTree = "<group>"; };
 		00E35D7F132C02B700D25EFF /* libjson-arm7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libjson-arm7.a"; sourceTree = "<group>"; };
 		00E35D80132C02B700D25EFF /* liblibjson x86.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "liblibjson x86.a"; sourceTree = "<group>"; };
-		00E35D91132C032F00D25EFF /* libhttpserve-x86_64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libhttpserve-x86_64.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E35D91132C032F00D25EFF /* libhttpserve.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhttpserve.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E35D95132C032F00D25EFF /* httpserve-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "httpserve-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00323D50132C19A3003BED87 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00323D51132C19A3003BED87 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		00CE972F13133CBE006F6A38 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -296,8 +260,7 @@
 			children = (
 				00CE973313133CBF006F6A38 /* httpserve.framework */,
 				00CE974813133CBF006F6A38 /* HTTPServeTests.octest */,
-				00E35D91132C032F00D25EFF /* libhttpserve-x86_64.a */,
-				00323D65132C19A3003BED87 /* libhttpserve-i386.a */,
+				00E35D91132C032F00D25EFF /* libhttpserve.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -421,28 +384,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		00323D52132C19A3003BED87 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00323D53132C19A3003BED87 /* HTTPServe.h in Headers */,
-				00323D54132C19A3003BED87 /* HttpMethod.h in Headers */,
-				00323D55132C19A3003BED87 /* Request.h in Headers */,
-				00323D56132C19A3003BED87 /* ResourceDescriptor.h in Headers */,
-				00323D57132C19A3003BED87 /* RequestHandler.h in Headers */,
-				00323D58132C19A3003BED87 /* Response.h in Headers */,
-				00323D59132C19A3003BED87 /* ResponseCode.h in Headers */,
-				00323D5A132C19A3003BED87 /* RestResource.h in Headers */,
-				00323D5B132C19A3003BED87 /* NotFoundHandler.h in Headers */,
-				00323D5C132C19A3003BED87 /* RequestHandlerRegistry.h in Headers */,
-				00323D5D132C19A3003BED87 /* HTTPConnection.h in Headers */,
-				00323D5E132C19A3003BED87 /* HTTPServeProtected.h in Headers */,
-				00323D5F132C19A3003BED87 /* ClassHolder.h in Headers */,
-				00323D60132C19A3003BED87 /* SystemUtil.h in Headers */,
-				00323D61132C19A3003BED87 /* RestRequestHandler.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		00CE973013133CBE006F6A38 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -490,23 +431,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		00323D43132C19A3003BED87 /* httpserve i386 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00323D62132C19A3003BED87 /* Build configuration list for PBXNativeTarget "httpserve i386" */;
-			buildPhases = (
-				00323D44132C19A3003BED87 /* Sources */,
-				00323D50132C19A3003BED87 /* Frameworks */,
-				00323D52132C19A3003BED87 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "httpserve i386";
-			productName = httpserve;
-			productReference = 00323D65132C19A3003BED87 /* libhttpserve-i386.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		00CE973213133CBE006F6A38 /* HTTPServe */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00CE975A13133CBF006F6A38 /* Build configuration list for PBXNativeTarget "HTTPServe" */;
@@ -544,9 +468,9 @@
 			productReference = 00CE974813133CBF006F6A38 /* HTTPServeTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		00E35D90132C032F00D25EFF /* httpserve x86_64 */ = {
+		00E35D90132C032F00D25EFF /* httpserve */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E35D96132C032F00D25EFF /* Build configuration list for PBXNativeTarget "httpserve x86_64" */;
+			buildConfigurationList = 00E35D96132C032F00D25EFF /* Build configuration list for PBXNativeTarget "httpserve" */;
 			buildPhases = (
 				00E35D8D132C032F00D25EFF /* Sources */,
 				00E35D8E132C032F00D25EFF /* Frameworks */,
@@ -556,9 +480,9 @@
 			);
 			dependencies = (
 			);
-			name = "httpserve x86_64";
+			name = httpserve;
 			productName = httpserve;
-			productReference = 00E35D91132C032F00D25EFF /* libhttpserve-x86_64.a */;
+			productReference = 00E35D91132C032F00D25EFF /* libhttpserve.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -580,8 +504,7 @@
 			targets = (
 				00CE973213133CBE006F6A38 /* HTTPServe */,
 				00CE974713133CBF006F6A38 /* HTTPServeTests */,
-				00E35D90132C032F00D25EFF /* httpserve x86_64 */,
-				00323D43132C19A3003BED87 /* httpserve i386 */,
+				00E35D90132C032F00D25EFF /* httpserve */,
 			);
 		};
 /* End PBXProject section */
@@ -624,24 +547,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00323D44132C19A3003BED87 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00323D45132C19A3003BED87 /* HTTPConnection.m in Sources */,
-				00323D46132C19A3003BED87 /* NotFoundHandler.m in Sources */,
-				00323D47132C19A3003BED87 /* HttpMethod.m in Sources */,
-				00323D48132C19A3003BED87 /* Request.m in Sources */,
-				00323D49132C19A3003BED87 /* Response.m in Sources */,
-				00323D4A132C19A3003BED87 /* RestRequestHandler.m in Sources */,
-				00323D4B132C19A3003BED87 /* ResourceDescriptor.m in Sources */,
-				00323D4C132C19A3003BED87 /* HTTPServe.m in Sources */,
-				00323D4D132C19A3003BED87 /* RequestHandlerRegistry.m in Sources */,
-				00323D4E132C19A3003BED87 /* ClassHolder.m in Sources */,
-				00323D4F132C19A3003BED87 /* SystemUtil.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		00CE972E13133CBE006F6A38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -716,35 +621,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		00323D63132C19A3003BED87 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "httpserve/httpserve-Prefix.pch";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				PRODUCT_NAME = "httpserve-i386";
-			};
-			name = Debug;
-		};
-		00323D64132C19A3003BED87 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "httpserve/httpserve-Prefix.pch";
-				PRODUCT_NAME = "httpserve-i386";
-			};
-			name = Release;
-		};
 		00CE975813133CBF006F6A38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -876,15 +752,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "httpserve/httpserve-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				PRODUCT_NAME = "httpserve-x86_64";
-				VALID_ARCHS = x86_64;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = httpserve;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -892,29 +769,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "httpserve/httpserve-Prefix.pch";
-				PRODUCT_NAME = "httpserve-x86_64";
-				VALID_ARCHS = x86_64;
+				PRODUCT_NAME = httpserve;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00323D62132C19A3003BED87 /* Build configuration list for PBXNativeTarget "httpserve i386" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00323D63132C19A3003BED87 /* Debug */,
-				00323D64132C19A3003BED87 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		00CE972C13133CBE006F6A38 /* Build configuration list for PBXProject "HTTPServe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -942,7 +810,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00E35D96132C032F00D25EFF /* Build configuration list for PBXNativeTarget "httpserve x86_64" */ = {
+		00E35D96132C032F00D25EFF /* Build configuration list for PBXNativeTarget "httpserve" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E35D97132C032F00D25EFF /* Debug */,
