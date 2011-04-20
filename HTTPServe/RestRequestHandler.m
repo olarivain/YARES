@@ -86,6 +86,10 @@
   {
     response = [Response NOT_FOUND_RESPONSE];
   }
+  
+#warning FIXME: content type should be parametrizable
+  [response setContentType:@"application/json"];
+  
   return response;
 }
 
