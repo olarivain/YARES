@@ -6,15 +6,14 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "HTTPConnection.h"
-#import "HTTPServeProtected.h"
-#import "Response.h"
-#import "ResponseCode.h"
-#import "RequestHandler.h"
-#import "RequestHandlerRegistry.h"
-#import "HttpMethod.h"
+#import "HSHTTPConnection.h"
+#import "HSResponse.h"
+#import "HSResponseCode.h"
+#import "HSRequestHandler.h"
+#import "HSRequestHandlerRegistry.h"
+#import "HSHttpMethod.h"
 
-@interface HTTPConnection(private)
+@interface HSHTTPConnection(private)
 - (void) initRequest;
 - (void) handleRequest;
 
@@ -28,11 +27,11 @@
 
 @end
 
-@implementation HTTPConnection
+@implementation HSHTTPConnection
 
 #pragma mark Constructor/Destructor
 
-- (id)initWithPeerAddress:(NSData *)address inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr forServer:(HTTPServe *)server andRegistry: (RequestHandlerRegistry*) registry
+- (id)initWithPeerAddress:(NSData *)address inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr forServer:(HSHTTPServe *)server andRegistry: (HSRequestHandlerRegistry*) registry
 {
     self = [super init];
     if (self) 
@@ -204,7 +203,7 @@
 {
   NSURL *url = [(NSURL*) CFHTTPMessageCopyRequestURL(requestRef) autorelease];
   NSString *methodString = [(NSString*) CFHTTPMessageCopyRequestMethod(requestRef) autorelease];
-  HttpMethod method = methodFromString(methodString);
+  HSHttpMethod method = methodFromString(methodString);
   NSDictionary *headers = [(NSDictionary*) CFHTTPMessageCopyAllHeaderFields(requestRef) autorelease];
   NSData *data = [(NSData*) CFHTTPMessageCopyBody(requestRef) autorelease];
   
@@ -222,7 +221,7 @@
     [requestParameters setObject:value forKey:key];
   }
   
-  request = [[Request alloc] initWithHeaders:headers parameters:requestParameters body:data url: url  andMethod:method];
+  request = [[HSRequest alloc] initWithHeaders:headers parameters:requestParameters body:data url: url  andMethod:method];
   CFRelease(requestRef);
 }
 
@@ -247,7 +246,7 @@
 - (void) handleRequest
 {
   // find handler for incoming url, or grab 404 handler if not found
-  id<RequestHandler> handler = [handlerRegistry handlerForURL:[request url]];
+  id<HSRequestHandler> handler = [handlerRegistry handlerForURL:[request url]];
   if(handler == nil)
   {
     handler = [handlerRegistry notFoundHandler];
@@ -261,7 +260,7 @@
   @catch (NSException *exception) 
   {
     // exception maps to 500
-    response = [Response INTERNAL_SERVER_ERROR_RESPONSE];
+    response = [HSResponse INTERNAL_SERVER_ERROR_RESPONSE];
   }
   [response retain];
 }

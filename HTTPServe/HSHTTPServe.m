@@ -6,17 +6,17 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "HTTPServeProtected.h"
+#import "HSHTTPServe.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
 
-#import "HTTPConnection.h"
-#import "RequestHandlerRegistry.h"
+#import "HSHTTPConnection.h"
+#import "HSRequestHandlerRegistry.h"
 
 static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info);
 
-@interface HTTPServe(private)
+@interface HSHTTPServe(private)
 - (void) initializeHTTPServer;
 - (void) initializeBonjour;
 - (void) stopHTTPServer;
@@ -24,7 +24,12 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr;
 @end
 
-@implementation HTTPServe
+@interface HSHTTPServe()
+- (id<HSRequestHandler>) handlerForURL: (NSURL*) url;
+- (void) connectionHandled: (HSHTTPConnection*) connection;
+@end
+
+@implementation HSHTTPServe
 
 - (id)initWithPort: (int) listenPort
 {
@@ -39,7 +44,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
     bonjourEnabled = bonjour;
     port = listenPort;
     connections = [[NSMutableArray alloc] init];
-    handlerRegistry = [[RequestHandlerRegistry alloc] init];
+    handlerRegistry = [[HSRequestHandlerRegistry alloc] init];
   }
   
   return self;
@@ -204,14 +209,14 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 #pragma mark - Connection management
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr 
 {
-  HTTPConnection *connection = [[[HTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:self andRegistry:handlerRegistry] autorelease];
+  HSHTTPConnection *connection = [[[HSHTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:self andRegistry:handlerRegistry] autorelease];
   if( connection ) 
   {
     [connections addObject:connection];
   }
 }
 
-- (void) connectionHandled: (HTTPConnection*) connection
+- (void) connectionHandled: (HSHTTPConnection*) connection
 {
   [connections removeObject: connection];
 }
@@ -242,7 +247,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 // invocation on TCPServer.
 static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info) 
 {
-  HTTPServe *server = (HTTPServe *)info;
+  HSHTTPServe *server = (HSHTTPServe *)info;
   if (kCFSocketAcceptCallBack == type) 
   {  
     // for an AcceptCallBack, the data parameter is a pointer to a CFSocketNativeHandle

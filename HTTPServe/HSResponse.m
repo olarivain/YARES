@@ -6,15 +6,15 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Response.h"
-#import "ResponseCode.h"
+#import "HSResponse.h"
+#import "HSResponseCode.h"
 
-static Response *NOT_FOUND_RESPONSE;
-static Response *INTERNAL_SERVER_ERROR_RESPONSE;
-static Response *NOT_AVAILABLE_RESPONSE;
-static Response *EMPTY_RESPONSE;
+static HSResponse *NOT_FOUND_RESPONSE;
+static HSResponse *INTERNAL_SERVER_ERROR_RESPONSE;
+static HSResponse *NOT_AVAILABLE_RESPONSE;
+static HSResponse *EMPTY_RESPONSE;
 
-@implementation Response
+@implementation HSResponse
 
 @synthesize code;
 @synthesize content;
@@ -30,9 +30,9 @@ static Response *EMPTY_RESPONSE;
   return self;
 }
 
-+ (Response*) response
++ (HSResponse*) response
 {
-  return [[[Response alloc] init] autorelease];
+  return [[[HSResponse alloc] init] autorelease];
 }
 
 - (void)dealloc
@@ -77,21 +77,21 @@ static Response *EMPTY_RESPONSE;
 }
 
 #pragma mark - Singletons
-+ (Response*) EMPTY_RESPONSE
++ (HSResponse*) EMPTY_RESPONSE
 {
   if(EMPTY_RESPONSE == nil)
   {
-    EMPTY_RESPONSE = [[Response alloc] init];
+    EMPTY_RESPONSE = [[HSResponse alloc] init];
     [EMPTY_RESPONSE setCode: OK];
   }
   return EMPTY_RESPONSE;
 }
 
-+ (Response*) NOT_FOUND_RESPONSE
++ (HSResponse*) NOT_FOUND_RESPONSE
 {
   if(NOT_FOUND_RESPONSE == nil)
   {
-    NOT_FOUND_RESPONSE = [[Response alloc] init];
+    NOT_FOUND_RESPONSE = [[HSResponse alloc] init];
     [NOT_FOUND_RESPONSE setCode: NOT_FOUND];
     [NOT_FOUND_RESPONSE setContentType: @"text/html"];
     [NOT_FOUND_RESPONSE setContent:[@"Page not found." dataUsingEncoding:NSUTF8StringEncoding]];
@@ -99,11 +99,11 @@ static Response *EMPTY_RESPONSE;
   return NOT_FOUND_RESPONSE;
 }
 
-+ (Response*) INTERNAL_SERVER_ERROR_RESPONSE
++ (HSResponse*) INTERNAL_SERVER_ERROR_RESPONSE
 {
   if(INTERNAL_SERVER_ERROR_RESPONSE == nil)
   {
-    INTERNAL_SERVER_ERROR_RESPONSE = [[Response alloc] init];
+    INTERNAL_SERVER_ERROR_RESPONSE = [[HSResponse alloc] init];
     [INTERNAL_SERVER_ERROR_RESPONSE setCode: INTERNAL_SERVER_ERROR];
     [INTERNAL_SERVER_ERROR_RESPONSE setContentType: @"text/html"];
     [INTERNAL_SERVER_ERROR_RESPONSE setContent:[@"Internal Server Error." dataUsingEncoding:NSUTF8StringEncoding]];
@@ -111,11 +111,11 @@ static Response *EMPTY_RESPONSE;
   return INTERNAL_SERVER_ERROR_RESPONSE;
 }
 
-+ (Response*) UNAVAILABLE_RESPONSE
++ (HSResponse*) UNAVAILABLE_RESPONSE
 {
   if(NOT_AVAILABLE_RESPONSE == nil)
   {
-    NOT_AVAILABLE_RESPONSE = [[Response alloc] init];
+    NOT_AVAILABLE_RESPONSE = [[HSResponse alloc] init];
     [NOT_AVAILABLE_RESPONSE setCode: UNAVAILABLE];
     [NOT_AVAILABLE_RESPONSE setContentType: @"text/html"];
     [NOT_AVAILABLE_RESPONSE setContent:[@"Server Unavailable." dataUsingEncoding:NSUTF8StringEncoding]];

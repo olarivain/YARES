@@ -6,10 +6,10 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ClassHolder.h"
+#import "HSClassHolder.h"
 
 
-@implementation ClassHolder
+@implementation HSClassHolder
 
 - (id)initWithClass: (Class) class
 {

@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class Request;
-@class Response;
+@class HSRequest;
+@class HSResponse;
 
-@protocol RequestHandler <NSObject>
-- (Response*) handleRequest: (Request*) request;
+@protocol HSRequestHandler <NSObject>
+- (HSResponse*) handleRequest: (HSRequest*) request;
 - (NSArray*) paths;
 
 @optional

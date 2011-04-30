@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ResponseCode.h"
+#import "HSResponseCode.h"
 
-@interface Response : NSObject 
+@interface HSResponse : NSObject 
 {
 @private
   NSMutableDictionary *headers;
-  ResponseCode code;
+  HSResponseCode code;
   NSData *content;
     
 }
 
-@property (readwrite, assign) ResponseCode code;
+@property (readwrite, assign) HSResponseCode code;
 @property (readwrite, retain) NSData *content;
 @property (readonly) NSDictionary *headers;
 
@@ -32,11 +32,11 @@
 - (void) addHeader: (NSString*) value forKey: (NSString*) key;
 - (void) removeHeader: (NSString*) key;
 
-+ (Response*) response;
++ (HSResponse*) response;
 
-+ (Response*) NOT_FOUND_RESPONSE;
-+ (Response*) INTERNAL_SERVER_ERROR_RESPONSE;
-+ (Response*) UNAVAILABLE_RESPONSE;
-+ (Response*) EMPTY_RESPONSE;
++ (HSResponse*) NOT_FOUND_RESPONSE;
++ (HSResponse*) INTERNAL_SERVER_ERROR_RESPONSE;
++ (HSResponse*) UNAVAILABLE_RESPONSE;
++ (HSResponse*) EMPTY_RESPONSE;
 
 @end

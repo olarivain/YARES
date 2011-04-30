@@ -6,12 +6,12 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Request.h"
+#import "HSRequest.h"
 
 
-@implementation Request
+@implementation HSRequest
 
-- (id) initWithHeaders: (NSDictionary*) header parameters: (NSDictionary*) params body: (NSData*) content url: (NSURL*) requestedURL andMethod: (HttpMethod) requestMethod
+- (id) initWithHeaders: (NSDictionary*) header parameters: (NSDictionary*) params body: (NSData*) content url: (NSURL*) requestedURL andMethod: (HSHttpMethod) requestMethod
 {
   self = [super init];
   if (self) {

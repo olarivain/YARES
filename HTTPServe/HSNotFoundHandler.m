@@ -6,11 +6,11 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "NotFoundHandler.h"
-#import "Response.h"
-#import "ResponseCode.h"
+#import "HSNotFoundHandler.h"
+#import "HSResponse.h"
+#import "HSResponseCode.h"
 
-@implementation NotFoundHandler
+@implementation HSNotFoundHandler
 
 - (id)init
 {
@@ -32,9 +32,9 @@
   return [NSArray array];
 }
 
-- (Response*) handleRequest: (Request*) request
+- (HSResponse*) handleRequest: (HSRequest*) request
 {
-  return [Response NOT_FOUND_RESPONSE];
+  return [HSResponse NOT_FOUND_RESPONSE];
 }
 
 @end

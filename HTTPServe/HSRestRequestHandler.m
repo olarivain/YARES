@@ -8,20 +8,20 @@
 
 #import "SBJsonParser.h"
 
-#import "RestRequestHandler.h"
-#import "SystemUtil.h"
-#import "ClassHolder.h"
-#import "RestResource.h"
-#import "Response.h"
-#import "Request.h"
-#import "ResourceDescriptor.h"
-#import "NotFoundHandler.h"
+#import "HSRestRequestHandler.h"
+#import "HSSystemUtil.h"
+#import "HSClassHolder.h"
+#import "HSRestResource.h"
+#import "HSResponse.h"
+#import "HSRequest.h"
+#import "HSResourceDescriptor.h"
+#import "HSNotFoundHandler.h"
 
-@interface RestRequestHandler(private)
-- (ResourceDescriptor*) descriptorForRequest: (Request*) request;
+@interface HSRestRequestHandler(private)
+- (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request;
 @end
 
-@implementation RestRequestHandler
+@implementation HSRestRequestHandler
 
 - (id)init
 {
@@ -45,11 +45,11 @@
 
 - (void) initialize
 {
-  NSArray *classes = [SystemUtil getClassesConformingToProcol:@protocol(RestResource)];
-  for(ClassHolder *holder in classes)
+  NSArray *classes = [HSSystemUtil getClassesConformingToProcol:@protocol(HSRestResource)];
+  for(HSClassHolder *holder in classes)
   {
     Class class = [holder clazz];
-    id<RestResource> handler = [[class new] autorelease];
+    id<HSRestResource> handler = [[class new] autorelease];
     if(class_respondsToSelector(class, @selector(initialize)))
     {
       [handler initialize];
@@ -59,10 +59,10 @@
   }
 }
 
-- (Response*) handleRequest:(Request *)request
+- (HSResponse*) handleRequest:(HSRequest *)request
 {
-  ResourceDescriptor *descriptor = [self descriptorForRequest: request];
-  Response *response;
+  HSResourceDescriptor *descriptor = [self descriptorForRequest: request];
+  HSResponse *response;
   if(descriptor != nil)
   {
     NSObject *params;
@@ -75,16 +75,16 @@
       params = [request parameters];
     }
     
-    id<RestResource> resource = [descriptor resource];
+    id<HSRestResource> resource = [descriptor resource];
     response = [resource performSelector:[descriptor selector] withObject: params];
     if(response == nil)
     {
-      response = [Response EMPTY_RESPONSE];
+      response = [HSResponse EMPTY_RESPONSE];
     }
   }
   else
   {
-    response = [Response NOT_FOUND_RESPONSE];
+    response = [HSResponse NOT_FOUND_RESPONSE];
   }
   
 #warning FIXME: content type should be parametrizable
@@ -96,16 +96,16 @@
 - (NSArray *) paths
 {
   NSMutableArray *paths = [NSMutableArray arrayWithCapacity:[resourceDescriptors count]];
-  for(ResourceDescriptor *descriptor in resourceDescriptors)
+  for(HSResourceDescriptor *descriptor in resourceDescriptors)
   {
     [paths addObject:[descriptor path]];
   }
   return paths;
 }
 
-- (ResourceDescriptor*) descriptorForRequest: (Request*) request
+- (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request
 {
-  for(ResourceDescriptor *descriptor in resourceDescriptors)
+  for(HSResourceDescriptor *descriptor in resourceDescriptors)
   {
     if([descriptor method] == [request method] && [[request path] caseInsensitiveCompare: [descriptor path]] == 0)
     {

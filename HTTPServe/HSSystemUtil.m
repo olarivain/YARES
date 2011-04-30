@@ -7,14 +7,15 @@
 //
 
 #import <objc/objc-runtime.h>
-#import "SystemUtil.h"
-#import "ClassHolder.h"
+#import "HSRequestHandlerRegistry.h"
+#import "HSClassHolder.h"
+#import "HSSystemUtil.h"
 
-@interface SystemUtil(private)
+@interface HSSystemUtil()
 + (Class*) getAllClasses: (int*) count;
 @end
 
-@implementation SystemUtil
+@implementation HSSystemUtil
 
 - (id)init
 {
@@ -51,7 +52,7 @@
 + (NSArray*) getClassesConformingToProcol: (Protocol*) protocol
 {
   int *count = malloc(sizeof(int));
-  Class *classes = [SystemUtil getAllClasses: count];
+  Class *classes = [HSSystemUtil getAllClasses: count];
   NSMutableArray *classHolders = [NSMutableArray array];
 
   for(int i = 0; i < (*count); i++)
@@ -59,7 +60,7 @@
     Class clazz = classes[i];
     if(class_conformsToProtocol(clazz, protocol))
     {
-      ClassHolder *holder = [[[ClassHolder alloc] initWithClass: clazz] autorelease];
+      HSClassHolder *holder = [[[HSClassHolder alloc] initWithClass: clazz] autorelease];
       [classHolders addObject:holder];
     }
   }
@@ -71,13 +72,13 @@
 + (NSArray*) getAllRegisteredClasses
 {
   int *count = malloc(sizeof(int));
-  Class *classes = [SystemUtil getAllClasses: count];
+  Class *classes = [HSSystemUtil getAllClasses: count];
   NSMutableArray *classHolders = [NSMutableArray array];
   
   for(int i = 0; i < (*count); i++)
   {
     Class clazz = classes[i];
-    ClassHolder *holder = [[[ClassHolder alloc] initWithClass: clazz] autorelease];
+    HSClassHolder *holder = [[[HSClassHolder alloc] initWithClass: clazz] autorelease];
     [classHolders addObject:holder];
   }
   

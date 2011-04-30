@@ -6,17 +6,17 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 #import <objc/objc-runtime.h>
-#import "RequestHandlerRegistry.h"
-#import "SystemUtil.h"
-#import "ClassHolder.h"
-#import "NotFoundHandler.h"
+#import "HSRequestHandlerRegistry.h"
+#import "HSSystemUtil.h"
+#import "HSClassHolder.h"
+#import "HSNotFoundHandler.h"
 // testing to add the guy to the thing
-#import "RestRequestHandler.h"
+#import "HSRestRequestHandler.h"
 
-@interface RequestHandlerRegistry(private)
+@interface HSRequestHandlerRegistry()
 @end
 
-@implementation RequestHandlerRegistry
+@implementation HSRequestHandlerRegistry
 
 - (id)init
 {
@@ -24,7 +24,7 @@
     if (self) 
     {
       handlers = [[NSMutableArray alloc] initWithCapacity:10];
-      notFoundHandler = [[NotFoundHandler alloc] init];
+      notFoundHandler = [[HSNotFoundHandler alloc] init];
     }
     
     return self;
@@ -38,7 +38,7 @@
 
 - (void) bootstrapClasses
 {
-  [RestRequestHandler class];
+  [HSRestRequestHandler class];
 }
 
 @synthesize notFoundHandler;
@@ -46,14 +46,14 @@
 - (void) autoregister
 {
   NSLog(@"Autoregistering handlers...");
-  NSArray *classes = [SystemUtil getClassesConformingToProcol: @protocol(RequestHandler)];
-  for(ClassHolder *classHolder in classes)
+  NSArray *classes = [HSSystemUtil getClassesConformingToProcol: @protocol(HSRequestHandler)];
+  for(HSClassHolder *classHolder in classes)
   {
     Class class = [classHolder clazz];
     // don't register built in handlers, obviously...
-    if(class != [NotFoundHandler class])
+    if(class != [HSNotFoundHandler class])
     {
-      id<RequestHandler> handler = [[class new] autorelease];
+      id<HSRequestHandler> handler = [[class new] autorelease];
       if(class_respondsToSelector(class, @selector(initialize)))
       {
         [handler initialize];
@@ -63,7 +63,7 @@
   }
 }
 
-- (void) registerHandler: (id<RequestHandler>) handler
+- (void) registerHandler: (id<HSRequestHandler>) handler
 {
   if(![handlers containsObject: handler])
   {
@@ -71,7 +71,7 @@
   }
 }
 
-- (void) unregisterHandler: (id<RequestHandler>) handler
+- (void) unregisterHandler: (id<HSRequestHandler>) handler
 {
   [handlers removeObject: handler];
 }
@@ -80,16 +80,16 @@
 {
   while([handlers count] > 0)
   {
-    id<RequestHandler> handler = [handlers objectAtIndex:0];
+    id<HSRequestHandler> handler = [handlers objectAtIndex:0];
     [self unregisterHandler:handler];
   }
 }
 
-- (id<RequestHandler>) handlerForURL: (NSURL*) url
+- (id<HSRequestHandler>) handlerForURL: (NSURL*) url
 {
   NSString *relativePath = [url relativePath];
   NSLog(@"Searching handler for url: %@", relativePath);
-  for(id<RequestHandler> handler in handlers)
+  for(id<HSRequestHandler> handler in handlers)
   {
     NSArray *urls = [handler paths];
     for(NSString *url in urls)

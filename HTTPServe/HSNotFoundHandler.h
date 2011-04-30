@@ -1,5 +1,5 @@
 //
-//  ClassHolder.h
+//  NotFoundHandler.h
 //  HTTPServe
 //
 //  Created by Kra on 2/26/11.
@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HSRequestHandler.h"
 
-
-@interface ClassHolder : NSObject {
+@interface HSNotFoundHandler : NSObject<HSRequestHandler> 
+{
 @private
-  Class clazz;
+    
 }
-@property (readonly) Class clazz;
 
-- (id) initWithClass: (Class) class;
 @end

@@ -1,5 +1,5 @@
 //
-//  NotFoundHandler.h
+//  RestResource.h
 //  HTTPServe
 //
 //  Created by Kra on 2/26/11.
@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RequestHandler.h"
 
-@interface NotFoundHandler : NSObject<RequestHandler> 
-{
-@private
-    
-}
+
+@protocol HSRestResource <NSObject>
+
+- (NSArray*) resourceDescriptors;
+
+@optional
+- (void) initialize;
 
 @end

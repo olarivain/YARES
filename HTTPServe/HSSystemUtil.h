@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/objc-runtime.h>
-@interface SystemUtil : NSObject {
+@interface HSSystemUtil : NSObject {
 @private
     
 }

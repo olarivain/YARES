@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RequestHandler.h"
+#import "HSRequestHandler.h"
 @class SBJsonParser;
 
-@interface RestRequestHandler : NSObject<RequestHandler> {
+@interface HSRestRequestHandler : NSObject<HSRequestHandler> {
 @private
   NSMutableArray *resources;
   NSMutableArray *resourceDescriptors;
