@@ -55,5 +55,4 @@
 - (void) stop;
 
 - (void) connectionHandled: (HSHTTPConnection*) connection;
-
 @end

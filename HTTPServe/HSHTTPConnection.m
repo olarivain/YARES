@@ -12,6 +12,7 @@
 #import "HSRequestHandler.h"
 #import "HSRequestHandlerRegistry.h"
 #import "HSHttpMethod.h"
+#import "HSHTTPServe.h"
 
 @interface HSHTTPConnection(private)
 - (void) initRequest;

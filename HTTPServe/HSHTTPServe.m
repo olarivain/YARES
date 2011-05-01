@@ -6,11 +6,11 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "HSHTTPServe.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
 
+#import "HSHTTPServe.h"
 #import "HSHTTPConnection.h"
 #import "HSRequestHandlerRegistry.h"
 
@@ -22,11 +22,6 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 - (void) stopHTTPServer;
 - (void) stopBonjour;
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr;
-@end
-
-@interface HSHTTPServe()
-- (id<HSRequestHandler>) handlerForURL: (NSURL*) url;
-- (void) connectionHandled: (HSHTTPConnection*) connection;
 @end
 
 @implementation HSHTTPServe
