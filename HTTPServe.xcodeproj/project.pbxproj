@@ -56,6 +56,8 @@
 		009EE4EC136DFA39008EEEA5 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 009EE4D2136DFA39008EEEA5 /* JSONKit.h */; };
 		009EE4ED136DFA39008EEEA5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EE4D3136DFA39008EEEA5 /* JSONKit.m */; };
 		009EE4EE136DFA39008EEEA5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4D4136DFA39008EEEA5 /* README.md */; };
+		009EE51B136DFFF0008EEEA5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EE4D3136DFA39008EEEA5 /* JSONKit.m */; };
+		009EE51C136E000C008EEEA5 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 009EE4D2136DFA39008EEEA5 /* JSONKit.h */; };
 		00A17CA41319CA66002B0FC3 /* HSRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA31319CA66002B0FC3 /* HSRequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A17CA81319CA85002B0FC3 /* HSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA61319CA85002B0FC3 /* HSResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A17CA91319CA85002B0FC3 /* HSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A17CA71319CA85002B0FC3 /* HSResponse.m */; };
@@ -546,6 +548,7 @@
 				00E35DB8132C03B100D25EFF /* HSResponse.h in Headers */,
 				00E35DB9132C03B100D25EFF /* HSResponseCode.h in Headers */,
 				00E35DBA132C03B100D25EFF /* HSRestResource.h in Headers */,
+				009EE51C136E000C008EEEA5 /* JSONKit.h in Headers */,
 				00323D42132C195E003BED87 /* HSNotFoundHandler.h in Headers */,
 				00323D41132C1943003BED87 /* HSRequestHandlerRegistry.h in Headers */,
 				008AECAA132C112D000A29C9 /* HSHTTPConnection.h in Headers */,
@@ -676,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				009EE51B136DFFF0008EEEA5 /* JSONKit.m in Sources */,
 				00E35D9A132C035600D25EFF /* HSHTTPConnection.m in Sources */,
 				00E35D9C132C035600D25EFF /* HSNotFoundHandler.m in Sources */,
 				00E35D9F132C035600D25EFF /* HSHttpMethod.m in Sources */,
@@ -717,7 +721,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -735,7 +739,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

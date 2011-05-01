@@ -28,6 +28,7 @@
 - (void) setStringContent: (NSString*) content;
 
 - (void) setContentType: (NSString*) type;
+- (void) setContentEncoding: (NSString*) encoding;
 
 - (void) addHeader: (NSString*) value forKey: (NSString*) key;
 - (void) removeHeader: (NSString*) key;

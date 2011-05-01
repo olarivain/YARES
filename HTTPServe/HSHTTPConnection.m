@@ -189,10 +189,15 @@
   // create CF http message, serialize and write
   CFHTTPMessageRef cfResponse = [self initHTTPResponse];
   NSData *serialized = [(NSData *)CFHTTPMessageCopySerializedMessage(cfResponse) autorelease];
-  NSUInteger length = [serialized length];
-  if (0 < length) 
-  {
-    [ostream write:[serialized bytes] maxLength:length];
+  
+  NSUInteger remainingLength = [serialized length];
+  while (remainingLength > 0) {
+    NSInteger bytesWritten = [ostream write:[serialized bytes] maxLength:remainingLength];
+    if(bytesWritten == -1){
+#warning figure out a decent error handling here
+      break;
+    }
+    remainingLength -= bytesWritten;
   }
   
   // clean up memory and close this connection

@@ -26,6 +26,7 @@ static HSResponse *EMPTY_RESPONSE;
   if (self) 
   {
     code = OK;
+    [self setContentEncoding: @"UTF-8"];
   }
   return self;
 }
@@ -56,6 +57,10 @@ static HSResponse *EMPTY_RESPONSE;
 }
 
 #pragma mark convenience methods
+- (void) setContentEncoding:(NSString *)encoding 
+{
+  [self addHeader:encoding forKey:@"Content-Encoding"];
+}
 - (void) setContentType: (NSString*) type
 {
   [self addHeader:type forKey:@"Content-Type"];
