@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SBJsonParser.h"
+#import "JSONKit.h"
 
 #import "HSRestRequestHandler.h"
 #import "HSSystemUtil.h"
@@ -30,7 +30,7 @@
   {
     resources = [[NSMutableArray alloc] init];
     resourceDescriptors = [[NSMutableArray alloc] init];
-    parser = [[SBJsonParser alloc] init];
+    decoder = [[JSONDecoder decoder] retain];
   }
   
   return self;
@@ -68,7 +68,7 @@
     NSObject *params;
     if([request method] != GET)
     {
-      params = [parser objectWithData:[request body]];  
+      params = [decoder objectWithData: [request body]];
     }
     else
     {

@@ -30,6 +30,32 @@
 		008AECAA132C112D000A29C9 /* HSHTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 00530B7C1313478A006A9311 /* HSHTTPConnection.h */; };
 		008AECAC132C112E000A29C9 /* HSClassHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80621319E6620040A3AE /* HSClassHolder.h */; };
 		008AECAD132C112E000A29C9 /* HSSystemUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80531319DD980040A3AE /* HSSystemUtil.h */; };
+		009EE4D5136DFA39008EEEA5 /* config in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4AE136DFA39008EEEA5 /* config */; };
+		009EE4D6136DFA39008EEEA5 /* description in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4AF136DFA39008EEEA5 /* description */; };
+		009EE4D7136DFA39008EEEA5 /* HEAD in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B0136DFA39008EEEA5 /* HEAD */; };
+		009EE4D8136DFA39008EEEA5 /* applypatch-msg.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B2136DFA39008EEEA5 /* applypatch-msg.sample */; };
+		009EE4D9136DFA39008EEEA5 /* commit-msg.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B3136DFA39008EEEA5 /* commit-msg.sample */; };
+		009EE4DA136DFA39008EEEA5 /* post-commit.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B4136DFA39008EEEA5 /* post-commit.sample */; };
+		009EE4DB136DFA39008EEEA5 /* post-receive.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B5136DFA39008EEEA5 /* post-receive.sample */; };
+		009EE4DC136DFA39008EEEA5 /* post-update.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B6136DFA39008EEEA5 /* post-update.sample */; };
+		009EE4DD136DFA39008EEEA5 /* pre-applypatch.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B7136DFA39008EEEA5 /* pre-applypatch.sample */; };
+		009EE4DE136DFA39008EEEA5 /* pre-commit.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B8136DFA39008EEEA5 /* pre-commit.sample */; };
+		009EE4DF136DFA39008EEEA5 /* pre-rebase.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B9136DFA39008EEEA5 /* pre-rebase.sample */; };
+		009EE4E0136DFA39008EEEA5 /* prepare-commit-msg.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4BA136DFA39008EEEA5 /* prepare-commit-msg.sample */; };
+		009EE4E1136DFA39008EEEA5 /* update.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4BB136DFA39008EEEA5 /* update.sample */; };
+		009EE4E2136DFA39008EEEA5 /* index in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4BC136DFA39008EEEA5 /* index */; };
+		009EE4E3136DFA39008EEEA5 /* exclude in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4BE136DFA39008EEEA5 /* exclude */; };
+		009EE4E4136DFA39008EEEA5 /* HEAD in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C0136DFA39008EEEA5 /* HEAD */; };
+		009EE4E5136DFA39008EEEA5 /* master in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C3136DFA39008EEEA5 /* master */; };
+		009EE4E6136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.idx in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C7136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.idx */; };
+		009EE4E7136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.pack in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C8136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.pack */; };
+		009EE4E8136DFA39008EEEA5 /* packed-refs in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C9136DFA39008EEEA5 /* packed-refs */; };
+		009EE4E9136DFA39008EEEA5 /* master in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4CC136DFA39008EEEA5 /* master */; };
+		009EE4EA136DFA39008EEEA5 /* HEAD in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4CF136DFA39008EEEA5 /* HEAD */; };
+		009EE4EB136DFA39008EEEA5 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4D1136DFA39008EEEA5 /* CHANGELOG.md */; };
+		009EE4EC136DFA39008EEEA5 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 009EE4D2136DFA39008EEEA5 /* JSONKit.h */; };
+		009EE4ED136DFA39008EEEA5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EE4D3136DFA39008EEEA5 /* JSONKit.m */; };
+		009EE4EE136DFA39008EEEA5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4D4136DFA39008EEEA5 /* README.md */; };
 		00A17CA41319CA66002B0FC3 /* HSRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA31319CA66002B0FC3 /* HSRequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A17CA81319CA85002B0FC3 /* HSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA61319CA85002B0FC3 /* HSResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A17CA91319CA85002B0FC3 /* HSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A17CA71319CA85002B0FC3 /* HSResponse.m */; };
@@ -41,7 +67,6 @@
 		00CE974113133CBF006F6A38 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00CE973F13133CBF006F6A38 /* InfoPlist.strings */; };
 		00CE976213133CD4006F6A38 /* HSHTTPServe.h in Headers */ = {isa = PBXBuildFile; fileRef = 00CE976013133CD4006F6A38 /* HSHTTPServe.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00CE976313133CD4006F6A38 /* HSHTTPServe.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CE976113133CD4006F6A38 /* HSHTTPServe.m */; };
-		00E35D8B132C02B700D25EFF /* liblibjson x86.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E35D80132C02B700D25EFF /* liblibjson x86.a */; };
 		00E35D92132C032F00D25EFF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
 		00E35D9A132C035600D25EFF /* HSHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 00530B7D1313478A006A9311 /* HSHTTPConnection.m */; };
 		00E35D9C132C035600D25EFF /* HSNotFoundHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF732C1319EBB80009761A /* HSNotFoundHandler.m */; };
@@ -82,6 +107,32 @@
 		007A80621319E6620040A3AE /* HSClassHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSClassHolder.h; sourceTree = "<group>"; };
 		007A80631319E6620040A3AE /* HSClassHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSClassHolder.m; sourceTree = "<group>"; };
 		008875BB131A170E00399F98 /* HSHttpMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSHttpMethod.m; sourceTree = "<group>"; };
+		009EE4AE136DFA39008EEEA5 /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config; sourceTree = "<group>"; };
+		009EE4AF136DFA39008EEEA5 /* description */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = description; sourceTree = "<group>"; };
+		009EE4B0136DFA39008EEEA5 /* HEAD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HEAD; sourceTree = "<group>"; };
+		009EE4B2136DFA39008EEEA5 /* applypatch-msg.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "applypatch-msg.sample"; sourceTree = "<group>"; };
+		009EE4B3136DFA39008EEEA5 /* commit-msg.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "commit-msg.sample"; sourceTree = "<group>"; };
+		009EE4B4136DFA39008EEEA5 /* post-commit.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "post-commit.sample"; sourceTree = "<group>"; };
+		009EE4B5136DFA39008EEEA5 /* post-receive.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "post-receive.sample"; sourceTree = "<group>"; };
+		009EE4B6136DFA39008EEEA5 /* post-update.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "post-update.sample"; sourceTree = "<group>"; };
+		009EE4B7136DFA39008EEEA5 /* pre-applypatch.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "pre-applypatch.sample"; sourceTree = "<group>"; };
+		009EE4B8136DFA39008EEEA5 /* pre-commit.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "pre-commit.sample"; sourceTree = "<group>"; };
+		009EE4B9136DFA39008EEEA5 /* pre-rebase.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "pre-rebase.sample"; sourceTree = "<group>"; };
+		009EE4BA136DFA39008EEEA5 /* prepare-commit-msg.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "prepare-commit-msg.sample"; sourceTree = "<group>"; };
+		009EE4BB136DFA39008EEEA5 /* update.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update.sample; sourceTree = "<group>"; };
+		009EE4BC136DFA39008EEEA5 /* index */ = {isa = PBXFileReference; lastKnownFileType = file; path = index; sourceTree = "<group>"; };
+		009EE4BE136DFA39008EEEA5 /* exclude */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exclude; sourceTree = "<group>"; };
+		009EE4C0136DFA39008EEEA5 /* HEAD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HEAD; sourceTree = "<group>"; };
+		009EE4C3136DFA39008EEEA5 /* master */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master; sourceTree = "<group>"; };
+		009EE4C7136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.idx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pack-cd237c70f152f557423559b2608e0edf0b29f042.idx"; sourceTree = "<group>"; };
+		009EE4C8136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.pack */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pack-cd237c70f152f557423559b2608e0edf0b29f042.pack"; sourceTree = "<group>"; };
+		009EE4C9136DFA39008EEEA5 /* packed-refs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "packed-refs"; sourceTree = "<group>"; };
+		009EE4CC136DFA39008EEEA5 /* master */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master; sourceTree = "<group>"; };
+		009EE4CF136DFA39008EEEA5 /* HEAD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HEAD; sourceTree = "<group>"; };
+		009EE4D1136DFA39008EEEA5 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		009EE4D2136DFA39008EEEA5 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		009EE4D3136DFA39008EEEA5 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		009EE4D4136DFA39008EEEA5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		00A17CA31319CA66002B0FC3 /* HSRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRequestHandler.h; sourceTree = "<group>"; };
 		00A17CA61319CA85002B0FC3 /* HSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSResponse.h; sourceTree = "<group>"; };
 		00A17CA71319CA85002B0FC3 /* HSResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSResponse.m; sourceTree = "<group>"; };
@@ -104,17 +155,6 @@
 		00CE975613133CBF006F6A38 /* HTTPServeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPServeTests.m; sourceTree = "<group>"; };
 		00CE976013133CD4006F6A38 /* HSHTTPServe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSHTTPServe.h; sourceTree = "<group>"; };
 		00CE976113133CD4006F6A38 /* HSHTTPServe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSHTTPServe.m; sourceTree = "<group>"; };
-		00E35D76132C02B700D25EFF /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		00E35D77132C02B700D25EFF /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
-		00E35D78132C02B700D25EFF /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		00E35D79132C02B700D25EFF /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
-		00E35D7A132C02B700D25EFF /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
-		00E35D7B132C02B700D25EFF /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
-		00E35D7C132C02B700D25EFF /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
-		00E35D7D132C02B700D25EFF /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		00E35D7E132C02B700D25EFF /* libjson-arm6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libjson-arm6.a"; sourceTree = "<group>"; };
-		00E35D7F132C02B700D25EFF /* libjson-arm7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libjson-arm7.a"; sourceTree = "<group>"; };
-		00E35D80132C02B700D25EFF /* liblibjson x86.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "liblibjson x86.a"; sourceTree = "<group>"; };
 		00E35D91132C032F00D25EFF /* libhttpserve.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhttpserve.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E35D95132C032F00D25EFF /* httpserve-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "httpserve-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,7 +165,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */,
-				00E35D8B132C02B700D25EFF /* liblibjson x86.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +223,160 @@
 			name = handler;
 			sourceTree = "<group>";
 		};
+		009EE4AB136DFA39008EEEA5 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4AC136DFA39008EEEA5 /* .git */,
+				009EE4D1136DFA39008EEEA5 /* CHANGELOG.md */,
+				009EE4D2136DFA39008EEEA5 /* JSONKit.h */,
+				009EE4D3136DFA39008EEEA5 /* JSONKit.m */,
+				009EE4D4136DFA39008EEEA5 /* README.md */,
+			);
+			name = JSONKit;
+			path = ../JSONKit;
+			sourceTree = "<group>";
+		};
+		009EE4AC136DFA39008EEEA5 /* .git */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4AD136DFA39008EEEA5 /* branches */,
+				009EE4AE136DFA39008EEEA5 /* config */,
+				009EE4AF136DFA39008EEEA5 /* description */,
+				009EE4B0136DFA39008EEEA5 /* HEAD */,
+				009EE4B1136DFA39008EEEA5 /* hooks */,
+				009EE4BC136DFA39008EEEA5 /* index */,
+				009EE4BD136DFA39008EEEA5 /* info */,
+				009EE4BF136DFA39008EEEA5 /* logs */,
+				009EE4C4136DFA39008EEEA5 /* objects */,
+				009EE4C9136DFA39008EEEA5 /* packed-refs */,
+				009EE4CA136DFA39008EEEA5 /* refs */,
+			);
+			path = .git;
+			sourceTree = "<group>";
+		};
+		009EE4AD136DFA39008EEEA5 /* branches */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = branches;
+			sourceTree = "<group>";
+		};
+		009EE4B1136DFA39008EEEA5 /* hooks */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4B2136DFA39008EEEA5 /* applypatch-msg.sample */,
+				009EE4B3136DFA39008EEEA5 /* commit-msg.sample */,
+				009EE4B4136DFA39008EEEA5 /* post-commit.sample */,
+				009EE4B5136DFA39008EEEA5 /* post-receive.sample */,
+				009EE4B6136DFA39008EEEA5 /* post-update.sample */,
+				009EE4B7136DFA39008EEEA5 /* pre-applypatch.sample */,
+				009EE4B8136DFA39008EEEA5 /* pre-commit.sample */,
+				009EE4B9136DFA39008EEEA5 /* pre-rebase.sample */,
+				009EE4BA136DFA39008EEEA5 /* prepare-commit-msg.sample */,
+				009EE4BB136DFA39008EEEA5 /* update.sample */,
+			);
+			path = hooks;
+			sourceTree = "<group>";
+		};
+		009EE4BD136DFA39008EEEA5 /* info */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4BE136DFA39008EEEA5 /* exclude */,
+			);
+			path = info;
+			sourceTree = "<group>";
+		};
+		009EE4BF136DFA39008EEEA5 /* logs */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4C0136DFA39008EEEA5 /* HEAD */,
+				009EE4C1136DFA39008EEEA5 /* refs */,
+			);
+			path = logs;
+			sourceTree = "<group>";
+		};
+		009EE4C1136DFA39008EEEA5 /* refs */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4C2136DFA39008EEEA5 /* heads */,
+			);
+			path = refs;
+			sourceTree = "<group>";
+		};
+		009EE4C2136DFA39008EEEA5 /* heads */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4C3136DFA39008EEEA5 /* master */,
+			);
+			path = heads;
+			sourceTree = "<group>";
+		};
+		009EE4C4136DFA39008EEEA5 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4C5136DFA39008EEEA5 /* info */,
+				009EE4C6136DFA39008EEEA5 /* pack */,
+			);
+			path = objects;
+			sourceTree = "<group>";
+		};
+		009EE4C5136DFA39008EEEA5 /* info */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = info;
+			sourceTree = "<group>";
+		};
+		009EE4C6136DFA39008EEEA5 /* pack */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4C7136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.idx */,
+				009EE4C8136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.pack */,
+			);
+			path = pack;
+			sourceTree = "<group>";
+		};
+		009EE4CA136DFA39008EEEA5 /* refs */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4CB136DFA39008EEEA5 /* heads */,
+				009EE4CD136DFA39008EEEA5 /* remotes */,
+				009EE4D0136DFA39008EEEA5 /* tags */,
+			);
+			path = refs;
+			sourceTree = "<group>";
+		};
+		009EE4CB136DFA39008EEEA5 /* heads */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4CC136DFA39008EEEA5 /* master */,
+			);
+			path = heads;
+			sourceTree = "<group>";
+		};
+		009EE4CD136DFA39008EEEA5 /* remotes */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4CE136DFA39008EEEA5 /* origin */,
+			);
+			path = remotes;
+			sourceTree = "<group>";
+		};
+		009EE4CE136DFA39008EEEA5 /* origin */ = {
+			isa = PBXGroup;
+			children = (
+				009EE4CF136DFA39008EEEA5 /* HEAD */,
+			);
+			path = origin;
+			sourceTree = "<group>";
+		};
+		009EE4D0136DFA39008EEEA5 /* tags */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tags;
+			sourceTree = "<group>";
+		};
 		00BF73281319E9960009761A /* connection */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,9 +431,9 @@
 		00CE973513133CBF006F6A38 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				009EE4AB136DFA39008EEEA5 /* JSONKit */,
 				00CE973613133CBF006F6A38 /* Cocoa.framework */,
 				00CE973813133CBF006F6A38 /* Other Frameworks */,
-				00E35D73132C02B700D25EFF /* JSON */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -300,41 +493,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		00E35D73132C02B700D25EFF /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				00E35D74132C02B700D25EFF /* include */,
-				00E35D7E132C02B700D25EFF /* libjson-arm6.a */,
-				00E35D7F132C02B700D25EFF /* libjson-arm7.a */,
-				00E35D80132C02B700D25EFF /* liblibjson x86.a */,
-			);
-			name = JSON;
-			path = libraries/JSON;
-			sourceTree = "<group>";
-		};
-		00E35D74132C02B700D25EFF /* include */ = {
-			isa = PBXGroup;
-			children = (
-				00E35D75132C02B700D25EFF /* JSON */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		00E35D75132C02B700D25EFF /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				00E35D76132C02B700D25EFF /* JSON.h */,
-				00E35D77132C02B700D25EFF /* NSObject+JSON.h */,
-				00E35D78132C02B700D25EFF /* SBJsonParser.h */,
-				00E35D79132C02B700D25EFF /* SBJsonStreamParser.h */,
-				00E35D7A132C02B700D25EFF /* SBJsonStreamParserAdapter.h */,
-				00E35D7B132C02B700D25EFF /* SBJsonStreamWriter.h */,
-				00E35D7C132C02B700D25EFF /* SBJsonTokeniser.h */,
-				00E35D7D132C02B700D25EFF /* SBJsonWriter.h */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
 		00E35D93132C032F00D25EFF /* httpserve */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +530,7 @@
 				007A80641319E6620040A3AE /* HSClassHolder.h in Headers */,
 				00BF732D1319EBB80009761A /* HSNotFoundHandler.h in Headers */,
 				000BF75B131A0ED40012814B /* HSRestRequestHandler.h in Headers */,
+				009EE4EC136DFA39008EEEA5 /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +623,30 @@
 			files = (
 				00CE974113133CBF006F6A38 /* InfoPlist.strings in Resources */,
 				00530B8213134E84006A9311 /* test.html in Resources */,
+				009EE4D5136DFA39008EEEA5 /* config in Resources */,
+				009EE4D6136DFA39008EEEA5 /* description in Resources */,
+				009EE4D7136DFA39008EEEA5 /* HEAD in Resources */,
+				009EE4D8136DFA39008EEEA5 /* applypatch-msg.sample in Resources */,
+				009EE4D9136DFA39008EEEA5 /* commit-msg.sample in Resources */,
+				009EE4DA136DFA39008EEEA5 /* post-commit.sample in Resources */,
+				009EE4DB136DFA39008EEEA5 /* post-receive.sample in Resources */,
+				009EE4DC136DFA39008EEEA5 /* post-update.sample in Resources */,
+				009EE4DD136DFA39008EEEA5 /* pre-applypatch.sample in Resources */,
+				009EE4DE136DFA39008EEEA5 /* pre-commit.sample in Resources */,
+				009EE4DF136DFA39008EEEA5 /* pre-rebase.sample in Resources */,
+				009EE4E0136DFA39008EEEA5 /* prepare-commit-msg.sample in Resources */,
+				009EE4E1136DFA39008EEEA5 /* update.sample in Resources */,
+				009EE4E2136DFA39008EEEA5 /* index in Resources */,
+				009EE4E3136DFA39008EEEA5 /* exclude in Resources */,
+				009EE4E4136DFA39008EEEA5 /* HEAD in Resources */,
+				009EE4E5136DFA39008EEEA5 /* master in Resources */,
+				009EE4E6136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.idx in Resources */,
+				009EE4E7136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.pack in Resources */,
+				009EE4E8136DFA39008EEEA5 /* packed-refs in Resources */,
+				009EE4E9136DFA39008EEEA5 /* master in Resources */,
+				009EE4EA136DFA39008EEEA5 /* HEAD in Resources */,
+				009EE4EB136DFA39008EEEA5 /* CHANGELOG.md in Resources */,
+				009EE4EE136DFA39008EEEA5 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +668,7 @@
 				000BF75C131A0ED40012814B /* HSRestRequestHandler.m in Sources */,
 				000BF763131A13290012814B /* HSResourceDescriptor.m in Sources */,
 				008875BC131A170E00399F98 /* HSHttpMethod.m in Sources */,
+				009EE4ED136DFA39008EEEA5 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

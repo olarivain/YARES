@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "HSRequestHandler.h"
-@class SBJsonParser;
+@class JSONDecoder;
 
 @interface HSRestRequestHandler : NSObject<HSRequestHandler> {
 @private
   NSMutableArray *resources;
   NSMutableArray *resourceDescriptors;
-  SBJsonParser *parser;
+  JSONDecoder *decoder;
 }
 
 @property (readonly) NSArray *paths;
