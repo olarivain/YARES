@@ -190,15 +190,24 @@
   CFHTTPMessageRef cfResponse = [self initHTTPResponse];
   NSData *serialized = [(NSData *)CFHTTPMessageCopySerializedMessage(cfResponse) autorelease];
   
+  NSUInteger offset = 0;
   NSUInteger remainingLength = [serialized length];
+  
+  void *bytes = malloc(remainingLength * sizeof(void*));
   while (remainingLength > 0) {
-    NSInteger bytesWritten = [ostream write:[serialized bytes] maxLength:remainingLength];
-    if(bytesWritten == -1){
+    NSRange range = NSMakeRange(offset, remainingLength);
+    [serialized getBytes:bytes range: range];
+    
+    NSInteger bytesWritten = [ostream write:bytes maxLength:remainingLength];
+    if(bytesWritten == -1)
+    {
 #warning figure out a decent error handling here
       break;
     }
     remainingLength -= bytesWritten;
+    offset += bytesWritten;
   }
+  free(bytes);
   
   // clean up memory and close this connection
   CFRelease(cfResponse);
