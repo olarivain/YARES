@@ -33,4 +33,7 @@
 }
 
 - (id)initWithPeerAddress:(NSData *)address inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr forServer:(HSHTTPServe *)server andRegistry: (HSRequestHandlerRegistry*) registry;
+
+// starts listening and getting content from the client, then processes it.
+- (void) processRequest;
 @end

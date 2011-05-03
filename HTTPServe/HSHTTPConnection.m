@@ -46,12 +46,6 @@
       
       [istream setDelegate:self];
       [ostream setDelegate:self];
-      
-      [istream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:(id)kCFRunLoopCommonModes];
-      [ostream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:(id)kCFRunLoopCommonModes];
-      
-      [istream open];
-      [ostream open];
     }
     
     return self;
@@ -78,6 +72,20 @@
   istream = nil;
   ostream = nil;
   [httpServer connectionHandled: self];
+}
+
+#pragma mark - Process the request
+- (void) processRequest
+{
+  NSRunLoop *current = [NSRunLoop currentRunLoop];
+  
+  [istream scheduleInRunLoop: current forMode:(id)kCFRunLoopCommonModes];
+  [ostream scheduleInRunLoop:current forMode:(id)kCFRunLoopCommonModes];
+  [istream open];
+  [ostream open];
+  
+  // this gives the client 10 seconds to start sending shit on the thread.
+  [current runUntilDate:[NSDate dateWithTimeIntervalSinceNow: 10]];
 }
 
 #pragma mark - NSStreamDelegate methods

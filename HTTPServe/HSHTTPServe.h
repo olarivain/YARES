@@ -47,6 +47,7 @@
   BOOL bonjourEnabled;
   NSMutableArray *connections;
   HSRequestHandlerRegistry *handlerRegistry;
+  NSOperationQueue *operationQueue;
 }
 
 - (HSHTTPServe*) initWithPort: (int) port;

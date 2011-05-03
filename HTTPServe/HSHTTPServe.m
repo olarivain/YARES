@@ -22,6 +22,8 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 - (void) stopHTTPServer;
 - (void) stopBonjour;
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr;
+- (void) addConnection: (HSHTTPConnection*) connection;
+- (void) removeConnection: (HSHTTPConnection*) connection;
 @end
 
 @implementation HSHTTPServe
@@ -40,6 +42,8 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
     port = listenPort;
     connections = [[NSMutableArray alloc] init];
     handlerRegistry = [[HSRequestHandlerRegistry alloc] init];
+    operationQueue = [[NSOperationQueue alloc] init];
+    [operationQueue setMaxConcurrentOperationCount: 10];
   }
   
   return self;
@@ -49,6 +53,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 {
   [self stop];  
   [handlerRegistry release];
+  [operationQueue release];
   [super dealloc];
 }
 
@@ -202,18 +207,47 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 }
 
 #pragma mark - Connection management
+- (void) addConnection: (HSHTTPConnection*) connection
+{
+  if([connections containsObject: connection])
+  {
+    return;
+  }
+  
+  @synchronized(connections)
+  {
+    [connections addObject: connection];
+  }
+}
+
+- (void) removeConnection: (HSHTTPConnection*) connection
+{
+  if(![connections containsObject: connection])
+  {
+    return;
+  }
+  
+  @synchronized(connections)
+  {
+    [connections removeObject: connection];
+  }  
+}
+
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr 
 {
-  HSHTTPConnection *connection = [[[HSHTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:self andRegistry:handlerRegistry] autorelease];
-  if( connection ) 
-  {
-    [connections addObject:connection];
-  }
+  [operationQueue addOperationWithBlock:^(void) {
+    HSHTTPConnection *connection = [[[HSHTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:self andRegistry:handlerRegistry] autorelease];
+    if( connection ) 
+    {
+      [self addConnection: connection];
+    }
+    [connection processRequest];
+  }];
 }
 
 - (void) connectionHandled: (HSHTTPConnection*) connection
 {
-  [connections removeObject: connection];
+  [self removeConnection: connection];
 }
 
 #pragma mark - NSNetServiceDelegate methods
