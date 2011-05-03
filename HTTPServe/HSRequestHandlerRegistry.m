@@ -88,7 +88,7 @@
 - (id<HSRequestHandler>) handlerForURL: (NSURL*) url
 {
   NSString *relativePath = [url relativePath];
-  NSLog(@"Searching handler for url: %@", relativePath);
+//  NSLog(@"Searching handler for url: %@", relativePath);
   for(id<HSRequestHandler> handler in handlers)
   {
     NSArray *urls = [handler paths];
@@ -96,12 +96,12 @@
     {
       if([url isEqualToString: relativePath])
       {
-        NSLog(@"Found handler");
+//        NSLog(@"Found handler");
         return handler;
       }
     } 
   }
-  NSLog(@"Error: no handler found for url: %@", relativePath);
+//  NSLog(@"Error: no handler found for url: %@", relativePath);
   return nil;
 }
 
