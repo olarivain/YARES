@@ -39,6 +39,7 @@
     {
       handlerRegistry = [registry retain];
       peerAddress = [address copy];
+
       httpServer = [server retain];
       
       istream = [istr retain];
@@ -85,7 +86,7 @@
   [ostream open];
   
   // this gives the client 10 seconds to start sending shit on the thread.
-  [current runUntilDate:[NSDate dateWithTimeIntervalSinceNow: 10]];
+  [current runUntilDate:[NSDate dateWithTimeIntervalSinceNow: 0.5]];
 }
 
 #pragma mark - NSStreamDelegate methods
