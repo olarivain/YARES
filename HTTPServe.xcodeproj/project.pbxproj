@@ -7,68 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000BF75B131A0ED40012814B /* HSRestRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF759131A0ED10012814B /* HSRestRequestHandler.h */; };
-		000BF75C131A0ED40012814B /* HSRestRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 000BF75A131A0ED10012814B /* HSRestRequestHandler.m */; };
-		000BF75F131A12D40012814B /* HSRestResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF75E131A12D40012814B /* HSRestResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		000BF762131A13290012814B /* HSResourceDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF760131A13290012814B /* HSResourceDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		000BF763131A13290012814B /* HSResourceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 000BF761131A13290012814B /* HSResourceDescriptor.m */; };
-		000BF765131A13500012814B /* HSHttpMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF764131A13500012814B /* HSHttpMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0013189E1319F9DD00F0AFB8 /* HSResponseCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0013189C1319F9DD00F0AFB8 /* HSResponseCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00323D41132C1943003BED87 /* HSRequestHandlerRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A804F1319D9910040A3AE /* HSRequestHandlerRegistry.h */; };
 		00323D42132C195E003BED87 /* HSNotFoundHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF732B1319EBB80009761A /* HSNotFoundHandler.h */; };
-		00530B7E1313478A006A9311 /* HSHTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 00530B7C1313478A006A9311 /* HSHTTPConnection.h */; };
-		00530B7F1313478A006A9311 /* HSHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 00530B7D1313478A006A9311 /* HSHTTPConnection.m */; };
-		00530B8213134E84006A9311 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 00530B8113134E84006A9311 /* test.html */; };
-		007A80511319D9910040A3AE /* HSRequestHandlerRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A804F1319D9910040A3AE /* HSRequestHandlerRegistry.h */; };
-		007A80521319D9910040A3AE /* HSRequestHandlerRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80501319D9910040A3AE /* HSRequestHandlerRegistry.m */; };
-		007A80551319DD9B0040A3AE /* HSSystemUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80531319DD980040A3AE /* HSSystemUtil.h */; };
-		007A80561319DD9B0040A3AE /* HSSystemUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80541319DD990040A3AE /* HSSystemUtil.m */; };
-		007A80641319E6620040A3AE /* HSClassHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80621319E6620040A3AE /* HSClassHolder.h */; };
-		007A80651319E6620040A3AE /* HSClassHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A80631319E6620040A3AE /* HSClassHolder.m */; };
-		008875BC131A170E00399F98 /* HSHttpMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 008875BB131A170E00399F98 /* HSHttpMethod.m */; };
 		008AECA9132C1105000A29C9 /* HSRestRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF759131A0ED10012814B /* HSRestRequestHandler.h */; settings = {ATTRIBUTES = (); }; };
 		008AECAA132C112D000A29C9 /* HSHTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 00530B7C1313478A006A9311 /* HSHTTPConnection.h */; };
 		008AECAC132C112E000A29C9 /* HSClassHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80621319E6620040A3AE /* HSClassHolder.h */; };
 		008AECAD132C112E000A29C9 /* HSSystemUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80531319DD980040A3AE /* HSSystemUtil.h */; };
-		009EE4D5136DFA39008EEEA5 /* config in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4AE136DFA39008EEEA5 /* config */; };
-		009EE4D6136DFA39008EEEA5 /* description in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4AF136DFA39008EEEA5 /* description */; };
-		009EE4D7136DFA39008EEEA5 /* HEAD in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B0136DFA39008EEEA5 /* HEAD */; };
-		009EE4D8136DFA39008EEEA5 /* applypatch-msg.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B2136DFA39008EEEA5 /* applypatch-msg.sample */; };
-		009EE4D9136DFA39008EEEA5 /* commit-msg.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B3136DFA39008EEEA5 /* commit-msg.sample */; };
-		009EE4DA136DFA39008EEEA5 /* post-commit.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B4136DFA39008EEEA5 /* post-commit.sample */; };
-		009EE4DB136DFA39008EEEA5 /* post-receive.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B5136DFA39008EEEA5 /* post-receive.sample */; };
-		009EE4DC136DFA39008EEEA5 /* post-update.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B6136DFA39008EEEA5 /* post-update.sample */; };
-		009EE4DD136DFA39008EEEA5 /* pre-applypatch.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B7136DFA39008EEEA5 /* pre-applypatch.sample */; };
-		009EE4DE136DFA39008EEEA5 /* pre-commit.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B8136DFA39008EEEA5 /* pre-commit.sample */; };
-		009EE4DF136DFA39008EEEA5 /* pre-rebase.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4B9136DFA39008EEEA5 /* pre-rebase.sample */; };
-		009EE4E0136DFA39008EEEA5 /* prepare-commit-msg.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4BA136DFA39008EEEA5 /* prepare-commit-msg.sample */; };
-		009EE4E1136DFA39008EEEA5 /* update.sample in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4BB136DFA39008EEEA5 /* update.sample */; };
-		009EE4E2136DFA39008EEEA5 /* index in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4BC136DFA39008EEEA5 /* index */; };
-		009EE4E3136DFA39008EEEA5 /* exclude in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4BE136DFA39008EEEA5 /* exclude */; };
-		009EE4E4136DFA39008EEEA5 /* HEAD in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C0136DFA39008EEEA5 /* HEAD */; };
-		009EE4E5136DFA39008EEEA5 /* master in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C3136DFA39008EEEA5 /* master */; };
-		009EE4E6136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.idx in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C7136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.idx */; };
-		009EE4E7136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.pack in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C8136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.pack */; };
-		009EE4E8136DFA39008EEEA5 /* packed-refs in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4C9136DFA39008EEEA5 /* packed-refs */; };
-		009EE4E9136DFA39008EEEA5 /* master in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4CC136DFA39008EEEA5 /* master */; };
-		009EE4EA136DFA39008EEEA5 /* HEAD in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4CF136DFA39008EEEA5 /* HEAD */; };
-		009EE4EB136DFA39008EEEA5 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4D1136DFA39008EEEA5 /* CHANGELOG.md */; };
-		009EE4EC136DFA39008EEEA5 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 009EE4D2136DFA39008EEEA5 /* JSONKit.h */; };
-		009EE4ED136DFA39008EEEA5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EE4D3136DFA39008EEEA5 /* JSONKit.m */; };
-		009EE4EE136DFA39008EEEA5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 009EE4D4136DFA39008EEEA5 /* README.md */; };
 		009EE51B136DFFF0008EEEA5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EE4D3136DFA39008EEEA5 /* JSONKit.m */; };
 		009EE51C136E000C008EEEA5 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 009EE4D2136DFA39008EEEA5 /* JSONKit.h */; };
-		00A17CA41319CA66002B0FC3 /* HSRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA31319CA66002B0FC3 /* HSRequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00A17CA81319CA85002B0FC3 /* HSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A17CA61319CA85002B0FC3 /* HSResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00A17CA91319CA85002B0FC3 /* HSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A17CA71319CA85002B0FC3 /* HSResponse.m */; };
-		00BF732D1319EBB80009761A /* HSNotFoundHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF732B1319EBB80009761A /* HSNotFoundHandler.h */; };
-		00BF732E1319EBB80009761A /* HSNotFoundHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF732C1319EBB80009761A /* HSNotFoundHandler.m */; };
-		00BF736C1319F5320009761A /* HSRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF736A1319F5320009761A /* HSRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00BF736D1319F5320009761A /* HSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF736B1319F5320009761A /* HSRequest.m */; };
-		00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
-		00CE974113133CBF006F6A38 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00CE973F13133CBF006F6A38 /* InfoPlist.strings */; };
-		00CE976213133CD4006F6A38 /* HSHTTPServe.h in Headers */ = {isa = PBXBuildFile; fileRef = 00CE976013133CD4006F6A38 /* HSHTTPServe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00CE976313133CD4006F6A38 /* HSHTTPServe.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CE976113133CD4006F6A38 /* HSHTTPServe.m */; };
 		00E35D92132C032F00D25EFF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CE973613133CBF006F6A38 /* Cocoa.framework */; };
 		00E35D9A132C035600D25EFF /* HSHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 00530B7D1313478A006A9311 /* HSHTTPConnection.m */; };
 		00E35D9C132C035600D25EFF /* HSNotFoundHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF732C1319EBB80009761A /* HSNotFoundHandler.m */; };
@@ -142,7 +88,6 @@
 		00BF732C1319EBB80009761A /* HSNotFoundHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSNotFoundHandler.m; sourceTree = "<group>"; };
 		00BF736A1319F5320009761A /* HSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRequest.h; sourceTree = "<group>"; };
 		00BF736B1319F5320009761A /* HSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRequest.m; sourceTree = "<group>"; };
-		00CE973313133CBF006F6A38 /* httpserve.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = httpserve.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CE973613133CBF006F6A38 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		00CE973913133CBF006F6A38 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		00CE973A13133CBF006F6A38 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -162,14 +107,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00CE972F13133CBE006F6A38 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00CE973713133CBF006F6A38 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		00E35D8E132C032F00D25EFF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,7 +361,6 @@
 		00CE973413133CBF006F6A38 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				00CE973313133CBF006F6A38 /* httpserve.framework */,
 				00E35D91132C032F00D25EFF /* libhttpserve.a */,
 			);
 			name = Products;
@@ -514,28 +450,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		00CE973013133CBE006F6A38 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00CE976213133CD4006F6A38 /* HSHTTPServe.h in Headers */,
-				000BF765131A13500012814B /* HSHttpMethod.h in Headers */,
-				00BF736C1319F5320009761A /* HSRequest.h in Headers */,
-				00A17CA41319CA66002B0FC3 /* HSRequestHandler.h in Headers */,
-				000BF762131A13290012814B /* HSResourceDescriptor.h in Headers */,
-				0013189E1319F9DD00F0AFB8 /* HSResponseCode.h in Headers */,
-				000BF75F131A12D40012814B /* HSRestResource.h in Headers */,
-				00A17CA81319CA85002B0FC3 /* HSResponse.h in Headers */,
-				00530B7E1313478A006A9311 /* HSHTTPConnection.h in Headers */,
-				007A80511319D9910040A3AE /* HSRequestHandlerRegistry.h in Headers */,
-				007A80551319DD9B0040A3AE /* HSSystemUtil.h in Headers */,
-				007A80641319E6620040A3AE /* HSClassHolder.h in Headers */,
-				00BF732D1319EBB80009761A /* HSNotFoundHandler.h in Headers */,
-				000BF75B131A0ED40012814B /* HSRestRequestHandler.h in Headers */,
-				009EE4EC136DFA39008EEEA5 /* JSONKit.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		00E35D8F132C032F00D25EFF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -561,24 +475,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		00CE973213133CBE006F6A38 /* HTTPServe */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00CE975A13133CBF006F6A38 /* Build configuration list for PBXNativeTarget "HTTPServe" */;
-			buildPhases = (
-				00CE972E13133CBE006F6A38 /* Sources */,
-				00CE972F13133CBE006F6A38 /* Frameworks */,
-				00CE973013133CBE006F6A38 /* Headers */,
-				00CE973113133CBE006F6A38 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HTTPServe;
-			productName = HTTPServe;
-			productReference = 00CE973313133CBF006F6A38 /* httpserve.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		00E35D90132C032F00D25EFF /* httpserve */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E35D96132C032F00D25EFF /* Build configuration list for PBXNativeTarget "httpserve" */;
@@ -613,68 +509,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00CE973213133CBE006F6A38 /* HTTPServe */,
 				00E35D90132C032F00D25EFF /* httpserve */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		00CE973113133CBE006F6A38 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00CE974113133CBF006F6A38 /* InfoPlist.strings in Resources */,
-				00530B8213134E84006A9311 /* test.html in Resources */,
-				009EE4D5136DFA39008EEEA5 /* config in Resources */,
-				009EE4D6136DFA39008EEEA5 /* description in Resources */,
-				009EE4D7136DFA39008EEEA5 /* HEAD in Resources */,
-				009EE4D8136DFA39008EEEA5 /* applypatch-msg.sample in Resources */,
-				009EE4D9136DFA39008EEEA5 /* commit-msg.sample in Resources */,
-				009EE4DA136DFA39008EEEA5 /* post-commit.sample in Resources */,
-				009EE4DB136DFA39008EEEA5 /* post-receive.sample in Resources */,
-				009EE4DC136DFA39008EEEA5 /* post-update.sample in Resources */,
-				009EE4DD136DFA39008EEEA5 /* pre-applypatch.sample in Resources */,
-				009EE4DE136DFA39008EEEA5 /* pre-commit.sample in Resources */,
-				009EE4DF136DFA39008EEEA5 /* pre-rebase.sample in Resources */,
-				009EE4E0136DFA39008EEEA5 /* prepare-commit-msg.sample in Resources */,
-				009EE4E1136DFA39008EEEA5 /* update.sample in Resources */,
-				009EE4E2136DFA39008EEEA5 /* index in Resources */,
-				009EE4E3136DFA39008EEEA5 /* exclude in Resources */,
-				009EE4E4136DFA39008EEEA5 /* HEAD in Resources */,
-				009EE4E5136DFA39008EEEA5 /* master in Resources */,
-				009EE4E6136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.idx in Resources */,
-				009EE4E7136DFA39008EEEA5 /* pack-cd237c70f152f557423559b2608e0edf0b29f042.pack in Resources */,
-				009EE4E8136DFA39008EEEA5 /* packed-refs in Resources */,
-				009EE4E9136DFA39008EEEA5 /* master in Resources */,
-				009EE4EA136DFA39008EEEA5 /* HEAD in Resources */,
-				009EE4EB136DFA39008EEEA5 /* CHANGELOG.md in Resources */,
-				009EE4EE136DFA39008EEEA5 /* README.md in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		00CE972E13133CBE006F6A38 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00CE976313133CD4006F6A38 /* HSHTTPServe.m in Sources */,
-				00530B7F1313478A006A9311 /* HSHTTPConnection.m in Sources */,
-				00A17CA91319CA85002B0FC3 /* HSResponse.m in Sources */,
-				007A80521319D9910040A3AE /* HSRequestHandlerRegistry.m in Sources */,
-				007A80561319DD9B0040A3AE /* HSSystemUtil.m in Sources */,
-				007A80651319E6620040A3AE /* HSClassHolder.m in Sources */,
-				00BF732E1319EBB80009761A /* HSNotFoundHandler.m in Sources */,
-				00BF736D1319F5320009761A /* HSRequest.m in Sources */,
-				000BF75C131A0ED40012814B /* HSRestRequestHandler.m in Sources */,
-				000BF763131A13290012814B /* HSResourceDescriptor.m in Sources */,
-				008875BC131A170E00399F98 /* HSHttpMethod.m in Sources */,
-				009EE4ED136DFA39008EEEA5 /* JSONKit.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		00E35D8D132C032F00D25EFF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -749,60 +589,6 @@
 			};
 			name = Release;
 		};
-		00CE975B13133CBF006F6A38 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
-				);
-				FRAMEWORK_VERSION = A;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HTTPServe/HTTPServe-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "HTTPServe/HTTPServe-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/libraries/JSON\"",
-				);
-				PRODUCT_NAME = httpserve;
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Debug;
-		};
-		00CE975C13133CBF006F6A38 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
-				);
-				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HTTPServe/HTTPServe-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "HTTPServe/HTTPServe-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/libraries/JSON\"",
-				);
-				PRODUCT_NAME = httpserve;
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Release;
-		};
 		00E35D97132C032F00D25EFF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -815,7 +601,9 @@
 				GCC_PREFIX_HEADER = "httpserve/httpserve-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				ONLY_ACTIVE_ARCH = NO;
+				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/HTTPServe;
 				PRODUCT_NAME = httpserve;
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/HTTPServe;
 				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Debug;
@@ -830,7 +618,9 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "httpserve/httpserve-Prefix.pch";
+				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/HTTPServe;
 				PRODUCT_NAME = httpserve;
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/HTTPServe;
 				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Release;
@@ -843,15 +633,6 @@
 			buildConfigurations = (
 				00CE975813133CBF006F6A38 /* Debug */,
 				00CE975913133CBF006F6A38 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00CE975A13133CBF006F6A38 /* Build configuration list for PBXNativeTarget "HTTPServe" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00CE975B13133CBF006F6A38 /* Debug */,
-				00CE975C13133CBF006F6A38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

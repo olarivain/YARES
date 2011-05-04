@@ -8,6 +8,7 @@
 
 #import "HSResponse.h"
 #import "HSResponseCode.h"
+#import "JSONKit.h"
 
 static HSResponse *NOT_FOUND_RESPONSE;
 static HSResponse *INTERNAL_SERVER_ERROR_RESPONSE;
@@ -16,6 +17,7 @@ static HSResponse *EMPTY_RESPONSE;
 
 @implementation HSResponse
 
+@synthesize object;
 @synthesize code;
 @synthesize content;
 @synthesize headers;
@@ -41,6 +43,23 @@ static HSResponse *EMPTY_RESPONSE;
   [content release];
   [headers release];
   [super dealloc];
+}
+
+#pragma mark - Content accessor
+- (NSData*) content {
+  if(content == nil) {
+    if([object isKindOfClass: [NSArray class]]) 
+    {
+      NSArray *array = (NSArray*) object;
+      content = [array JSONData];
+    }
+    else if([object isKindOfClass: [NSDictionary class]])
+    {
+      NSDictionary *dictionary = (NSDictionary *) object;
+      content = [dictionary JSONData];
+    }
+  }
+  return content;
 }
 
 #pragma mark - Headers manipulation
