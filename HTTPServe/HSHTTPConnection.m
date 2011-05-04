@@ -14,6 +14,8 @@
 #import "HSHttpMethod.h"
 #import "HSHTTPServe.h"
 
+#define MAX_OUTPUT_BUFFER_SIZE 1024
+
 @interface HSHTTPConnection(private)
 - (void) initRequest;
 - (void) handleRequest;
@@ -201,13 +203,14 @@
   
   NSUInteger offset = 0;
   NSUInteger remainingLength = [serialized length];
+  NSUInteger bufferSize = MIN(MAX_OUTPUT_BUFFER_SIZE, remainingLength);
   
-  void *bytes = malloc(remainingLength * sizeof(void*));
+  void *bytes = malloc(bufferSize * sizeof(void*));
   while (remainingLength > 0) {
-    NSRange range = NSMakeRange(offset, remainingLength);
+    NSRange range = NSMakeRange(offset, bufferSize);
     [serialized getBytes:bytes range: range];
     
-    NSInteger bytesWritten = [ostream write:bytes maxLength:remainingLength];
+    NSInteger bytesWritten = [ostream write:bytes maxLength:bufferSize];
     if(bytesWritten == -1)
     {
 #warning figure out a decent error handling here
@@ -215,6 +218,8 @@
     }
     remainingLength -= bytesWritten;
     offset += bytesWritten;
+    // update buffer size, required when remainingLength becomes smaller than max output size
+    bufferSize = MIN(MAX_OUTPUT_BUFFER_SIZE, remainingLength);
   }
   free(bytes);
   
