@@ -40,7 +40,8 @@ static HSResponse *EMPTY_RESPONSE;
 
 - (void)dealloc
 {
-  [content release];
+  self.object = nil;
+  self.content = nil;
   [headers release];
   [super dealloc];
 }
@@ -51,12 +52,12 @@ static HSResponse *EMPTY_RESPONSE;
     if([object isKindOfClass: [NSArray class]]) 
     {
       NSArray *array = (NSArray*) object;
-      content = [array JSONData];
+      self.content = [array JSONData];
     }
     else if([object isKindOfClass: [NSDictionary class]])
     {
       NSDictionary *dictionary = (NSDictionary *) object;
-      content = [dictionary JSONData];
+      self.content = [dictionary JSONData];
     }
   }
   return content;
@@ -87,7 +88,7 @@ static HSResponse *EMPTY_RESPONSE;
 
 - (NSUInteger) contentLength
 {
-  return [content length];
+  return [self.content length];
 }
 
 - (NSString*) contentLengthAsString

@@ -19,8 +19,8 @@
 }
 
 @property (nonatomic,readwrite, assign) HSResponseCode code;
-@property (nonatomic,readwrite, retain) NSData *content;
 @property (readonly) NSDictionary *headers;
+@property (nonatomic,readwrite, retain) NSData *content;
 @property (nonatomic, readwrite, retain) id object;
 
 - (NSUInteger) contentLength;
