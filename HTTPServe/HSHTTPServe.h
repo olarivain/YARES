@@ -50,8 +50,10 @@
   NSOperationQueue *operationQueue;
 }
 
-- (HSHTTPServe*) initWithPort: (int) port;
-- (id)initWithPort: (int) listenPort bonjourEnabled: (BOOL) bonjour;
+// a port of 0 lets the kernel decide the port.
+- (id) initWithPort: (int) listenPort;
+- (id) initWithPort: (int) listenPort bonjourEnabled: (BOOL) bonjour;
+
 - (void) start;
 - (void) stop;
 

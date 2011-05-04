@@ -22,6 +22,17 @@ static HSResponse *EMPTY_RESPONSE;
 @synthesize content;
 @synthesize headers;
 
++ (HSResponse*) jsonResponse
+{
+  return [[[HSResponse alloc] initWithContentType:@"application/json"] autorelease];
+
+}
+
++ (HSResponse*) response
+{
+  return [[[HSResponse alloc] init] autorelease];
+}
+
 - (id)init
 {
   self = [super init];
@@ -33,9 +44,16 @@ static HSResponse *EMPTY_RESPONSE;
   return self;
 }
 
-+ (HSResponse*) response
+- (id)initWithContentType: (NSString*) contentType
 {
-  return [[[HSResponse alloc] init] autorelease];
+  self = [super init];
+  if (self) 
+  {
+    code = OK;
+    [self setContentEncoding: @"UTF-8"];
+    [self setContentType: contentType];
+  }
+  return self;
 }
 
 - (void)dealloc

@@ -23,6 +23,11 @@
 @property (nonatomic,readwrite, retain) NSData *content;
 @property (nonatomic, readwrite, retain) id object;
 
++ (HSResponse*) response;
++ (HSResponse*) jsonResponse;
+- (id) init;
+- (id)initWithContentType: (NSString*) contentType;
+
 - (NSUInteger) contentLength;
 - (NSString*) contentLengthAsString;
 
@@ -33,8 +38,6 @@
 
 - (void) addHeader: (NSString*) value forKey: (NSString*) key;
 - (void) removeHeader: (NSString*) key;
-
-+ (HSResponse*) response;
 
 + (HSResponse*) NOT_FOUND_RESPONSE;
 + (HSResponse*) INTERNAL_SERVER_ERROR_RESPONSE;

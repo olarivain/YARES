@@ -39,7 +39,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   if (self) 
   {
     bonjourEnabled = bonjour;
-    port = listenPort;
+    port = listenPort <= 0 ? 0 : listenPort;
     connections = [[NSMutableArray alloc] init];
     handlerRegistry = [[HSRequestHandlerRegistry alloc] init];
     operationQueue = [[NSOperationQueue alloc] init];
@@ -68,7 +68,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
     [self initializeBonjour];
   }
   
-  NSLog(@"HTTP Server up and running");
+  NSLog(@"HTTP Server up and running on port %i, bonjour enabled: %i", port, bonjourEnabled);
 }
 
 - (void) initializeHTTPServer
