@@ -209,26 +209,26 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 #pragma mark - Connection management
 - (void) addConnection: (HSHTTPConnection*) connection
 {
-  if([connections containsObject: connection])
-  {
-    return;
-  }
-  
   @synchronized(connections)
   {
+    if([connections containsObject: connection])
+    {
+      return;
+    }
+  
     [connections addObject: connection];
   }
 }
 
 - (void) removeConnection: (HSHTTPConnection*) connection
 {
-  if(![connections containsObject: connection])
-  {
-    return;
-  }
-  
   @synchronized(connections)
   {
+    if(![connections containsObject: connection])
+    {
+      return;
+    }
+  
     [connections removeObject: connection];
   }  
 }
