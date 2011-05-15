@@ -134,13 +134,13 @@
 		000BF75D131A12BA0012814B /* rest */ = {
 			isa = PBXGroup;
 			children = (
-				000BF759131A0ED10012814B /* HSRestRequestHandler.h */,
-				000BF75A131A0ED10012814B /* HSRestRequestHandler.m */,
 				000BF75E131A12D40012814B /* HSRestResource.h */,
 				000BF760131A13290012814B /* HSResourceDescriptor.h */,
 				000BF761131A13290012814B /* HSResourceDescriptor.m */,
 				0043D8C8137F778000897D4D /* HSRequestParameters.h */,
 				0043D8C9137F778000897D4D /* HSRequestParameters.m */,
+				000BF759131A0ED10012814B /* HSRestRequestHandler.h */,
+				000BF75A131A0ED10012814B /* HSRestRequestHandler.m */,
 			);
 			name = rest;
 			sourceTree = "<group>";
@@ -328,11 +328,11 @@
 		007A80611319E6500040A3AE /* handler */ = {
 			isa = PBXGroup;
 			children = (
+				0043D8BA137F559E00897D4D /* HSHandlerPath.h */,
+				0043D8BB137F559E00897D4D /* HSHandlerPath.m */,
 				00BF732B1319EBB80009761A /* HSNotFoundHandler.h */,
 				00BF732C1319EBB80009761A /* HSNotFoundHandler.m */,
 				00A17CA31319CA66002B0FC3 /* HSRequestHandler.h */,
-				0043D8BA137F559E00897D4D /* HSHandlerPath.h */,
-				0043D8BB137F559E00897D4D /* HSHandlerPath.m */,
 			);
 			name = handler;
 			sourceTree = "<group>";
