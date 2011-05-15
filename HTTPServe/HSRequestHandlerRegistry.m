@@ -87,13 +87,15 @@
 
 - (id<HSRequestHandler>) handlerForURL: (NSURL*) url
 {
+  NSString *relativePath = [url relativePath];
+
   // and attempt to match it to all declared handlers 
   for(id<HSRequestHandler> handler in handlers)
   {
     NSArray *urls = [handler paths];
     for(HSHandlerPath *handlerPath in urls)
     {
-      if([handlerPath handlesURL: url])
+      if([handlerPath handlesPath: relativePath])
       {
         return handler;
       }

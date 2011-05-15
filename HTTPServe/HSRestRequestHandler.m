@@ -103,11 +103,12 @@
 
 - (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request
 {
+  NSString *relativePath = [request.url relativePath];
   for(HSResourceDescriptor *descriptor in resourceDescriptors)
   {
     if(descriptor.method == request.method)
     {
-      if([descriptor.path handlesURL: request.url])
+      if([descriptor.path handlesPath: relativePath])
       {
         return descriptor;
       }

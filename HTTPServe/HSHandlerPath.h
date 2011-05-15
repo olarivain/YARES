@@ -18,6 +18,7 @@
 
 + (id) handlerPath: (NSString *) path;
 
-- (BOOL) handlesURL: (NSURL*) url;
+- (BOOL) handlesPath: (NSString*) relativePath;
+- (NSDictionary*) pathParametersForURL: (NSString*) url;
 
 @end

@@ -40,43 +40,49 @@
 
 @synthesize path;
 
-- (BOOL) handlesURL:(NSURL *)url
+#pragma mark - URL matching
+- (BOOL) handlesPath:(NSString *)relativePath
 {
-  NSString *relativePath = [url relativePath];
-
   // use regex for processed paths, exact match otherwise
+  // processed path == path is different than predicatePath. Rough, but it works.
   NSString *predicateTemplate = [self predicatePath];
   NSString *predicateFormat = predicateFormat != path ? @"SELF matches %@" : @"SELF == %@";
+  
   NSPredicate *predicate = [NSPredicate predicateWithFormat: predicateFormat, predicateTemplate];
   return [predicate evaluateWithObject: relativePath];
 }
 
 - (NSString *) predicatePath
 {
-  // if we don't have any variable, don't even evalute.
-  if(![path contains: @"${"] && ![path contains:@"*"])
+  // if we don't have any variable, don't even evaluate and GTFO.
+  if(![path contains: @"{"] && ![path contains:@"*"])
   {
     return path;
   }
   
   NSMutableString *predicatePath = [NSMutableString string];
   NSArray *components = [path componentsSeparatedByString:@"/"];
+  // evaluate the path by replacing all ${var} with "anything but / and 
   for(NSString *component in components)
   {
+    // copy the component
     NSString *appended = component;
-    // subsitute variable with regex matching "everything but /"
-    if([component contains: @"${"])
+    // unless it is a variable, in this case subsitute it with regex matching "everything but /"
+    if([component contains: @"{"])
     {
       appended = @"[^/]+";
     }
-    
     [predicatePath appendString: appended];
-    if(component != [components lastObject])
+    
+    // don't append / on the last element unless it's empty string - that means path
+    // was in the form /foo/ and we want to maintain the last in this case.
+    if(component != [components lastObject] && [component length] > 0)
     {
       [predicatePath appendString:@"/"];
     }
   }
   
+  // now replace double stars with "anything" and single stars with "anything but /"
   NSRange range = NSMakeRange(0, [predicatePath length]);
   [predicatePath replaceOccurrencesOfString:@"**" withString:@".*" options:NSLiteralSearch range: range];
   range = NSMakeRange(0, [predicatePath length]);
@@ -85,6 +91,10 @@
   return predicatePath;
 }
 
-
+#pragma mark - URL path parameters extraction
+- (NSDictionary*) pathParametersForURL: (NSString*) path
+{
+  
+}
 
 @end

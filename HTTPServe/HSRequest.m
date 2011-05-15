@@ -29,6 +29,7 @@
 {
   [headers release];
   [parameters release];
+  [pathParameters release];
   [body release];
   [url release];
   [super dealloc];
@@ -36,6 +37,7 @@
 
 @synthesize headers;
 @synthesize parameters;
+@synthesize pathParameters;
 @synthesize body;
 @synthesize url;
 @synthesize method;

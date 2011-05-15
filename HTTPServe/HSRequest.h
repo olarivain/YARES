@@ -14,6 +14,7 @@
 @private
   NSDictionary *headers;
   NSDictionary *parameters;
+  NSDictionary *pathParameters;
   NSData *body;
   NSURL *url;
   HSHttpMethod method;
@@ -21,6 +22,7 @@
 
 @property (readonly) NSDictionary *headers;
 @property (readonly) NSDictionary *parameters;
+@property (nonatomic, readwrite, retain) NSDictionary *pathParameters;
 @property (readonly) NSData *body;
 @property (readonly) NSURL *url;
 @property (readonly) HSHttpMethod method;
