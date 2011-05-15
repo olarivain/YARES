@@ -17,6 +17,8 @@
 		0043D8C2137F5D2800897D4D /* NSString+HTTPServe.m in Sources */ = {isa = PBXBuildFile; fileRef = 0043D8C0137F5D2800897D4D /* NSString+HTTPServe.m */; };
 		0043D8C6137F6C3700897D4D /* NSURL+HTTPServe.h in Headers */ = {isa = PBXBuildFile; fileRef = 0043D8C4137F6C3700897D4D /* NSURL+HTTPServe.h */; };
 		0043D8C7137F6C3700897D4D /* NSURL+HTTPServe.m in Sources */ = {isa = PBXBuildFile; fileRef = 0043D8C5137F6C3700897D4D /* NSURL+HTTPServe.m */; };
+		0043D8CA137F778000897D4D /* HSRequestParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 0043D8C8137F778000897D4D /* HSRequestParameters.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0043D8CB137F778000897D4D /* HSRequestParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 0043D8C9137F778000897D4D /* HSRequestParameters.m */; };
 		008AECA9132C1105000A29C9 /* HSRestRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 000BF759131A0ED10012814B /* HSRestRequestHandler.h */; settings = {ATTRIBUTES = (); }; };
 		008AECAA132C112D000A29C9 /* HSHTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 00530B7C1313478A006A9311 /* HSHTTPConnection.h */; };
 		008AECAC132C112E000A29C9 /* HSClassHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A80621319E6620040A3AE /* HSClassHolder.h */; };
@@ -83,6 +85,8 @@
 		0043D8C0137F5D2800897D4D /* NSString+HTTPServe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTTPServe.m"; sourceTree = "<group>"; };
 		0043D8C4137F6C3700897D4D /* NSURL+HTTPServe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+HTTPServe.h"; sourceTree = "<group>"; };
 		0043D8C5137F6C3700897D4D /* NSURL+HTTPServe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+HTTPServe.m"; sourceTree = "<group>"; };
+		0043D8C8137F778000897D4D /* HSRequestParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRequestParameters.h; sourceTree = "<group>"; };
+		0043D8C9137F778000897D4D /* HSRequestParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRequestParameters.m; sourceTree = "<group>"; };
 		00530B7C1313478A006A9311 /* HSHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSHTTPConnection.h; sourceTree = "<group>"; };
 		00530B7D1313478A006A9311 /* HSHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSHTTPConnection.m; sourceTree = "<group>"; };
 		00530B8113134E84006A9311 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 				000BF75E131A12D40012814B /* HSRestResource.h */,
 				000BF760131A13290012814B /* HSResourceDescriptor.h */,
 				000BF761131A13290012814B /* HSResourceDescriptor.m */,
+				0043D8C8137F778000897D4D /* HSRequestParameters.h */,
+				0043D8C9137F778000897D4D /* HSRequestParameters.m */,
 			);
 			name = rest;
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				00E35DB9132C03B100D25EFF /* HSResponseCode.h in Headers */,
 				0043D8BC137F559E00897D4D /* HSHandlerPath.h in Headers */,
 				00E35DBA132C03B100D25EFF /* HSRestResource.h in Headers */,
+				0043D8CA137F778000897D4D /* HSRequestParameters.h in Headers */,
 				0043D8C1137F5D2800897D4D /* NSString+HTTPServe.h in Headers */,
 				00323D42132C195E003BED87 /* HSNotFoundHandler.h in Headers */,
 				00323D41132C1943003BED87 /* HSRequestHandlerRegistry.h in Headers */,
@@ -541,6 +548,7 @@
 				0043D8BD137F559E00897D4D /* HSHandlerPath.m in Sources */,
 				0043D8C2137F5D2800897D4D /* NSString+HTTPServe.m in Sources */,
 				0043D8C7137F6C3700897D4D /* NSURL+HTTPServe.m in Sources */,
+				0043D8CB137F778000897D4D /* HSRequestParameters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

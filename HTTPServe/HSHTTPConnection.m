@@ -14,6 +14,7 @@
 #import "HSHttpMethod.h"
 #import "HSHTTPServe.h"
 #import "NSURL+HTTPServe.h"
+#import "HSHandlerPath.h"
 
 #define MAX_OUTPUT_BUFFER_SIZE 1024
 
@@ -278,6 +279,7 @@
 {
   // find handler for incoming url, or grab 404 handler if not found
   id<HSRequestHandler> handler = [handlerRegistry handlerForURL:[request url]];
+
   if(handler == nil)
   {
     handler = [handlerRegistry notFoundHandler];

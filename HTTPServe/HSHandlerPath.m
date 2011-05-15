@@ -12,6 +12,9 @@
 @interface HSHandlerPath()
 - (id)initWithPath: (NSString*) handlerPath;
 - (NSString*) predicatePath;
+- (BOOL) shouldEvaluate;
+- (BOOL) hasPathParams;
+- (BOOL) isParameterName: (NSString *) string;
 @end
 
 @implementation HSHandlerPath
@@ -43,20 +46,29 @@
 #pragma mark - URL matching
 - (BOOL) handlesPath:(NSString *)relativePath
 {
-  // use regex for processed paths, exact match otherwise
-  // processed path == path is different than predicatePath. Rough, but it works.
+  // use regex for evaluated paths, exact match otherwise
   NSString *predicateTemplate = [self predicatePath];
-  NSString *predicateFormat = predicateFormat != path ? @"SELF matches %@" : @"SELF == %@";
+  NSString *predicateFormat = [self shouldEvaluate] ? @"SELF matches %@" : @"SELF == %@";
   
   NSPredicate *predicate = [NSPredicate predicateWithFormat: predicateFormat, predicateTemplate];
   BOOL matches = [predicate evaluateWithObject: relativePath];
   return matches;
 }
 
+- (BOOL) hasPathParams
+{
+  return [path contains: @"{"];
+}
+
+- (BOOL) shouldEvaluate
+{
+  return [path contains: @"{"] || [path contains:@"*"];
+}
+
 - (NSString *) predicatePath
 {
   // if we don't have any variable, don't even evaluate and GTFO.
-  if(![path contains: @"{"] && ![path contains:@"*"])
+  if(![self shouldEvaluate])
   {
     return path;
   }
@@ -93,9 +105,53 @@
 }
 
 #pragma mark - URL path parameters extraction
-- (NSDictionary*) pathParametersForURL: (NSString*) path
+- (BOOL) isParameterName: (NSString *) string
 {
+  return [string contains:@"{"];
+}
+- (NSDictionary*) pathParametersForURL: (NSString*) relativePath
+{
+  if(![self hasPathParams])
+  {
+    return [NSDictionary dictionary];
+  }
   
+  
+  NSMutableDictionary *pathParameters = [NSMutableDictionary dictionary];
+  NSArray *pathComponents = [relativePath componentsSeparatedByString:@"/"];
+  NSArray *variableComponents = [path componentsSeparatedByString:@"/"];
+  
+  // just to be safe.
+  if([pathComponents count] < [variableComponents count])
+  {
+    NSLog(@"FATAL: cannot extract path parameters, actual URL is shorter than path definition, aborting.");
+    return pathParameters;
+  }
+  
+  // start at -1 and increment at the BEGINNING of loop, this will make the for more readable
+  // and less bug prone
+  NSInteger index = -1;
+  for(NSString *variableComponent in variableComponents)
+  {
+    index++;
+    // no param here, skip
+    if(![self isParameterName: variableComponent])
+    {
+      continue;
+    }
+    
+    // strip {} out of param name
+    NSString *paramName = [variableComponent stringByReplacingOccurrencesOfString:@"{" withString:@""];
+    paramName = [paramName stringByReplacingOccurrencesOfString:@"}" withString:@""];
+    
+    // get value out of actual URL
+    NSString *paramValue = [pathComponents objectAtIndex: index];
+    
+    // and add to param list
+    [pathParameters setObject: paramValue forKey: paramName];
+  }
+  
+  return pathParameters;
 }
 
 @end
