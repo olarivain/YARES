@@ -73,6 +73,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 
 - (void) initializeHTTPServer
 {
+  // gotta love all the C code. Taken from Apple samples, cleaned up not to leak as much as my granny.
   CFSocketContext socketCtxt = {0, self, NULL, NULL, NULL};
   ipv4socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&HTTPServerAcceptCallBack, &socketCtxt);
   ipv6socket = CFSocketCreate(kCFAllocatorDefault, PF_INET6, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&HTTPServerAcceptCallBack, &socketCtxt);
@@ -203,7 +204,8 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 }
 - (void) stopBonjour
 {
-  
+  // Why would you stop bonjour? Honnestly?
+  // TODO figure out how to stop the announcement.
 }
 
 #pragma mark - Connection management
@@ -235,6 +237,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr 
 {
+  // GCD this, so we can process multiple in parallel
   [operationQueue addOperationWithBlock:^(void) {
     HSHTTPConnection *connection = [[[HSHTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:self andRegistry:handlerRegistry] autorelease];
     if( connection ) 

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-// TODO: This is utterly pointless... Look at NSValue and fix this nonsense...
+// TODO: Dude. This is utterly pointless... Look at NSValue and fix this nonsense...
 @interface HSClassHolder : NSObject {
 @private
   Class clazz;

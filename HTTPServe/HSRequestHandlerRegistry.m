@@ -50,7 +50,7 @@
   for(HSClassHolder *classHolder in classes)
   {
     Class class = [classHolder clazz];
-    // don't register built in handlers, obviously...
+    // don't instantiate/register built in handlers, obviously...
     if(class != [HSNotFoundHandler class])
     {
       id<HSRequestHandler> handler = [[class new] autorelease];

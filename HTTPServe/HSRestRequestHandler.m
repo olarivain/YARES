@@ -46,15 +46,22 @@
 
 - (void) initialize
 {
+  // Crawl through all classes implementing our fancy HSRestResource protocol
   NSArray *classes = [HSSystemUtil getClassesConformingToProcol:@protocol(HSRestResource)];
   for(HSClassHolder *holder in classes)
   {
+    // instantiate those dudes. 
+    // Yes. IoC a la ObjectiveC.
     Class class = [holder clazz];
     id<HSRestResource> handler = [[class new] autorelease];
+    
+    // initialize if the object responds to selector
     if(class_respondsToSelector(class, @selector(initialize)))
     {
       [handler initialize];
     }
+    
+    // keep track of the resource
     [resourceDescriptors addObjectsFromArray: [handler resourceDescriptors]];
     [resources addObject:handler];
   }
@@ -62,30 +69,36 @@
 
 - (HSResponse*) handleRequest:(HSRequest *)request
 {
+  // get a grip on the resource descriptor, if any
   HSResourceDescriptor *descriptor = [self descriptorForRequest: request];
-  HSResponse *response;
-  if(descriptor != nil)
+  
+  // return a 404 if we have nobody handling the resource. Shouldn't happen though,
+  // we wouldn't have gottent the request if we didn't have a handler.
+  if(descriptor == nil)
   {
-    NSObject *params;
-    if([request method] != GET)
-    {
-      params = [decoder objectWithData: [request body]];
-    }
-    else
-    {
-      params = [request parameters];
-    }
-    
-    id<HSRestResource> resource = [descriptor resource];
-    response = [resource performSelector:[descriptor selector] withObject: params];
-    if(response == nil)
-    {
-      response = [HSResponse EMPTY_RESPONSE];
-    }
+    return [HSResponse NOT_FOUND_RESPONSE];
+  }
+  
+  // figure out where the params come from: body or query string,
+  // depending on HTTP Method.
+  NSObject *params;
+  if([request method] != GET)
+  {
+    params = [decoder objectWithData: [request body]];
   }
   else
   {
-    response = [HSResponse NOT_FOUND_RESPONSE];
+    params = [request parameters];
+  }
+  
+  // call appropriate selector on resource with the parsed params
+  id<HSRestResource> resource = [descriptor resource];
+  HSResponse *response = [resource performSelector:[descriptor selector] withObject: params];
+  
+  // fail back to 204 No Content if no response was supplied by resource.
+  if(response == nil)
+  {
+    response = [HSResponse EMPTY_RESPONSE];
   }
   
   return response;
@@ -93,6 +106,7 @@
 
 - (NSArray *) paths
 {
+  // aggregate resources descriptors and return their HSHAndlerPath objects
   NSMutableArray *paths = [NSMutableArray arrayWithCapacity:[resourceDescriptors count]];
   for(HSResourceDescriptor *descriptor in resourceDescriptors)
   {
@@ -103,6 +117,7 @@
 
 - (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request
 {
+  // look for the first resource that will handle the request
   NSString *relativePath = [request.url relativePath];
   for(HSResourceDescriptor *descriptor in resourceDescriptors)
   {

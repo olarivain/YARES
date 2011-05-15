@@ -13,6 +13,7 @@
 #import "HSRequestHandlerRegistry.h"
 #import "HSHttpMethod.h"
 #import "HSHTTPServe.h"
+#import "NSURL+HTTPServe.h"
 
 #define MAX_OUTPUT_BUFFER_SIZE 1024
 
@@ -87,7 +88,8 @@
   [istream open];
   [ostream open];
   
-  // this gives the client 10 seconds to start sending shit on the thread.
+  // this gives the client .5 seconds to start sending shit on the stream.
+  // After that, he's dead. Too little, too late, RIP.
   [current runUntilDate:[NSDate dateWithTimeIntervalSinceNow: 0.5]];
 }
 
@@ -97,11 +99,12 @@
   switch(streamEvent) {
     case NSStreamEventHasBytesAvailable:;
       // read from stream
+      // default to 16k buffer
       uint8_t tempBuffer[16 * 1024];
       NSInteger lengthRead = [istream read:tempBuffer maxLength:sizeof(tempBuffer)];
       if (lengthRead > 0) 
       {
-        // if we actually read, pass the NSData to the read hanler method
+        // if we actually read, pass the NSData to the read handler method
         NSData *data = [NSData dataWithBytes:tempBuffer length:lengthRead];
         [self readRequest: data];
       }
@@ -133,7 +136,7 @@
   // create request if it hasn't been done yet
   if(requestRef == nil)
   {
-    requestRef = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
+    requestRef = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, YES);
   }
 
   // append incoming bytes and increment bytes read counter accordingly
@@ -197,7 +200,7 @@
     return;
   }
   
-  // create CF http message, serialize and write
+  // create CF http message, serialize and write response on stream
   CFHTTPMessageRef cfResponse = [self initHTTPResponse];
   NSData *serialized = [(NSData *)CFHTTPMessageCopySerializedMessage(cfResponse) autorelease];
   
@@ -205,6 +208,7 @@
   NSUInteger remainingLength = [serialized length];
   NSUInteger bufferSize = MIN(MAX_OUTPUT_BUFFER_SIZE, remainingLength);
   
+  // write in burst of MAX_OUTPUT_BUFFER_SIZE
   void *bytes = malloc(bufferSize * sizeof(void*));
   while (remainingLength > 0) {
     NSRange range = NSMakeRange(offset, bufferSize);
@@ -213,7 +217,7 @@
     NSInteger bytesWritten = [ostream write:bytes maxLength:bufferSize];
     if(bytesWritten == -1)
     {
-#warning figure out a decent error handling here
+      // TODO: figure out a decent error handling here
       break;
     }
     remainingLength -= bytesWritten;
@@ -221,34 +225,27 @@
     // update buffer size, required when remainingLength becomes smaller than max output size
     bufferSize = MIN(MAX_OUTPUT_BUFFER_SIZE, remainingLength);
   }
-  free(bytes);
   
-  // clean up memory and close this connection
+  // don't forget to clean up behind :)
+  free(bytes);
   CFRelease(cfResponse);
+  
   [self close];
 }
 
 - (void) initRequest
 {
   NSURL *url = [(NSURL*) CFHTTPMessageCopyRequestURL(requestRef) autorelease];
+  
+  // HTTP method first
   NSString *methodString = [(NSString*) CFHTTPMessageCopyRequestMethod(requestRef) autorelease];
   HSHttpMethod method = methodFromString(methodString);
+  // now headers
   NSDictionary *headers = [(NSDictionary*) CFHTTPMessageCopyAllHeaderFields(requestRef) autorelease];
+  // query parameters
+  NSDictionary *requestParameters = [url queryParameters];
+  // payload
   NSData *data = [(NSData*) CFHTTPMessageCopyBody(requestRef) autorelease];
-  
-  NSMutableDictionary *requestParameters = [NSMutableDictionary dictionary];
-  // this is weird. [url parameterString] returns nil. Seems like the URL is built with no protocol/host.
-  // hence, the manual parsing of the string.
-  NSArray *split = [[url absoluteString] componentsSeparatedByString:@"?"];
-  NSString *paramsString = [split count] > 1 ? [split objectAtIndex:1] : nil;
-  NSArray *paramsArray = [paramsString componentsSeparatedByString:@"&"];
-  for(NSString *paramString in paramsArray)
-  {
-    NSArray *paramArray = [paramString componentsSeparatedByString:@"="];
-    NSString *key = [paramArray objectAtIndex:0];
-    NSString *value = [paramArray count] > 1 ? [paramArray objectAtIndex:1] : @"";
-    [requestParameters setObject:value forKey:key];
-  }
   
   request = [[HSRequest alloc] initWithHeaders:headers parameters:requestParameters body:data url: url  andMethod:method];
   CFRelease(requestRef);
@@ -256,15 +253,20 @@
 
 - (CFHTTPMessageRef) initHTTPResponse
 {
-  // copy response object into CFHttpMessage struct
+  // create lousy core foundation objects
   CFHTTPMessageRef cfResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, [response code], NULL, kCFHTTPVersion1_1);
+  
+  // don't forget to copy response headers
   NSDictionary *headers = [response headers];
   for(NSString *key in [headers keyEnumerator])
   {
     NSString *value = [headers objectForKey: key];
     CFHTTPMessageSetHeaderFieldValue(cfResponse, (CFStringRef) key, (CFStringRef) value);
   }
+  
+  // compute content length now
   CFHTTPMessageSetHeaderFieldValue(cfResponse, (CFStringRef) @"Content-Length", (CFStringRef) [response contentLengthAsString]);
+  // and copy payload to response
   CFHTTPMessageSetBody(cfResponse, (CFDataRef) [response content]);
   
   return cfResponse;

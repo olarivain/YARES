@@ -65,8 +65,13 @@ static HSResponse *EMPTY_RESPONSE;
 }
 
 #pragma mark - Content accessor
-- (NSData*) content {
-  if(content == nil) {
+- (NSData*) content 
+{
+  if(content == nil) 
+  {
+    // we have no physical content, that means we'll assume it's a JSON output.
+    // use JSONKit to turn array or dictionary into JSON and return that.
+    // if we don't have array/dict don't do anything as we have no clue what's going on.
     if([object isKindOfClass: [NSArray class]]) 
     {
       NSArray *array = (NSArray*) object;
@@ -82,8 +87,10 @@ static HSResponse *EMPTY_RESPONSE;
 }
 
 #pragma mark - Headers manipulation
-- (void) addHeader:(NSString*)value forKey:(NSString *)key{
-  if(headers == nil){
+- (void) addHeader:(NSString*)value forKey:(NSString *)key
+{
+  if(headers == nil)
+  {
     headers = [[NSMutableDictionary alloc] init];
   }
   
@@ -99,6 +106,7 @@ static HSResponse *EMPTY_RESPONSE;
 {
   [self addHeader:encoding forKey:@"Content-Encoding"];
 }
+
 - (void) setContentType: (NSString*) type
 {
   [self addHeader:type forKey:@"Content-Type"];
@@ -125,7 +133,7 @@ static HSResponse *EMPTY_RESPONSE;
   if(EMPTY_RESPONSE == nil)
   {
     EMPTY_RESPONSE = [[HSResponse alloc] init];
-    [EMPTY_RESPONSE setCode: OK];
+    [EMPTY_RESPONSE setCode: NO_CONTENT];
   }
   return EMPTY_RESPONSE;
 }
