@@ -293,7 +293,9 @@
   @catch (NSException *exception) 
   {
     // exception maps to 500
-    response = [HSResponse INTERNAL_SERVER_ERROR_RESPONSE];
+    response = [HSResponse errorResponse];
+    NSData *error = [[exception reason] dataUsingEncoding:NSUTF8StringEncoding];
+    response.content = error;
   }
   [response retain];
 }

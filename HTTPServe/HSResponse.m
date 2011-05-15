@@ -11,9 +11,7 @@
 #import "JSONKit.h"
 
 static HSResponse *NOT_FOUND_RESPONSE;
-static HSResponse *INTERNAL_SERVER_ERROR_RESPONSE;
 static HSResponse *NOT_AVAILABLE_RESPONSE;
-static HSResponse *EMPTY_RESPONSE;
 
 @implementation HSResponse
 
@@ -31,6 +29,21 @@ static HSResponse *EMPTY_RESPONSE;
 + (HSResponse*) response
 {
   return [[[HSResponse alloc] init] autorelease];
+}
+
++ (HSResponse*) errorResponse
+{
+  HSResponse *response = [HSResponse response];
+  response.code = INTERNAL_SERVER_ERROR;
+  [response setContentType:@"text/html"];
+  return response;
+}
+
++ (HSResponse*) emptyResponse
+{
+  HSResponse *response = [HSResponse response];
+  response.code = NO_CONTENT;
+  return response;  
 }
 
 - (id)init
@@ -128,16 +141,6 @@ static HSResponse *EMPTY_RESPONSE;
 }
 
 #pragma mark - Singletons
-+ (HSResponse*) EMPTY_RESPONSE
-{
-  if(EMPTY_RESPONSE == nil)
-  {
-    EMPTY_RESPONSE = [[HSResponse alloc] init];
-    [EMPTY_RESPONSE setCode: NO_CONTENT];
-  }
-  return EMPTY_RESPONSE;
-}
-
 + (HSResponse*) NOT_FOUND_RESPONSE
 {
   if(NOT_FOUND_RESPONSE == nil)
@@ -148,18 +151,6 @@ static HSResponse *EMPTY_RESPONSE;
     [NOT_FOUND_RESPONSE setContent:[@"Page not found." dataUsingEncoding:NSUTF8StringEncoding]];
   }
   return NOT_FOUND_RESPONSE;
-}
-
-+ (HSResponse*) INTERNAL_SERVER_ERROR_RESPONSE
-{
-  if(INTERNAL_SERVER_ERROR_RESPONSE == nil)
-  {
-    INTERNAL_SERVER_ERROR_RESPONSE = [[HSResponse alloc] init];
-    [INTERNAL_SERVER_ERROR_RESPONSE setCode: INTERNAL_SERVER_ERROR];
-    [INTERNAL_SERVER_ERROR_RESPONSE setContentType: @"text/html"];
-    [INTERNAL_SERVER_ERROR_RESPONSE setContent:[@"Internal Server Error." dataUsingEncoding:NSUTF8StringEncoding]];
-  }
-  return INTERNAL_SERVER_ERROR_RESPONSE;
 }
 
 + (HSResponse*) UNAVAILABLE_RESPONSE

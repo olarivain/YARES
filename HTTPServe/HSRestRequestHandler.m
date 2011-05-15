@@ -107,7 +107,7 @@
   // fail back to 204 No Content if no response was supplied by resource.
   if(response == nil)
   {
-    response = [HSResponse EMPTY_RESPONSE];
+    response = [HSResponse emptyResponse];
   }
   
   return response;

@@ -25,6 +25,9 @@
 
 + (HSResponse*) response;
 + (HSResponse*) jsonResponse;
++ (HSResponse*) errorResponse;
++ (HSResponse*) emptyResponse;
+
 - (id) init;
 - (id)initWithContentType: (NSString*) contentType;
 
@@ -40,8 +43,7 @@
 - (void) removeHeader: (NSString*) key;
 
 + (HSResponse*) NOT_FOUND_RESPONSE;
-+ (HSResponse*) INTERNAL_SERVER_ERROR_RESPONSE;
 + (HSResponse*) UNAVAILABLE_RESPONSE;
-+ (HSResponse*) EMPTY_RESPONSE;
+
 
 @end
