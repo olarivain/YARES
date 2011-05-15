@@ -16,6 +16,7 @@
 #import "HSRequest.h"
 #import "HSResourceDescriptor.h"
 #import "HSNotFoundHandler.h"
+#import "HSHandlerPath.h"
 
 @interface HSRestRequestHandler(private)
 - (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request;
@@ -87,9 +88,6 @@
     response = [HSResponse NOT_FOUND_RESPONSE];
   }
   
-#warning FIXME: content type should be parametrizable
-  [response setContentType:@"application/json"];
-  
   return response;
 }
 
@@ -107,9 +105,12 @@
 {
   for(HSResourceDescriptor *descriptor in resourceDescriptors)
   {
-    if([descriptor method] == [request method] && [[request path] caseInsensitiveCompare: [descriptor path]] == 0)
+    if(descriptor.method == request.method)
     {
-      return descriptor;
+      if([descriptor.path handlesURL: request.url])
+      {
+        return descriptor;
+      }
     }
   }
   NSLog(@"No descriptor found for method: %i and path: %@", [request method], [request path]);

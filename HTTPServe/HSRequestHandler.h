@@ -13,6 +13,7 @@
 
 @protocol HSRequestHandler <NSObject>
 - (HSResponse*) handleRequest: (HSRequest*) request;
+// array of HSHandlerPath
 - (NSArray*) paths;
 
 @optional

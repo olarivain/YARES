@@ -7,16 +7,28 @@
 //
 
 #import "HSResourceDescriptor.h"
-
+#import "HSHandlerPath.h"
 
 @implementation HSResourceDescriptor
 
 + (id) descriptorWithPath: (NSString*) resourcePath resource: (id<HSRestResource>) parent andSelector: (SEL) sel;
 {
-  return [HSResourceDescriptor descriptorWithPath:resourcePath resource: parent selector: sel andMethod: GET];
+  HSHandlerPath *handlerPath = [HSHandlerPath handlerPath: resourcePath];
+  return [HSResourceDescriptor descriptorWithHandlerPath:handlerPath resource: parent selector: sel andMethod: GET];
+}
+
++ (id) descriptorWithHandlerPath: (HSHandlerPath*) resourcePath resource: (id<HSRestResource>) resource andSelector: (SEL) sel
+{
+  return [HSResourceDescriptor descriptorWithHandlerPath:resourcePath resource:resource selector:sel andMethod: GET];
 }
 
 + (id)descriptorWithPath: (NSString*) resourcePath resource: (id<HSRestResource>) parent selector: (SEL) sel andMethod: (HSHttpMethod) resourceMethod;
+{
+  HSHandlerPath *handlerPath = [HSHandlerPath handlerPath: resourcePath];
+  return [HSResourceDescriptor descriptorWithHandlerPath:handlerPath resource:parent selector:sel andMethod: GET];
+}
+
++ (id) descriptorWithHandlerPath: (HSHandlerPath*) resourcePath resource: (id<HSRestResource>) parent selector: (SEL) sel andMethod: (HSHttpMethod) resourceMethod
 {
   HSResourceDescriptor *descriptor = [[[HSResourceDescriptor alloc] init] autorelease];
   if (descriptor) 
@@ -29,6 +41,7 @@
   
   return descriptor;
 }
+
 
 - (void)dealloc
 {

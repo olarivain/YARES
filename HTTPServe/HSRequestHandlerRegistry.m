@@ -10,8 +10,8 @@
 #import "HSSystemUtil.h"
 #import "HSClassHolder.h"
 #import "HSNotFoundHandler.h"
-// testing to add the guy to the thing
 #import "HSRestRequestHandler.h"
+#import "HSHandlerPath.h"
 
 @interface HSRequestHandlerRegistry()
 @end
@@ -87,21 +87,18 @@
 
 - (id<HSRequestHandler>) handlerForURL: (NSURL*) url
 {
-  NSString *relativePath = [url relativePath];
-//  NSLog(@"Searching handler for url: %@", relativePath);
+  // and attempt to match it to all declared handlers 
   for(id<HSRequestHandler> handler in handlers)
   {
     NSArray *urls = [handler paths];
-    for(NSString *url in urls)
+    for(HSHandlerPath *handlerPath in urls)
     {
-      if([url isEqualToString: relativePath])
+      if([handlerPath handlesURL: url])
       {
-//        NSLog(@"Found handler");
         return handler;
       }
     } 
   }
-//  NSLog(@"Error: no handler found for url: %@", relativePath);
   return nil;
 }
 
