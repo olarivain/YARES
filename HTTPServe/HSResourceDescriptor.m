@@ -9,6 +9,11 @@
 #import "HSResourceDescriptor.h"
 #import "HSHandlerPath.h"
 
+@interface HSResourceDescriptor()
++ (id) descriptorWithHandlerPath: (HSHandlerPath*) resourcePath resource: (id<HSRestResource>) resource andSelector: (SEL) sel;
++ (id) descriptorWithHandlerPath: (HSHandlerPath*) resourcePath resource: (id<HSRestResource>) resource selector: (SEL) sel andMethod: (HSHttpMethod) resourceMethod;
+@end
+
 @implementation HSResourceDescriptor
 
 + (id) descriptorWithPath: (NSString*) resourcePath resource: (id<HSRestResource>) parent andSelector: (SEL) sel;

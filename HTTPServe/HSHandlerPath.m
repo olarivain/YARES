@@ -7,9 +7,10 @@
 //
 
 #import "HSHandlerPath.h"
+#import "NSString+HTTPServe.h"
 
 @interface HSHandlerPath()
-- (id)initWithPath: (NSString*) handlerPath regex: (BOOL) regex;
+- (id)initWithPath: (NSString*) handlerPath;
 - (NSString*) predicatePath;
 @end
 
@@ -17,21 +18,15 @@
 
 + (id) handlerPath: (NSString *) path
 {
-  return [[[HSHandlerPath alloc] initWithPath:path regex: NO] autorelease];
+  return [[[HSHandlerPath alloc] initWithPath:path] autorelease];
 }
 
-+ (id) handlerRegexPath: (NSString *) regex
-{
-  return [[[HSHandlerPath alloc] initWithPath:regex regex: YES] autorelease];  
-}
-
-- (id)initWithPath: (NSString*) handlerPath regex: (BOOL) regex
+- (id)initWithPath: (NSString*) handlerPath
 {
   self = [super init];
   if (self) 
   {
     path = [handlerPath retain];
-    isRegex = regex;
   }
   
   return self;
@@ -44,21 +39,52 @@
 }
 
 @synthesize path;
-@synthesize isRegex;
 
 - (BOOL) handlesURL:(NSURL *)url
 {
   NSString *relativePath = [url relativePath];
 
-  // use regex for regex, exact match otherwise
-  NSString *predicateFormat = isRegex ? @"SELF matches %@" : @"SELF == %@";
-  NSPredicate *predicate = [NSPredicate predicateWithFormat: predicateFormat, path];
+  // use regex for processed paths, exact match otherwise
+  NSString *predicateTemplate = [self predicatePath];
+  NSString *predicateFormat = predicateFormat != path ? @"SELF matches %@" : @"SELF == %@";
+  NSPredicate *predicate = [NSPredicate predicateWithFormat: predicateFormat, predicateTemplate];
   return [predicate evaluateWithObject: relativePath];
 }
 
 - (NSString *) predicatePath
 {
+  // if we don't have any variable, don't even evalute.
+  if(![path contains: @"${"] && ![path contains:@"*"])
+  {
+    return path;
+  }
   
+  NSMutableString *predicatePath = [NSMutableString string];
+  NSArray *components = [path componentsSeparatedByString:@"/"];
+  for(NSString *component in components)
+  {
+    NSString *appended = component;
+    // subsitute variable with regex matching "everything but /"
+    if([component contains: @"${"])
+    {
+      appended = @"[^/]+";
+    }
+    
+    [predicatePath appendString: appended];
+    if(component != [components lastObject])
+    {
+      [predicatePath appendString:@"/"];
+    }
+  }
+  
+  NSRange range = NSMakeRange(0, [predicatePath length]);
+  [predicatePath replaceOccurrencesOfString:@"**" withString:@".*" options:NSLiteralSearch range: range];
+  range = NSMakeRange(0, [predicatePath length]);
+  [predicatePath replaceOccurrencesOfString:@"*" withString:@"[^/]*" options:NSLiteralSearch range: range]; 
+  
+  return predicatePath;
 }
+
+
 
 @end
