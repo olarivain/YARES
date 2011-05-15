@@ -49,7 +49,8 @@
   NSString *predicateFormat = predicateFormat != path ? @"SELF matches %@" : @"SELF == %@";
   
   NSPredicate *predicate = [NSPredicate predicateWithFormat: predicateFormat, predicateTemplate];
-  return [predicate evaluateWithObject: relativePath];
+  BOOL matches = [predicate evaluateWithObject: relativePath];
+  return matches;
 }
 
 - (NSString *) predicatePath
@@ -76,7 +77,7 @@
     
     // don't append / on the last element unless it's empty string - that means path
     // was in the form /foo/ and we want to maintain the last in this case.
-    if(component != [components lastObject] && [component length] > 0)
+    if(component != [components lastObject] || [component length] == 0)
     {
       [predicatePath appendString:@"/"];
     }
