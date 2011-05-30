@@ -20,7 +20,7 @@
 #import "HSHandlerPath.h"
 #import "HSRequestParameters.h"
 
-#import "SBJsonPublic.h"
+#import "JSONKit.h"
 
 @interface HSRestRequestHandler(private)
 - (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request;
@@ -35,7 +35,7 @@
   {
     resources = [[NSMutableArray alloc] init];
     resourceDescriptors = [[NSMutableArray alloc] init];
-    decoder = [[SBJsonParser alloc] init];
+    decoder = [[JSONDecoder alloc] initWithParseOptions: JKParseOptionLooseUnicode];
   }
   
   return self;
