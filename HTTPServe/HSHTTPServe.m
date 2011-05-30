@@ -238,14 +238,14 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr 
 {
   // GCD this, so we can process multiple in parallel
-  [operationQueue addOperationWithBlock:^(void) {
+//  [operationQueue addOperationWithBlock:^(void) {
     HSHTTPConnection *connection = [[[HSHTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:self andRegistry:handlerRegistry] autorelease];
     if( connection ) 
     {
       [self addConnection: connection];
     }
     [connection processRequest];
-  }];
+//  }];
 }
 
 - (void) connectionHandled: (HSHTTPConnection*) connection

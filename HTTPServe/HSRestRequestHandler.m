@@ -6,7 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "JSONKit.h"
+
+//#import "JSONKit.h"
 
 #import "HSRestRequestHandler.h"
 #import "HSSystemUtil.h"
@@ -18,6 +19,8 @@
 #import "HSNotFoundHandler.h"
 #import "HSHandlerPath.h"
 #import "HSRequestParameters.h"
+
+#import "SBJsonPublic.h"
 
 @interface HSRestRequestHandler(private)
 - (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request;
@@ -32,7 +35,7 @@
   {
     resources = [[NSMutableArray alloc] init];
     resourceDescriptors = [[NSMutableArray alloc] init];
-    decoder = [[JSONDecoder decoder] retain];
+    decoder = [[SBJsonParser alloc] init];
   }
   
   return self;
@@ -42,6 +45,7 @@
 {
   [resources release];
   [resourceDescriptors release];
+  [decoder release];
   [super dealloc];
 }
 

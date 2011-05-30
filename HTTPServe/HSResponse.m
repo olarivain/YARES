@@ -8,7 +8,8 @@
 
 #import "HSResponse.h"
 #import "HSResponseCode.h"
-#import "JSONKit.h"
+#import "SBJsonPublic.h"
+//#import "JSONKit.h"
 
 static HSResponse *NOT_FOUND_RESPONSE;
 static HSResponse *NOT_AVAILABLE_RESPONSE;
@@ -88,12 +89,16 @@ static HSResponse *NOT_AVAILABLE_RESPONSE;
     if([object isKindOfClass: [NSArray class]]) 
     {
       NSArray *array = (NSArray*) object;
-      self.content = [array JSONData];
+      NSString *json = [array JSONRepresentation];
+      NSData *data = [json dataUsingEncoding: NSUTF8StringEncoding];
+      self.content = data;
     }
     else if([object isKindOfClass: [NSDictionary class]])
     {
       NSDictionary *dictionary = (NSDictionary *) object;
-      self.content = [dictionary JSONData];
+      NSString *json = [dictionary JSONRepresentation];
+      NSData *data = [json dataUsingEncoding: NSUTF8StringEncoding];
+      self.content = data;
     }
   }
   return content;
