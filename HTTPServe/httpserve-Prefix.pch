@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'MediaManagementCommon' target in the 'MediaManagementCommon' project
+//
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#endif
