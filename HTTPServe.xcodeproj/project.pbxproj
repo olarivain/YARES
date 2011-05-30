@@ -101,7 +101,6 @@
 		00CE973613133CBF006F6A38 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		00CE973E13133CBF006F6A38 /* HTTPServe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTTPServe-Info.plist"; sourceTree = "<group>"; };
 		00CE974013133CBF006F6A38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		00CE974213133CBF006F6A38 /* HTTPServe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTTPServe-Prefix.pch"; sourceTree = "<group>"; };
 		00CE974F13133CBF006F6A38 /* HTTPServeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTTPServeTests-Info.plist"; sourceTree = "<group>"; };
 		00CE975113133CBF006F6A38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		00CE975313133CBF006F6A38 /* HTTPServeTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTTPServeTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -284,7 +283,6 @@
 			children = (
 				00CE973E13133CBF006F6A38 /* HTTPServe-Info.plist */,
 				00CE973F13133CBF006F6A38 /* InfoPlist.strings */,
-				00CE974213133CBF006F6A38 /* HTTPServe-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
