@@ -30,7 +30,7 @@
 + (id)descriptorWithPath: (NSString*) resourcePath resource: (id<HSRestResource>) parent selector: (SEL) sel andMethod: (HSHttpMethod) resourceMethod;
 {
   HSHandlerPath *handlerPath = [HSHandlerPath handlerPath: resourcePath];
-  return [HSResourceDescriptor descriptorWithHandlerPath:handlerPath resource:parent selector:sel andMethod: GET];
+  return [HSResourceDescriptor descriptorWithHandlerPath:handlerPath resource:parent selector:sel andMethod: resourceMethod];
 }
 
 + (id) descriptorWithHandlerPath: (HSHandlerPath*) resourcePath resource: (id<HSRestResource>) parent selector: (SEL) sel andMethod: (HSHttpMethod) resourceMethod
