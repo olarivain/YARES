@@ -15,7 +15,7 @@
   NSMutableDictionary *queryParameters = [NSMutableDictionary dictionary];
   
   // NSURL doesn't give you HTTP GET param. Meh.
-  // TODO: this obviously doesn't give a shit whether the params are URL encoding.
+  // TODO: this obviously doesn't give a shit whether the params are URL encoded.
   // implement this at some point.
   NSString *paramsString = [self query];
   NSArray *paramsArray = [paramsString componentsSeparatedByString:@"&"];
