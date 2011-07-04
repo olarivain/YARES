@@ -23,7 +23,7 @@
  * </ul>
  * </p>
  *
- * <p>The server can be stopped by sending the stop signal. This will do the following:
+ * <p>The server can be stopped by sending the stop message. This will do the following:
  * <ul>
  *   <li>Send its RequestHandlerRegistry object the "unregisterRequestHandlers" message. This message will 
  * unregister all handlers. As a result handlers will be released (and most certainly freed)</li>
