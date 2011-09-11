@@ -29,7 +29,7 @@
   BOOL headerReceived;
   BOOL bodyReceived;
   NSInteger contentLength;
-  int bytesRead;
+  NSUInteger bodyBytesRead;
 }
 
 - (id)initWithPeerAddress:(NSData *)address inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr forServer:(HSHTTPServe *)server andRegistry: (HSRequestHandlerRegistry*) registry;
