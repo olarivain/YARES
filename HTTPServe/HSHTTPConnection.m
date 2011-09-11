@@ -264,10 +264,6 @@
   NSDictionary *requestParameters = [url queryParameters];
   // payload
   NSData *data = [(NSData*) CFHTTPMessageCopyBody(requestRef) autorelease];
-//  NSLog(@"data is : %@\nAnd %i long", data, [data length]);
-//  if([data length] == 0) {
-//    NSLog(@"no data in request");
-//  }
   request = [[HSRequest alloc] initWithHeaders:headers parameters:requestParameters body:data url: url  andMethod:method];
   CFRelease(requestRef);
 }
