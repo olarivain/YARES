@@ -71,7 +71,11 @@
 - (void) close 
 {
   [istream close];
+  [istream removeFromRunLoop:[NSRunLoop currentRunLoop]
+                    forMode:NSDefaultRunLoopMode];
   [ostream close];
+  [ostream removeFromRunLoop:[NSRunLoop currentRunLoop]
+                     forMode:NSDefaultRunLoopMode];
   [istream release];
   [ostream release];
   istream = nil;
@@ -83,6 +87,7 @@
 - (void) processRequest
 {
   NSRunLoop *current = [NSRunLoop currentRunLoop];
+
   
   [istream scheduleInRunLoop: current forMode:(id)kCFRunLoopCommonModes];
   [ostream scheduleInRunLoop:current forMode:(id)kCFRunLoopCommonModes];
@@ -91,7 +96,7 @@
   
   // this gives the client .5 seconds to start sending shit on the stream.
   // After that, he's dead. Too little, too late, RIP.
-  [current runUntilDate:[NSDate dateWithTimeIntervalSinceNow: 0.5]];
+  [current runUntilDate:[NSDate dateWithTimeIntervalSinceNow: 60]];
 }
 
 #pragma mark - NSStreamDelegate methods
@@ -109,6 +114,7 @@
         NSData *data = [NSData dataWithBytes:tempBuffer length:lengthRead];
         [self readRequest: data];
       }
+      
       break;
     case NSStreamEventHasSpaceAvailable:
       // output stream is now available, write response if we already have it,
@@ -119,6 +125,7 @@
       }
       break;
     case NSStreamEventEndEncountered:
+      NSLog(@"end encountered");
       // the end of the stream has been found, close
       [self close];
       break;
@@ -127,6 +134,7 @@
       [self close];
       break;
     default:
+//      NSLog(@"default has happened");
       break;
   }
 }
@@ -141,8 +149,11 @@
   }
 
   // append incoming bytes and increment bytes read counter accordingly
-  CFHTTPMessageAppendBytes(requestRef, [data bytes], [data length]);
-  bytesRead += [data length];
+  BOOL didAppend = CFHTTPMessageAppendBytes(requestRef, [data bytes], [data length]);
+  if(didAppend)
+  {
+    bodyBytesRead += [data length];
+  }
   
   // process headers
   if(!headerReceived)
@@ -175,13 +186,19 @@
   if(CFHTTPMessageIsHeaderComplete(requestRef)) 
   {
     headerReceived = YES;
-    
     // if content length is set, store it, otherwise mark message as received.
     NSString *headerContentLength = [(NSString*) CFHTTPMessageCopyHeaderFieldValue(requestRef, (CFStringRef) @"Content-Length") autorelease];
     if(headerContentLength)
     {
       // store content lenght for body processing
       contentLength = [headerContentLength integerValue];
+      
+      // the chunk we just received might contain bytes for the body, figure out how much of the body has been read by
+      // copying the current body and counting its length.
+      NSData *incompleteRequest = (NSData *) CFHTTPMessageCopyBody(requestRef);
+      bodyBytesRead = [incompleteRequest length];
+      [incompleteRequest release];
+      incompleteRequest = nil;
     }
   }
 }
@@ -190,7 +207,7 @@
 {
   // body is received if there was none or if we read at least as many bytes
   // as the content length specified.
-  bodyReceived = (contentLength <= 0) || (contentLength <= bytesRead);
+  bodyReceived = (contentLength <= 0) || (contentLength <= bodyBytesRead);
 }
 
 - (void)writeResponse
@@ -247,7 +264,6 @@
   NSDictionary *requestParameters = [url queryParameters];
   // payload
   NSData *data = [(NSData*) CFHTTPMessageCopyBody(requestRef) autorelease];
-  
   request = [[HSRequest alloc] initWithHeaders:headers parameters:requestParameters body:data url: url  andMethod:method];
   CFRelease(requestRef);
 }
@@ -292,6 +308,7 @@
   } 
   @catch (NSException *exception) 
   {
+    NSLog(@"It happened, again.");
     // exception maps to 500
     response = [HSResponse errorResponse];
     NSData *error = [[exception reason] dataUsingEncoding:NSUTF8StringEncoding];
