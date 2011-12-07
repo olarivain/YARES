@@ -16,6 +16,6 @@
   NSMutableArray *resourceDescriptors;
 }
 
-@property (unsafe_unretained, readonly) NSArray *paths;
+@property (weak, readonly) NSArray *paths;
 
 @end

@@ -12,11 +12,11 @@
 
 @interface HSRequest : NSObject {
 @private
-  NSDictionary *__unsafe_unretained headers;
-  NSDictionary *__unsafe_unretained parameters;
+  NSDictionary *__strong headers;
+  NSDictionary *__strong parameters;
   NSDictionary *pathParameters;
-  NSData *__unsafe_unretained body;
-  NSURL *__unsafe_unretained url;
+  NSData *__strong body;
+  NSURL *__strong url;
   HSHttpMethod method;
 }
 
