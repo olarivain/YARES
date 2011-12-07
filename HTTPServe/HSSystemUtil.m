@@ -24,15 +24,11 @@
   return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 + (Class*) getAllClasses: (int*) count
 {
   (*count) = objc_getClassList(NULL, 0);
-  Class *classes = malloc((*count) * sizeof(Class));
+  Class *classes = (__unsafe_unretained Class*) malloc((*count) * sizeof(Class));
   if (classes)
   {
     int newCount = objc_getClassList(classes, (*count));
@@ -40,7 +36,7 @@
     {
       (*count) = newCount;
       free(classes);
-      classes = malloc((*count) * sizeof(Class));
+      classes = (__unsafe_unretained Class*) malloc((*count) * sizeof(Class));
       if (classes)
         newCount = objc_getClassList(classes, (*count));
     }
@@ -60,7 +56,7 @@
     Class clazz = classes[i];
     if(class_conformsToProtocol(clazz, protocol))
     {
-      HSClassHolder *holder = [[[HSClassHolder alloc] initWithClass: clazz] autorelease];
+      HSClassHolder *holder = [[HSClassHolder alloc] initWithClass: clazz];
       [classHolders addObject:holder];
     }
   }
@@ -78,7 +74,7 @@
   for(int i = 0; i < (*count); i++)
   {
     Class clazz = classes[i];
-    HSClassHolder *holder = [[[HSClassHolder alloc] initWithClass: clazz] autorelease];
+    HSClassHolder *holder = [[HSClassHolder alloc] initWithClass: clazz];
     [classHolders addObject:holder];
   }
   

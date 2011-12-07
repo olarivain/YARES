@@ -9,15 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "HSRequestHandler.h"
-@class JSONDecoder;
 
 @interface HSRestRequestHandler : NSObject<HSRequestHandler> {
 @private
   NSMutableArray *resources;
   NSMutableArray *resourceDescriptors;
-  JSONDecoder *decoder;
 }
 
-@property (readonly) NSArray *paths;
+@property (unsafe_unretained, readonly) NSArray *paths;
 
 @end

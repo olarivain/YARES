@@ -16,7 +16,7 @@
 
 + (id) requestParmetersWithPathParameters: (NSDictionary*) pathParams andParamters: (id) param
 {
-  return [[[HSRequestParameters alloc] initWithPathParameters: pathParams andParamters: param] autorelease];
+  return [[HSRequestParameters alloc] initWithPathParameters: pathParams andParamters: param];
 }
 
 
@@ -25,19 +25,13 @@
   self = [super init];
   if (self) 
   {
-    pathParameters = [pathParams retain];
-    parameters = [param retain];
+    pathParameters = pathParams;
+    parameters = param;
   }
   
   return self;
 }
 
-- (void)dealloc
-{
-  [pathParameters release];
-  [parameters release];
-  [super dealloc];
-}
 
 @synthesize pathParameters;
 @synthesize parameters;

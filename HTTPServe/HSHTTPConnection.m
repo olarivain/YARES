@@ -41,13 +41,13 @@
     self = [super init];
     if (self) 
     {
-      handlerRegistry = [registry retain];
+      handlerRegistry = registry;
       peerAddress = [address copy];
 
-      httpServer = [server retain];
+      httpServer = server;
       
-      istream = [istr retain];
-      ostream = [ostr retain];
+      istream = istr;
+      ostream = ostr;
       
       [istream setDelegate:self];
       [ostream setDelegate:self];
@@ -59,12 +59,6 @@
 - (void)dealloc
 {
   [self close];
-  [request release];
-  [response release];
-  [peerAddress release];
-  [httpServer release];
-  [handlerRegistry release];
-  [super dealloc];
 }
 
 #pragma mark - Clean up
@@ -76,8 +70,6 @@
   [ostream close];
   [ostream removeFromRunLoop:[NSRunLoop currentRunLoop]
                      forMode:NSDefaultRunLoopMode];
-  [istream release];
-  [ostream release];
   istream = nil;
   ostream = nil;
   [httpServer connectionHandled: self];
@@ -187,7 +179,7 @@
   {
     headerReceived = YES;
     // if content length is set, store it, otherwise mark message as received.
-    NSString *headerContentLength = [(NSString*) CFHTTPMessageCopyHeaderFieldValue(requestRef, (CFStringRef) @"Content-Length") autorelease];
+    NSString *headerContentLength = (__bridge_transfer NSString*) CFHTTPMessageCopyHeaderFieldValue(requestRef, (CFStringRef) @"Content-Length");
     if(headerContentLength)
     {
       // store content lenght for body processing
@@ -195,9 +187,8 @@
       
       // the chunk we just received might contain bytes for the body, figure out how much of the body has been read by
       // copying the current body and counting its length.
-      NSData *incompleteRequest = (NSData *) CFHTTPMessageCopyBody(requestRef);
+      NSData *incompleteRequest = (__bridge_transfer NSData *) CFHTTPMessageCopyBody(requestRef);
       bodyBytesRead = [incompleteRequest length];
-      [incompleteRequest release];
       incompleteRequest = nil;
     }
   }
@@ -220,7 +211,7 @@
   
   // create CF http message, serialize and write response on stream
   CFHTTPMessageRef cfResponse = [self initHTTPResponse];
-  NSData *serialized = [(NSData *)CFHTTPMessageCopySerializedMessage(cfResponse) autorelease];
+  NSData *serialized = (__bridge_transfer NSData *)CFHTTPMessageCopySerializedMessage(cfResponse);
   
   NSUInteger offset = 0;
   NSUInteger remainingLength = [serialized length];
@@ -253,17 +244,17 @@
 
 - (void) initRequest
 {
-  NSURL *url = [(NSURL*) CFHTTPMessageCopyRequestURL(requestRef) autorelease];
+  NSURL *url = (__bridge_transfer NSURL*) CFHTTPMessageCopyRequestURL(requestRef);
   
   // HTTP method first
-  NSString *methodString = [(NSString*) CFHTTPMessageCopyRequestMethod(requestRef) autorelease];
+  NSString *methodString = (__bridge_transfer NSString*) CFHTTPMessageCopyRequestMethod(requestRef);
   HSHttpMethod method = methodFromString(methodString);
   // now headers
-  NSDictionary *headers = [(NSDictionary*) CFHTTPMessageCopyAllHeaderFields(requestRef) autorelease];
+  NSDictionary *headers = (__bridge_transfer NSDictionary*) CFHTTPMessageCopyAllHeaderFields(requestRef);
   // query parameters
   NSDictionary *requestParameters = [url queryParameters];
   // payload
-  NSData *data = [(NSData*) CFHTTPMessageCopyBody(requestRef) autorelease];
+  NSData *data = (__bridge_transfer NSData*) CFHTTPMessageCopyBody(requestRef);
   request = [[HSRequest alloc] initWithHeaders:headers parameters:requestParameters body:data url: url  andMethod:method];
   CFRelease(requestRef);
 }
@@ -278,13 +269,13 @@
   for(NSString *key in [headers keyEnumerator])
   {
     NSString *value = [headers objectForKey: key];
-    CFHTTPMessageSetHeaderFieldValue(cfResponse, (CFStringRef) key, (CFStringRef) value);
+    CFHTTPMessageSetHeaderFieldValue(cfResponse, (__bridge CFStringRef) key, (__bridge CFStringRef) value);
   }
   
   // compute content length now
-  CFHTTPMessageSetHeaderFieldValue(cfResponse, (CFStringRef) @"Content-Length", (CFStringRef) [response contentLengthAsString]);
+  CFHTTPMessageSetHeaderFieldValue(cfResponse, (CFStringRef) @"Content-Length", (__bridge CFStringRef) [response contentLengthAsString]);
   // and copy payload to response
-  CFHTTPMessageSetBody(cfResponse, (CFDataRef) [response content]);
+  CFHTTPMessageSetBody(cfResponse, (__bridge CFDataRef) [response content]);
   
   return cfResponse;
 }
@@ -314,6 +305,5 @@
     NSData *error = [[exception reason] dataUsingEncoding:NSUTF8StringEncoding];
     response.content = error;
   }
-  [response retain];
 }
 @end

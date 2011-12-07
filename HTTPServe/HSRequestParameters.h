@@ -11,8 +11,8 @@
 
 @interface HSRequestParameters : NSObject {
 @private
-  NSDictionary *pathParameters;
-  id parameters;
+  NSDictionary *__unsafe_unretained pathParameters;
+  id __unsafe_unretained parameters;
 }
 
 @property (readonly) NSDictionary *pathParameters;

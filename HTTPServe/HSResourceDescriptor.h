@@ -25,9 +25,9 @@
 + (id) descriptorWithPath: (NSString*) resourcePath resource: (id<HSRestResource>) resource andSelector: (SEL) sel;
 + (id) descriptorWithPath: (NSString*) resourcePath resource: (id<HSRestResource>) resource selector: (SEL) sel andMethod: (HSHttpMethod) resourceMethod;
 
-@property (readwrite, retain) HSHandlerPath *path;
+@property (readwrite, strong) HSHandlerPath *path;
 @property (readwrite, assign) HSHttpMethod method;
 @property (readwrite, assign) SEL selector;
-@property (readwrite, retain) id<HSRestResource> resource;
+@property (readwrite, strong) id<HSRestResource> resource;
 
 @end

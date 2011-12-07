@@ -20,8 +20,6 @@
 #import "HSHandlerPath.h"
 #import "HSRequestParameters.h"
 
-#import "JSONKit.h"
-
 @interface HSRestRequestHandler(private)
 - (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request;
 @end
@@ -35,19 +33,11 @@
   {
     resources = [[NSMutableArray alloc] init];
     resourceDescriptors = [[NSMutableArray alloc] init];
-    decoder = [[JSONDecoder alloc] initWithParseOptions: JKParseOptionLooseUnicode];
   }
   
   return self;
 }
 
-- (void)dealloc
-{
-  [resources release];
-  [resourceDescriptors release];
-  [decoder release];
-  [super dealloc];
-}
 
 - (void) initialize
 {
@@ -58,7 +48,7 @@
     // instantiate those dudes. 
     // Yes. IoC a la ObjectiveC.
     Class class = [holder clazz];
-    id<HSRestResource> handler = [[class new] autorelease];
+    id<HSRestResource> handler = [class new];
     
     // initialize if the object responds to selector
     if(class_respondsToSelector(class, @selector(initialize)))
@@ -89,7 +79,7 @@
   NSObject *params;
   if([request method] != GET)
   {
-    params = [decoder objectWithData: [request body]];
+      params = [NSJSONSerialization JSONObjectWithData: request.body options: NSJSONReadingAllowFragments error: nil];
   }
   else
   {

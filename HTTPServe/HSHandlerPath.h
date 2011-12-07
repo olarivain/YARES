@@ -11,7 +11,7 @@
 @interface HSHandlerPath : NSObject 
 {
 @private
-  NSString *path;
+  NSString *__unsafe_unretained path;
 }
 
 @property (readonly) NSString *path;

@@ -35,25 +35,19 @@
 
 + (id) descriptorWithHandlerPath: (HSHandlerPath*) resourcePath resource: (id<HSRestResource>) parent selector: (SEL) sel andMethod: (HSHttpMethod) resourceMethod
 {
-  HSResourceDescriptor *descriptor = [[[HSResourceDescriptor alloc] init] autorelease];
+  HSResourceDescriptor *descriptor = [[HSResourceDescriptor alloc] init];
   if (descriptor) 
   {
     descriptor.path = resourcePath;
     descriptor.method = resourceMethod;
     descriptor.selector = sel;
-    descriptor.resource = [parent retain];
+    descriptor.resource = parent;
   }
   
   return descriptor;
 }
 
 
-- (void)dealloc
-{
-  [path release];
-  [resource release];
-  [super dealloc];
-}
 
 @synthesize path;
 @synthesize method;

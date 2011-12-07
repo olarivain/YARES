@@ -30,11 +30,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-  [notFoundHandler release];
-  [super dealloc];
-}
 
 - (void) bootstrapClasses
 {
@@ -53,7 +48,7 @@
     // don't instantiate/register built in handlers, obviously...
     if(class != [HSNotFoundHandler class])
     {
-      id<HSRequestHandler> handler = [[class new] autorelease];
+      id<HSRequestHandler> handler = [class new];
       if(class_respondsToSelector(class, @selector(initialize)))
       {
         [handler initialize];

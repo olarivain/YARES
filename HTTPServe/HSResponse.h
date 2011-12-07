@@ -20,8 +20,8 @@
 
 @property (nonatomic,readwrite, assign) HSResponseCode code;
 @property (readonly) NSDictionary *headers;
-@property (nonatomic,readwrite, retain) NSData *content;
-@property (nonatomic, readwrite, retain) id object;
+@property (nonatomic,readwrite, strong) NSData *content;
+@property (nonatomic, readwrite, strong) id object;
 
 + (HSResponse*) response;
 + (HSResponse*) jsonResponse;

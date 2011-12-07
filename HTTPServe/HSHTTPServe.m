@@ -52,9 +52,6 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 - (void)dealloc
 {
   [self stop];  
-  [handlerRegistry release];
-  [operationQueue release];
-  [super dealloc];
 }
 
 #pragma mark - Start/stop methods
@@ -74,7 +71,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 - (void) initializeHTTPServer
 {
   // gotta love all the C code. Taken from Apple samples, cleaned up not to leak as much as my granny.
-  CFSocketContext socketCtxt = {0, self, NULL, NULL, NULL};
+  CFSocketContext socketCtxt = {0, (__bridge void *)(self), NULL, NULL, NULL};
   ipv4socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&HTTPServerAcceptCallBack, &socketCtxt);
   ipv6socket = CFSocketCreate(kCFAllocatorDefault, PF_INET6, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&HTTPServerAcceptCallBack, &socketCtxt);
   
@@ -107,7 +104,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   addr4.sin_addr.s_addr = htonl(INADDR_ANY);
   NSData *address4 = [NSData dataWithBytes:&addr4 length:sizeof(addr4)];
   
-  if (kCFSocketSuccess != CFSocketSetAddress(ipv4socket, (CFDataRef)address4)) 
+  if (kCFSocketSuccess != CFSocketSetAddress(ipv4socket, (__bridge CFDataRef)address4)) 
   {
     NSLog(@"Error: Could not set IPv4 socket address.");
     if (ipv4socket)
@@ -127,7 +124,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   {
     // now that the binding was successful, we get the port number 
     // -- we will need it for the v6 endpoint and for the NSNetService
-    NSData *addr = [(NSData *)CFSocketCopyAddress(ipv4socket) autorelease];
+    NSData *addr = (__bridge_transfer NSData *)CFSocketCopyAddress(ipv4socket);
     memcpy(&addr4, [addr bytes], [addr length]);
     port = ntohs(addr4.sin_port);
   }
@@ -141,7 +138,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
   memcpy(&(addr6.sin6_addr), &in6addr_any, sizeof(addr6.sin6_addr));
   NSData *address6 = [NSData dataWithBytes:&addr6 length:sizeof(addr6)];
   
-  if (kCFSocketSuccess != CFSocketSetAddress(ipv6socket, (CFDataRef)address6)) 
+  if (kCFSocketSuccess != CFSocketSetAddress(ipv6socket, (__bridge CFDataRef)address6)) 
   {
     NSLog(@"Error: Could not set IPv6 socket address.");
     if (ipv4socket)
@@ -192,7 +189,6 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 {
   [handlerRegistry unregisterRequestHandlers];
   [netService stop];
-  [netService release];
   netService = nil;
   CFSocketInvalidate(ipv4socket);
   CFSocketInvalidate(ipv6socket);
@@ -238,11 +234,14 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 - (void)handleNewConnectionFromAddress:(NSData *)addr inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr 
 {
   // GCD this, so we can process multiple in parallel
+  __weak HSHTTPServe *theServer = self;
+  __weak HSRequestHandlerRegistry *theHandlerRegistry = handlerRegistry;
+#pragma mark add definition for void blocks
   [operationQueue addOperationWithBlock:^(void) {
-    HSHTTPConnection *connection = [[[HSHTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:self andRegistry:handlerRegistry] autorelease];
+    HSHTTPConnection *connection = [[HSHTTPConnection alloc] initWithPeerAddress:addr inputStream:istr outputStream:ostr forServer:theServer andRegistry:theHandlerRegistry];
     if( connection ) 
     {
-      [self addConnection: connection];
+      [theServer addConnection: connection];
     }
     [connection processRequest];
   }];
@@ -279,7 +278,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
 // invocation on TCPServer.
 static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info) 
 {
-  HSHTTPServe *server = (HSHTTPServe *)info;
+  HSHTTPServe *server = (__bridge HSHTTPServe *)info;
   if (kCFSocketAcceptCallBack == type) 
   {  
     // for an AcceptCallBack, the data parameter is a pointer to a CFSocketNativeHandle
@@ -300,7 +299,7 @@ static void HTTPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType ty
     {
       CFReadStreamSetProperty(readStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
       CFWriteStreamSetProperty(writeStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
-      [server handleNewConnectionFromAddress:peer inputStream:(NSInputStream *)readStream outputStream:(NSOutputStream *)writeStream];
+      [server handleNewConnectionFromAddress:peer inputStream:(__bridge NSInputStream *)readStream outputStream:(__bridge NSOutputStream *)writeStream];
     } else 
     {
       // on any failure, need to destroy the CFSocketNativeHandle 

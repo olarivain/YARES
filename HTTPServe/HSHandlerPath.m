@@ -21,7 +21,7 @@
 
 + (id) handlerPath: (NSString *) path
 {
-  return [[[HSHandlerPath alloc] initWithPath:path] autorelease];
+  return [[HSHandlerPath alloc] initWithPath:path];
 }
 
 - (id)initWithPath: (NSString*) handlerPath
@@ -29,17 +29,12 @@
   self = [super init];
   if (self) 
   {
-    path = [handlerPath retain];
+    path = handlerPath;
   }
   
   return self;
 }
 
-- (void)dealloc
-{
-  [path release];
-  [super dealloc];
-}
 
 @synthesize path;
 

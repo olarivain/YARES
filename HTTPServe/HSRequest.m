@@ -15,25 +15,16 @@
 {
   self = [super init];
   if (self) {
-    headers = [header retain];
-    parameters = [params retain];
-    body = [content retain];
-    url = [requestedURL retain];
+    headers = header;
+    parameters = params;
+    body = content;
+    url = requestedURL;
     method = requestMethod;
   }
   
   return self;
 }
 
-- (void)dealloc
-{
-  [headers release];
-  [parameters release];
-  [pathParameters release];
-  [body release];
-  [url release];
-  [super dealloc];
-}
 
 @synthesize headers;
 @synthesize parameters;

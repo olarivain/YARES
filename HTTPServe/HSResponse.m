@@ -8,7 +8,6 @@
 
 #import "HSResponse.h"
 #import "HSResponseCode.h"
-#import "JSONKit.h"
 
 static HSResponse *NOT_FOUND_RESPONSE;
 static HSResponse *NOT_AVAILABLE_RESPONSE;
@@ -22,13 +21,13 @@ static HSResponse *NOT_AVAILABLE_RESPONSE;
 
 + (HSResponse*) jsonResponse
 {
-  return [[[HSResponse alloc] initWithContentType:@"application/json"] autorelease];
+  return [[HSResponse alloc] initWithContentType:@"application/json"];
 
 }
 
 + (HSResponse*) response
 {
-  return [[[HSResponse alloc] init] autorelease];
+  return [[HSResponse alloc] init];
 }
 
 + (HSResponse*) errorResponse
@@ -69,13 +68,6 @@ static HSResponse *NOT_AVAILABLE_RESPONSE;
   return self;
 }
 
-- (void)dealloc
-{
-  self.object = nil;
-  self.content = nil;
-  [headers release];
-  [super dealloc];
-}
 
 #pragma mark - Content accessor
 - (NSData*) content 
@@ -88,13 +80,13 @@ static HSResponse *NOT_AVAILABLE_RESPONSE;
     if([object isKindOfClass: [NSArray class]]) 
     {
       NSArray *array = (NSArray*) object;
-      NSData *data = [array JSONData];
+        NSData *data = [NSJSONSerialization dataWithJSONObject: array options:NSJSONReadingAllowFragments error: nil];
       self.content = data;
     }
     else if([object isKindOfClass: [NSDictionary class]])
     {
       NSDictionary *dictionary = (NSDictionary *) object;
-      NSData *data = [dictionary JSONData];
+      NSData *data = [NSJSONSerialization dataWithJSONObject: dictionary options:NSJSONReadingAllowFragments error: nil];
       self.content = data;
     }
   }
