@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		007FFE41148F4D56002E7CF7 /* HTTPServer Deploy */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 007FFE44148F4D56002E7CF7 /* Build configuration list for PBXAggregateTarget "HTTPServer Deploy" */;
-			buildPhases = (
-				007FFE46148F4D5E002E7CF7 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = "HTTPServer Deploy";
-			productName = "HTTPServer Deploy";
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		00323D41132C1943003BED87 /* HSRequestHandlerRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 007A804F1319D9910040A3AE /* HSRequestHandlerRegistry.h */; };
 		00323D42132C195E003BED87 /* HSNotFoundHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF732B1319EBB80009761A /* HSNotFoundHandler.h */; };
@@ -316,6 +302,22 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		00E010F8149091FB00E3C4F0 /* HTTPServe Workspace */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 00E010F9149091FB00E3C4F0 /* Build configuration list for PBXLegacyTarget "HTTPServe Workspace" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/rake;
+			dependencies = (
+			);
+			name = "HTTPServe Workspace";
+			passBuildSettingsInEnvironment = 1;
+			productName = "HTTPServe Workspace";
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		00E35D90132C032F00D25EFF /* HTTPServe */ = {
 			isa = PBXNativeTarget;
@@ -355,26 +357,10 @@
 			projectRoot = "";
 			targets = (
 				00E35D90132C032F00D25EFF /* HTTPServe */,
-				007FFE41148F4D56002E7CF7 /* HTTPServer Deploy */,
+				00E010F8149091FB00E3C4F0 /* HTTPServe Workspace */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		007FFE46148F4D5E002E7CF7 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "cd \"\\\"${PROJECT_DIR}\\\"\"\n./builder.rb";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00E35D8D132C032F00D25EFF /* Sources */ = {
@@ -421,20 +407,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		007FFE42148F4D56002E7CF7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		007FFE43148F4D56002E7CF7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		00CE975813133CBF006F6A38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -472,6 +444,43 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		00E010FA149091FB00E3C4F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		00E010FB149091FB00E3C4F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -540,15 +549,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		007FFE44148F4D56002E7CF7 /* Build configuration list for PBXAggregateTarget "HTTPServer Deploy" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				007FFE42148F4D56002E7CF7 /* Debug */,
-				007FFE43148F4D56002E7CF7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		00CE972C13133CBE006F6A38 /* Build configuration list for PBXProject "HTTPServe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -557,6 +557,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		00E010F9149091FB00E3C4F0 /* Build configuration list for PBXLegacyTarget "HTTPServe Workspace" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E010FA149091FB00E3C4F0 /* Debug */,
+				00E010FB149091FB00E3C4F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		00E35D96132C032F00D25EFF /* Build configuration list for PBXNativeTarget "HTTPServe" */ = {
 			isa = XCConfigurationList;
