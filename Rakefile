@@ -1,7 +1,9 @@
 require 'XCodeDeployer'
+require 'XCodeProduct'
 
 name = "HTTPServe"
-builder = XCodeDeployer.new(name)
+products = [XCodeProduct.new(name, name, "Release", ["macosx"])]
+builder = XCodeDeployer.new(products)
 
 task :setup do
 	builder.setup
