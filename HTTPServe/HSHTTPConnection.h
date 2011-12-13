@@ -30,6 +30,7 @@
   BOOL bodyReceived;
   NSInteger contentLength;
   NSUInteger bodyBytesRead;
+  BOOL shouldKeepRunning;
 }
 
 - (id)initWithPeerAddress:(NSData *)address inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr forServer:(HSHTTPServe *)server andRegistry: (HSRequestHandlerRegistry*) registry;

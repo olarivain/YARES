@@ -73,6 +73,7 @@
   istream = nil;
   ostream = nil;
   [httpServer connectionHandled: self];
+  shouldKeepRunning = NO;
 }
 
 #pragma mark - Process the request
@@ -86,9 +87,15 @@
   [istream open];
   [ostream open];
   
-  // this gives the client .5 seconds to start sending shit on the stream.
-  // After that, he's dead. Too little, too late, RIP.
-  [current runUntilDate:[NSDate dateWithTimeIntervalSinceNow: 60]];
+  NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+  // run the current run loop every 0.2 seconds, self is responsible for flipping the shouldKeeprunning switch
+  // when connection is closed
+  shouldKeepRunning = YES;
+  while(shouldKeepRunning && [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.2]])
+  {
+    // do nothing
+  }
+
 }
 
 #pragma mark - NSStreamDelegate methods
