@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
+#warning move to KraCommons
 @interface NSURL (NSURL_HTTPServe)
 - (NSDictionary*) queryParameters;
 @end

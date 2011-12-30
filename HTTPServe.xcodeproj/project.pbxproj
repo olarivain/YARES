@@ -305,11 +305,12 @@
 /* Begin PBXLegacyTarget section */
 		00E010F8149091FB00E3C4F0 /* HTTPServe Workspace */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
+			buildArgumentsString = "build deploy";
 			buildConfigurationList = 00E010F9149091FB00E3C4F0 /* Build configuration list for PBXLegacyTarget "HTTPServe Workspace" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/rake;
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = "HTTPServe Workspace";

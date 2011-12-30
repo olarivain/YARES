@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
+#warning move to KraCommons
 @interface NSString (NSString_HTTPServe)
 - (BOOL) contains: (NSString*) other;
 
