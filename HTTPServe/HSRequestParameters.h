@@ -11,6 +11,7 @@
 
 @interface HSRequestParameters : NSObject {
 @private
+#warning this should be an id, not an NSDictionary - it can be a JSON array
   NSDictionary *__strong pathParameters;
   id __strong parameters;
 }
@@ -20,4 +21,5 @@
 
 + (id) requestParmetersWithPathParameters: (NSDictionary*) pathParams andParamters: (id) param;
 
+- (id) pathParameterForKey: (NSString *) key;
 @end

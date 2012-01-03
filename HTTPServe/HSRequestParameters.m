@@ -36,4 +36,9 @@
 @synthesize pathParameters;
 @synthesize parameters;
 
+- (id) pathParameterForKey: (NSString *) key
+{
+  return [pathParameters objectForKey: key];
+}
+
 @end
