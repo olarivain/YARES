@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E010F8149091FB00E3C4F0"
-               BuildableName = "HTTPServe Workspace"
-               BlueprintName = "HTTPServe Workspace"
+               BlueprintIdentifier = "00E35D90132C032F00D25EFF"
+               BuildableName = "libhttpserve.a"
+               BlueprintName = "HTTPServe"
                ReferencedContainer = "container:HTTPServe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
