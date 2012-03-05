@@ -1,7 +1,7 @@
 require 'XCodeDeployer'
 require 'XCodeProduct'
 
-name = "HTTPServe"
+name = "YARES"
 products = [XCodeProduct.new(name, name, "Release", ["macosx"])]
 builder = XCodeDeployer.new(products)
 
