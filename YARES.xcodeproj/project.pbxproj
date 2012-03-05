@@ -294,7 +294,7 @@
 			);
 			name = "YARES Workspace";
 			passBuildSettingsInEnvironment = 1;
-			productName = "HTTPServe Workspace";
+			productName = "YARES Workspace";
 		};
 /* End PBXLegacyTarget section */
 

@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E35D90132C032F00D25EFF"
-               BuildableName = "libhttpserve.a"
+               BuildableName = "libYARES.a"
                BlueprintName = "YARES"
                ReferencedContainer = "container:YARES.xcodeproj">
             </BuildableReference>
