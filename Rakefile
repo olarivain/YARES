@@ -1,33 +1,26 @@
-require 'XCodeDeployer'
-require 'XCodeProduct'
+require 'Raven.rb'
+require 'RavenArtifact.rb'
 
-name = "YARES"
-products = [XCodeProduct.new(name, name, "Release", ["macosx"])]
-builder = XCodeDeployer.new(products)
+include Rake::DSL
 
-task :setup do
-	builder.setup
-end
-
-task :default => [:build, :deploy] do
-end
+raven = Raven.new()
 
 task :clean do
-	puts "cleaning " + name
-	builder.clean
+	raven.clean
 end
 
-task :build do
-	puts "building " + name
-	builder.build
+task :resolve do
+	raven.resolve
+end
+
+task :build, :configuration do |task, arg|
+	raven.build(arg.configuration)
 end
 
 task :install do
-	puts "Deploying " + name
-	builder.deploy
+	raven.install
 end
 
-task :release => [:setup, :clean, :build, :deploy] do
-	builder.release
+task :release do
+	raven.release
 end
-
