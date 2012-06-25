@@ -1,6 +1,6 @@
 <project>
 	<name>Yet Another REST Server</name>
-	<groupId>org.kra</groupId>
+	<groupId>org.kra.yares</groupId>
 	<version>1.0.10</version>
 	<scm>git</scm>
 	
