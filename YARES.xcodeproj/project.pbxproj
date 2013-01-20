@@ -42,6 +42,7 @@
 		00F7681A150455E7003D10AB /* NSURL+HTTPServe.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F767F8150455E7003D10AB /* NSURL+HTTPServe.h */; };
 		00F7681B150455E7003D10AB /* NSURL+HTTPServe.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F767F9150455E7003D10AB /* NSURL+HTTPServe.m */; };
 		00F7682515045649003D10AB /* YARES-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 00F7682415045649003D10AB /* YARES-Prefix.pch */; };
+		FC8DC4D3FEDA47B0B6D1C93D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 847448ABF963457B94BC5F1A /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,8 @@
 		00F76822150455EF003D10AB /* HTTPServeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPServeTests.m; sourceTree = "<group>"; };
 		00F7682315045649003D10AB /* YARES-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "YARES-Info.plist"; path = "YARES/YARES-Info.plist"; sourceTree = SOURCE_ROOT; };
 		00F7682415045649003D10AB /* YARES-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "YARES-Prefix.pch"; path = "YARES/YARES-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		847448ABF963457B94BC5F1A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97E68143D9EA4F24812B0A3A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E35D92132C032F00D25EFF /* Cocoa.framework in Frameworks */,
+				FC8DC4D3FEDA47B0B6D1C93D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +116,7 @@
 				00CE973513133CBF006F6A38 /* Frameworks */,
 				00CE973413133CBF006F6A38 /* Products */,
 				00DC02151597E18600F891C9 /* Rakefile */,
+				97E68143D9EA4F24812B0A3A /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				00CE973613133CBF006F6A38 /* Cocoa.framework */,
+				847448ABF963457B94BC5F1A /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -281,23 +287,6 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
-/* Begin PBXLegacyTarget section */
-		00E010F8149091FB00E3C4F0 /* YARES Workspace */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "build install";
-			buildConfigurationList = 00E010F9149091FB00E3C4F0 /* Build configuration list for PBXLegacyTarget "YARES Workspace" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/rake;
-			buildWorkingDirectory = "";
-			dependencies = (
-			);
-			name = "YARES Workspace";
-			passBuildSettingsInEnvironment = 1;
-			productName = "YARES Workspace";
-		};
-/* End PBXLegacyTarget section */
-
 /* Begin PBXNativeTarget section */
 		00E35D90132C032F00D25EFF /* YARES */ = {
 			isa = PBXNativeTarget;
@@ -306,6 +295,7 @@
 				00E35D8D132C032F00D25EFF /* Sources */,
 				00E35D8E132C032F00D25EFF /* Frameworks */,
 				00E35D8F132C032F00D25EFF /* Headers */,
+				84220D9353C24AC99F684BE6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -337,10 +327,26 @@
 			projectRoot = "";
 			targets = (
 				00E35D90132C032F00D25EFF /* YARES */,
-				00E010F8149091FB00E3C4F0 /* YARES Workspace */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		84220D9353C24AC99F684BE6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00E35D8D132C032F00D25EFF /* Sources */ = {
@@ -385,18 +391,11 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
+				VALID_ARCHS = "${ARCHS_STANDARD_64_BIT}";
 			};
 			name = Debug;
 		};
@@ -406,109 +405,31 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_GC = unsupported;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		00E010FA149091FB00E3C4F0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		00E010FB149091FB00E3C4F0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "${ARCHS_STANDARD_64_BIT}";
 			};
 			name = Release;
 		};
 		00E35D97132C032F00D25EFF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97E68143D9EA4F24812B0A3A /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YARES/YARES-Prefix.pch";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/SBJson-fgthbtjiqkdgsdgrgawgworxduat/Build/Products/Release\"",
-					"\"$(SRCROOT)/libraries/SBJSON\"",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				PRIVATE_HEADERS_FOLDER_PATH = HTTPServe;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PUBLIC_HEADERS_FOLDER_PATH = YARES;
-				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Debug;
 		};
 		00E35D98132C032F00D25EFF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97E68143D9EA4F24812B0A3A /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YARES/YARES-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/SBJson-fgthbtjiqkdgsdgrgawgworxduat/Build/Products/Release\"",
-					"\"$(SRCROOT)/libraries/SBJSON\"",
-				);
-				PRIVATE_HEADERS_FOLDER_PATH = HTTPServe;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PUBLIC_HEADERS_FOLDER_PATH = YARES;
-				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Release;
 		};
@@ -520,15 +441,6 @@
 			buildConfigurations = (
 				00CE975813133CBF006F6A38 /* Debug */,
 				00CE975913133CBF006F6A38 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00E010F9149091FB00E3C4F0 /* Build configuration list for PBXLegacyTarget "YARES Workspace" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E010FA149091FB00E3C4F0 /* Debug */,
-				00E010FB149091FB00E3C4F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
