@@ -4,15 +4,12 @@ require 'FileUtils'
 custom_path = "./DevPaths.rb"
 if File.exists? custom_path then
 	custom_paths = eval(File.new(custom_path).read)
-	puts "Using custom paths for OpenTable libraries from #{custom_path}."
+	puts "Using custom paths for libraries from #{custom_path}."
 else 
 	custom_paths = Hash.new
-	puts "Released version of OpenTable libraries will be used. If you wish to use local version, create DevPaths.rb, see DevPaths-sample.rb for an example"
+	puts "Released version of libraries will be used. If you wish to use local version, create DevPaths.rb, see DevPaths-sample.rb for an example"
 
 end
-puts
-
-platform :osx, "10.7"
 
 # loads local dev version of a pod if found, failing back to released version otherwise
 def dev_pod_or_released(name, version, dev_path)
@@ -24,6 +21,10 @@ def dev_pod_or_released(name, version, dev_path)
 		puts "Using latest released version of #{name}"
 	end
 end
+
+puts
+
+platform :osx, "10.7"
 
 dev_pod_or_released("KraCommons", "0.0.1", custom_paths[:KraCommons])
 puts
