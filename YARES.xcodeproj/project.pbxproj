@@ -48,7 +48,6 @@
 		00530B8113134E84006A9311 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		00CE973613133CBF006F6A38 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		00DC02151597E18600F891C9 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
-		00DC02161597E18600F891C9 /* rpom.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = rpom.xml; sourceTree = "<group>"; };
 		00E35D91132C032F00D25EFF /* libYARES.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libYARES.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F767D7150455E7003D10AB /* HSClassHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSClassHolder.h; sourceTree = "<group>"; };
 		00F767D8150455E7003D10AB /* HSClassHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSClassHolder.m; sourceTree = "<group>"; };
@@ -113,7 +112,6 @@
 				00CE973513133CBF006F6A38 /* Frameworks */,
 				00CE973413133CBF006F6A38 /* Products */,
 				00DC02151597E18600F891C9 /* Rakefile */,
-				00DC02161597E18600F891C9 /* rpom.xml */,
 			);
 			sourceTree = "<group>";
 		};
