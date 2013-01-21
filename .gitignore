@@ -26,3 +26,4 @@ build.output
 git.output
 pkg/
 build/
+DevPaths.rb
