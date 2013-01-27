@@ -90,7 +90,7 @@
   // figure out how to move it out to HSHTTPConnection
   // Extract path parameters and merge with request parameters.
   HSHandlerPath *handlerPath = descriptor.path;
-  NSDictionary *pathParameters = [handlerPath pathParametersForURL: [request.url relativePath]];
+  NSDictionary *pathParameters = [handlerPath pathParametersForURL: [request.url relativeString]];
   
   HSRequestParameters *requestParameters = [HSRequestParameters requestParmetersWithPathParameters:pathParameters andParamters:params];
   
@@ -121,7 +121,7 @@
 - (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request
 {
   // look for the first resource that will handle the request
-  NSString *relativePath = [request.url relativePath];
+  NSString *relativePath = [request.url relativeString];
   for(HSResourceDescriptor *descriptor in resourceDescriptors)
   {
     if(descriptor.method == request.method)
