@@ -28,112 +28,116 @@
 
 - (id)init
 {
-  self = [super init];
-  if (self) 
-  {
-    resources = [[NSMutableArray alloc] init];
-    resourceDescriptors = [[NSMutableArray alloc] init];
-  }
-  
-  return self;
+	self = [super init];
+	if (self)
+	{
+		resources = [[NSMutableArray alloc] init];
+		resourceDescriptors = [[NSMutableArray alloc] init];
+	}
+	
+	return self;
 }
 
 
 - (void) initialize
 {
-  // Crawl through all classes implementing our fancy HSRestResource protocol
-  NSArray *classes = [HSSystemUtil getClassesConformingToProcol:@protocol(HSRestResource)];
-  for(HSClassHolder *holder in classes)
-  {
-    // instantiate those dudes. 
-    // Yes. IoC a la ObjectiveC.
-    Class class = [holder clazz];
-    id<HSRestResource> handler = [class new];
-    
-    // initialize if the object responds to selector
-    if(class_respondsToSelector(class, @selector(initialize)))
-    {
-      [handler initialize];
-    }
-    
-    // keep track of the resource
-    [resourceDescriptors addObjectsFromArray: [handler resourceDescriptors]];
-    [resources addObject:handler];
-  }
+	// Crawl through all classes implementing our fancy HSRestResource protocol
+	NSArray *classes = [HSSystemUtil getClassesConformingToProcol:@protocol(HSRestResource)];
+	for(HSClassHolder *holder in classes)
+	{
+		// instantiate those dudes.
+		// Yes. IoC a la ObjectiveC.
+		Class class = [holder clazz];
+		id<HSRestResource> handler = [class new];
+		
+		// initialize if the object responds to selector
+		if(class_respondsToSelector(class, @selector(initialize)))
+		{
+			[handler initialize];
+		}
+		
+		// keep track of the resource
+		[resourceDescriptors addObjectsFromArray: [handler resourceDescriptors]];
+		[resources addObject:handler];
+	}
 }
 
 - (HSResponse*) handleRequest:(HSRequest *)request
 {
-  // get a grip on the resource descriptor, if any
-  HSResourceDescriptor *descriptor = [self descriptorForRequest: request];
-  
-  // return a 404 if we have nobody handling the resource. Shouldn't happen though,
-  // we wouldn't have gottent the request if we didn't have a handler.
-  if(descriptor == nil)
-  {
-    return [HSResponse NOT_FOUND_RESPONSE];
-  }
-  
-  // figure out where the params come from: body or query string,
-  // depending on HTTP Method.
-  NSObject *params;
-  if([request method] != GET)
-  {
-      params = [NSJSONSerialization JSONObjectWithData: request.body options: NSJSONReadingAllowFragments error: nil];
-  }
-  else
-  {
-    params = [request parameters];
-  }
-  
-  // TODO this piece of code could be useful for all handlers, not just the rest ones
-  // figure out how to move it out to HSHTTPConnection
-  // Extract path parameters and merge with request parameters.
-  HSHandlerPath *handlerPath = descriptor.path;
-  NSDictionary *pathParameters = [handlerPath pathParametersForURL: [request.url relativeString]];
-  
-  HSRequestParameters *requestParameters = [HSRequestParameters requestParmetersWithPathParameters:pathParameters andParamters:params];
-  
-  // call appropriate selector on resource with the parsed params
-  id<HSRestResource> resource = [descriptor resource];
-  HSResponse *response = [resource performSelector:[descriptor selector] withObject: requestParameters];
-  
-  // fail back to 204 No Content if no response was supplied by resource.
-  if(response == nil)
-  {
-    response = [HSResponse emptyResponse];
-  }
-  
-  return response;
+	// get a grip on the resource descriptor, if any
+	HSResourceDescriptor *descriptor = [self descriptorForRequest: request];
+	
+	// return a 404 if we have nobody handling the resource. Shouldn't happen though,
+	// we wouldn't have gottent the request if we didn't have a handler.
+	if(descriptor == nil)
+	{
+		return [HSResponse NOT_FOUND_RESPONSE];
+	}
+	
+	// figure out where the params come from: body or query string,
+	// depending on HTTP Method.
+	NSObject *params;
+	if([request method] != GET && [request method] != DELETE)
+	{
+		params = [NSJSONSerialization JSONObjectWithData: request.body options: NSJSONReadingAllowFragments error: nil];
+	}
+	else
+	{
+		params = [request parameters];
+	}
+	
+	// TODO this piece of code could be useful for all handlers, not just the rest ones
+	// figure out how to move it out to HSHTTPConnection
+	// Extract path parameters and merge with request parameters.
+	HSHandlerPath *handlerPath = descriptor.path;
+	NSString *relativePath = [request.url relativeString];
+	relativePath = [[relativePath componentsSeparatedByString: @"?"] boundSafeObjectAtIndex: 0];
+	NSDictionary *pathParameters = [handlerPath pathParametersForURL: relativePath];
+	
+	HSRequestParameters *requestParameters = [HSRequestParameters requestParmetersWithPathParameters:pathParameters andParamters:params];
+	
+	// call appropriate selector on resource with the parsed params
+	id<HSRestResource> resource = [descriptor resource];
+	HSResponse *response = [resource performSelector:[descriptor selector] withObject: requestParameters];
+	
+	// fail back to 204 No Content if no response was supplied by resource.
+	if(response == nil)
+	{
+		response = [HSResponse emptyResponse];
+	}
+	
+	return response;
 }
 
 - (NSArray *) paths
 {
-  // aggregate resources descriptors and return their HSHAndlerPath objects
-  NSMutableArray *paths = [NSMutableArray arrayWithCapacity:[resourceDescriptors count]];
-  for(HSResourceDescriptor *descriptor in resourceDescriptors)
-  {
-    [paths addObject:[descriptor path]];
-  }
-  return paths;
+	// aggregate resources descriptors and return their HSHAndlerPath objects
+	NSMutableArray *paths = [NSMutableArray arrayWithCapacity:[resourceDescriptors count]];
+	for(HSResourceDescriptor *descriptor in resourceDescriptors)
+	{
+		[paths addObject:[descriptor path]];
+	}
+	return paths;
 }
 
 - (HSResourceDescriptor*) descriptorForRequest: (HSRequest*) request
 {
-  // look for the first resource that will handle the request
-  NSString *relativePath = [request.url relativeString];
-  for(HSResourceDescriptor *descriptor in resourceDescriptors)
-  {
-    if(descriptor.method == request.method)
-    {
-      if([descriptor.path handlesPath: relativePath])
-      {
-        return descriptor;
-      }
-    }
-  }
-  NSLog(@"No descriptor found for method: %i and path: %@", [request method], [request path]);
-  return nil;
+	// look for the first resource that will handle the request
+	NSString *relativePath = [request.url relativeString];
+	relativePath = [[relativePath componentsSeparatedByString: @"?"] boundSafeObjectAtIndex: 0];
+	
+	for(HSResourceDescriptor *descriptor in resourceDescriptors)
+	{
+		if(descriptor.method == request.method)
+		{
+			if([descriptor.path handlesPath: relativePath])
+			{
+				return descriptor;
+			}
+		}
+	}
+	NSLog(@"No descriptor found for method: %i and path: %@", [request method], [request path]);
+	return nil;
 }
 
 @end
